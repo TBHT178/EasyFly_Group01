@@ -33,21 +33,21 @@
                   <!-- RD Navbar Toggle-->
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
-                  <div class="rd-nav-item"><a href="{{url('/')}}">FLYEASY</a></div>
+                  <div class="rd-nav-item"><a href="{{url('/')}}"><img src="images/EasyFly.svg" alt=""></a></div>
                 </div>
                 <div class="rd-navbar-main-element">
                   <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('/')}}">Home</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('/')}}">Trang chủ</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('about')}}">About Us</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('about')}}">Thông tin công ty</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('contact')}}">Contacts</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('contact')}}">Liên hệ</a>
                       </li>
-                    </ul><a class="button button-white button-sm" href="{{route('login')}}">Login</a>
+                    </ul><a class="button button-white button-sm" href="{{route('login')}}">Đăng nhập</a>
                   </div>
-                </div><a class="button button-white button-sm" href="{{route('login')}}">Login</a>
+                </div><a class="button button-white button-sm" href="{{route('login')}}">Đăng nhập</a>
               </div>
             </div>
           </nav>

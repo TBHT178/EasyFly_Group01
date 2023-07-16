@@ -5,6 +5,7 @@
 /*
 * Contexts
 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 .post-corporate.post-corporate-img-bg, .section-main-bunner, .context-dark, .bg-gray-600, .bg-gray-700, .bg-gray-800, .bg-primary, .bg-pink, .bg-secondary, .bg-secondary-2, .bg-green,
 .post-corporate.post-corporate-img-bg h1,
 .section-main-bunner h1,
@@ -41,6 +42,7 @@ button::-moz-focus-inner {
 *:focus {
 	outline: none;
 }
+
 
 blockquote {
 	padding: 0;
@@ -97,6 +99,40 @@ cite {
 
 form {
 	margin-bottom: 0;
+}
+
+.fields{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+}
+
+.fields .input-field{
+	display: flex;
+	width: calc(100% / 3 - 15px);
+	flex-direction: column;
+}
+
+.input-field{
+	margin: 10px 0px;
+}
+
+.input-field label{
+	font-size: 17px;
+	font-weight: 400;
+	color: #2e2e2e;
+}
+.input-field input{
+	outline: none;
+	font-size: 14px;
+	color: #333;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	padding: 0 15px;
+	height: 42px;
+	margin: 8px 0px;
 }
 
 blockquote {
@@ -3172,9 +3208,7 @@ hr {
 	text-align: left;
 }
 
-.rd-form .button {
-	min-height: 60px;
-}
+
 
 * + .rd-form {
 	margin-top: 20px;
@@ -3649,6 +3683,7 @@ textarea.form-input {
 
 .box-booking {
 	position: relative;
+	width: 100%;
 	padding: 20px 15px;
 	color: rgba(0, 0, 0, 0.8);
 	background: #ffffff;
