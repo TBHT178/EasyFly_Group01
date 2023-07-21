@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
+    
   </head>
   <body>
     <div class="preloader">
@@ -39,15 +40,15 @@
                   <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('/')}}">Trang chủ</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('/')}}">Home</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('about')}}">Thông tin công ty</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('about')}}">About us</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('contact')}}">Liên hệ</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="{{url('contact')}}">Contact</a>
                       </li>
-                    </ul><a class="button button-white button-sm" href="{{route('login')}}">Đăng nhập</a>
+                    </ul><a class="button button-white button-sm" href="{{route('login')}}">Login</a>
                   </div>
-                </div><a class="button button-white button-sm" href="{{route('login')}}">Đăng nhập</a>
+                </div><a class="button button-white button-sm" href="{{route('login')}}">Login</a>
               </div>
             </div>
           </nav>

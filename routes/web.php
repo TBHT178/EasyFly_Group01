@@ -28,21 +28,10 @@ Route::post('forget-password', [ForgotPasswordController::class, 'postEmail'])->
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
-Route::get('/',[AdminController::class,'dashboard'])->name('dashboard');
+Route::get('/admin',[AdminController::class,'dashboard'])->name('dashboard');
 #Admin
-Route::prefix('/admin/maybay')->group(function(){
-    #maybay
-    Route::get('/',[AdminController::class,'maybay'])->name('maybay');
-    #them
-    Route::get('/them',[AdminController::class,'themmaybay']) ->name('themmaybay');
-    Route::post('/themprocess',[AdminController::class,'themmaybay_process']) ->name('themmaybay_process');
-    #update
-    Route::get('/update/{code}',[AdminController::class,'maybay_update'])->name('mb_update');
-    Route::post('/updateprocess/{code}',[AdminController::class,'maybay_update_pro'])->name('mb_updateprocess');
-    #delete
-    Route::get('/delete/{code}',[AdminController::class,'maybay_delete'])->name('mb_delete');
-});
-Route::prefix('/admin/sanbay')->group(function(){
+
+Route::prefix('/admin/airport')->group(function(){
     #maybay
     Route::get('/',[AdminController::class,'sanbay'])->name('sanbay');
     #them

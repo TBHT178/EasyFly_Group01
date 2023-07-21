@@ -6,7 +6,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-12 col-lg-9">
-                <h2 class="breadcrumbs-custom-title">Liên hệ hợp tác</h2>
+                <h2 class="breadcrumbs-custom-title">Contact us</h2>
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
               <div class="box-icon-classic">
                 <div class="box-icon-inner decorate-circle"><span class="icon-xl linearicons-map2"></span></div>
                 <div class="box-icon-caption">
-                  <h4><a href="#">Tp. Hồ Chí Minh, Việt Nam</a></h4>
+                  <h4><a href="#">Ho Chi Minh, Vietnam</a></h4>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@
               <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
                 <div class="form-wrap">
                   <input class="form-input" id="contact-name" type="text" name="name" data-constraints="Required">
-                  <label class="form-label" for="contact-name">Tên</label>
+                  <label class="form-label" for="contact-name">Name</label>
                 </div>
                 <div class="form-wrap">
                   <input class="form-input" id="contact-email" type="email" name="email" data-constraints="Email Required">
@@ -72,15 +72,15 @@
                 </div>
                 <div class="form-wrap">
                   <input class="form-input" id="contact-phone" type="text" name="phone" data-constraints="Numeric">
-                  <label class="form-label" for="contact-phone">Số Điện Thoại</label>
+                  <label class="form-label" for="contact-phone">Phone</label>
                 </div>
                 <div class="form-wrap">
-                  <label class="form-label" for="contact-message">Nội dung feedback</label>
+                  <label class="form-label" for="contact-message">Feedback</label>
                   <textarea class="form-input" id="contact-message" name="message" data-constraints="Required"></textarea>
                 </div>
                 <div class="row justify-content-center">
                   <div class="col-12 col-sm-7 col-lg-5">
-                    <button class="button button-block button-lg button-primary" type="submit">Gửi</button>
+                    <button class="button button-block button-lg button-primary" type="submit">Send</button>
                   </div>
                 </div>
               </form>

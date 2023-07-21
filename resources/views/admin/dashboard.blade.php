@@ -1,4 +1,4 @@
 @extends('admin.layouts.app')
 @section('content')
-ABCD1234
+<h1 style="text-align: center; padding:10%; color:red;">WELCOME TO ADMIN DASHBOARD</h1>
 @endsection
