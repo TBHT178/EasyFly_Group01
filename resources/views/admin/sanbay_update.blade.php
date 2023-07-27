@@ -1,32 +1,27 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="container">
-    <h1 style="padding:20px 0px;text-align: center;">Thêm máy bay</h1>
+    <h1 style="padding:20px 0px;text-align: center;">Update Airport</h1>
     <form action="{{route('sb_updateprocess',['code'=>$rs->airport_code])}}" method="POST">
         @csrf
-        <table class="table">
-            <tr>
-                <td>Mã sân bay</td>
-                <td><input name="masanbay" value="{{$rs->airport_code}}" readonly></td>
-            </tr>
-            <tr>
-                <td>Tên sân bay</td>
-                <td><input name="tensanbay" value="{{$rs->airport_name}}"></td>
-            </tr>
-            <tr>
-                <td>Thành phố</td>
-                <td><input name="thanhpho" value="{{$rs->city}}"></td>
-            </tr>
-            <tr>
-                <td>Quốc gia</td>
-                <td><input name="quocgia" value="{{$rs->country}}"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Cập nhật">
-                </td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label>Airport Code</label>
+            <input name="airport_code" value="{{$rs->airport_code}}"  class="form-control" readonly >
+        </div>
+        <div class="form-group">
+            <label>Airport Name</label>
+            <input input name="airport_name" value="{{$rs->airport_name}}" class="form-control">
+
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" name="city" value="{{$rs->city}}">
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <input  class="form-control" name="country" value="{{$rs->country}}">
+        </div>
+        <button style="float:right;" type="submit" class="btn btn-primary">Update Airport</button>
     </form>
 </div>
 @endsection

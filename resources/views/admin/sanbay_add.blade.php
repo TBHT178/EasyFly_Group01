@@ -1,32 +1,47 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="container">
-    <h1 style="padding:20px 0px;text-align: center;">Thêm máy bay</h1>
+    <h1 style="padding:20px 0px;text-align: center;">Add New Airport</h1>
     <form action="{{route('sb_addprocess')}}" method="POST">
         @csrf
-        <table class="table">
-            <tr>
-                <td>Mã sân bay</td>
-                <td><input name="masanbay"></td>
-            </tr>
-            <tr>
-                <td>Tên sân bay</td>
-                <td><input name="tensanbay"></td>
-            </tr>
-            <tr>
-                <td>Thành phố</td>
-                <td><input name="thanhpho"></td>
-            </tr>
-            <tr>
-                <td>Quốc gia</td>
-                <td><input name="quocgia"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Thêm sân bay">
-                </td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label>Airport Code</label>
+            <input name="airport_code" value="{{ old('airport_code') }}"  class="form-control" >
+            @error('airport_code')
+            <div style="color:red">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>Airport Name</label>
+            <input input name="airport_name" value="{{ old('airport_name') }}" class="form-control">
+            @error('airport_name')
+            <div style="color:red">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" name="city" value="{{ old('city') }}">
+            @error('city')
+            <div style="color:red">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <input  class="form-control" name="country" value="{{ old('country') }}">
+            @error('country')
+            <div style="color:red">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <button style="float:right;" type="submit" class="btn btn-primary">Add Airport</button>
     </form>
 </div>
+
 @endsection

@@ -1,10 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <section class="section section-lg section-main-bunner section-main-bunner-filter text-center">
         <div class="main-bunner-img" style="background-image: url('images/banner.jpg'); background-size: cover;"></div>
         <div class="main-bunner-inner">
@@ -28,42 +25,53 @@
                             <input onclick="hdl_change();" onchange="hdl_change(this)" id="opt_2" type="radio"
                                 name="trip" value="round"> Roundtrip<br>
                         </label>
-                        <div class="fields">
-                            <div class="input-field">
-                                <label for="">From</label>
-                                <select name="flyfrom">
-                                    <option selected="true" disabled="disabled"> Choose destination </option>
-                                    @foreach ($airports as $key => $value)
+                        <div class="column">                           
+                            <div class="input-box">
+                                <label >From</label>
+                                <div class="select-box">
+                                    <select name="flyfrom">
+                                        <option hidden>Choose airport</option>
+                                        @foreach ($airports as $key => $value)
+                                            <option value="{{ $value->airport_code }}"> {{ $value->airport_name }}, {{ $value->city }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="input-box">
+                                <label >To</label>
+                                <div class="select-box">
+                                    <select name="flyto">
+                                        <option hidden>Choose airport</option>
+                                        @foreach ($airports as $key => $value)
                                         <option value="{{ $value->airport_code }}"> {{ $value->airport_name }}, {{ $value->city }}</option>
-                                    @endforeach
-                                </select>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-field">
-                                <label for="">To</label>
-                                <select name="flyto">
-                                    <option selected="true" disabled="disabled"> Choose destination </option>
-                                    @foreach ($airports as $key => $value)
-                                    <option value="{{ $value->airport_code }}"> {{ $value->airport_name }}, {{ $value->city }}</option>
-                                    @endforeach
-                                </select>
+                        </div>
+                        <div class="column">                           
+                            <div class="input-box">
+                                <label >Departure Date</label>
+                                <input type="date">
                             </div>
-                            <div class="input-field">
-                                <label for="">
-                                    No. of Passengers
-                                </label>
-                                <input type="text" name="" id="">
+                            
+                            <div class="input-box" id="date2" style="visibility:hidden">
+                                <label >Return Date</label>
+                                <input type="date">
                             </div>
-                            <div class="input-field">
-                                <label for="">Departure Date</label>
-                                <input type="text" name="" id="">
+                            <div class="input-box" >
+                                <label >No. of Passengers</label>
+                                <input type="number">
                             </div>
-                            <div class="input-field" id="date2" style="visibility:hidden">
-                                <label for="">Return Date</label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="input-field">
-                                <label for="">Seat Class</label>
-                                <input type="text" name="" id="">
+                            <div class="input-box" >
+                                <label >Seat Class</label>
+                                <div class="select-box form-control">
+                                    <select id="select2" style="width: 100%; height:100%">
+                                        <option value="1">Economy</option>
+                                        <option value="2">Bussiness</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group my-3">
@@ -217,16 +225,13 @@
         </div>
         </div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function hdl_change(e) {
             document.getElementById('date2').style.visibility =
                 e.checked && e.id == 'opt_2' ? 'visible' : 'hidden';
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
-    </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 @endsection

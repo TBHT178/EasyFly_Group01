@@ -101,41 +101,49 @@ form {
 	margin-bottom: 0;
 }
 
-.fields{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
 
-}
-
-.fields .input-field{
-	display: flex;
-	width: calc(100% / 3 - 15px);
-	flex-direction: column;
-}
-
-.input-field{
+form .input-box{
+	width: 100%;
 	margin: 10px 0px;
 }
 
-.input-field label{
-	font-size: 17px;
+.input-box label{
+	font-size: 1.5rem;
 	font-weight: 400;
 	color: #2e2e2e;
 }
-.input-field input,select{
+
+.input-box input, .select-box{
+	position: relative;
+	height: 40px;
+	width: 100%;
 	outline: none;
-	font-size: 14px;
+	font-size: 1rem;
 	color: #333;
 	border-radius: 5px;
-	border: 1px solid #aaa;
-	padding: 0 15px;
-	height: 42px;
-	margin: 8px 0px;
+	border: 1px solid #ddd;
 }
 
 
+form .column{
+	display: flex;
+	column-gap: 30px;
+}
+
+@media (max-width: 500px){
+	form .column{
+		flex-wrap: wrap;
+	}
+}
+
+.select-box select{
+	height: 100%;
+	width: 100%;
+	outline: none;
+	border: none;
+	color: #707070;
+	font-size: 1rem;
+}
 
 blockquote {
 	padding-left: 0;

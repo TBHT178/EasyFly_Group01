@@ -32,8 +32,9 @@ Route::get('/admin',[AdminController::class,'dashboard'])->name('dashboard');
 #Admin
 
 Route::prefix('/admin/airport')->group(function(){
-    #maybay
+    #airport
     Route::get('/',[AdminController::class,'sanbay'])->name('sanbay');
+    Route::post('/search',[AdminController::class,'searchairport'])->name('searchairport');
     #them
     Route::get('/add',[AdminController::class,'sb_add']) ->name('sb_add');
     Route::post('/addprocess',[AdminController::class,'sb_addprocess']) ->name('sb_addprocess');
@@ -42,4 +43,32 @@ Route::prefix('/admin/airport')->group(function(){
     Route::post('/updateprocess/{code}',[AdminController::class,'sb_updateprocess'])->name('sb_updateprocess');
     #delete
     Route::get('/delete/{code}',[AdminController::class,'sb_delete'])->name('sb_delete');
+});
+
+Route::prefix('/admin/flight')->group(function(){
+    #flight
+    Route::get('/',[AdminController::class,'flight'])->name('flight');
+    Route::post('/search',[AdminController::class,'searchflight'])->name('searchflight');
+    #them
+    Route::get('/add',[AdminController::class,'flight_add']) ->name('flight_add');
+    Route::post('/addprocess',[AdminController::class,'flight_addprocess']) ->name('flight_addprocess');
+    #update
+    Route::get('/update/{code}',[AdminController::class,'flight_update'])->name('flight_update');
+    Route::post('/updateprocess/{code}',[AdminController::class,'flight_updateprocess'])->name('flight_updateprocess');
+    #delete
+    Route::get('/delete/{code}',[AdminController::class,'flight_delete'])->name('flight_delete');
+});
+
+Route::prefix('/admin/feedback')->group(function(){
+    #flight
+    Route::get('/',[AdminController::class,'feedback'])->name('feedback');
+    Route::post('/search',[AdminController::class,'searchfeedback'])->name('searchfeedback');
+    #them
+    Route::get('/add',[AdminController::class,'feedback_add']) ->name('feedback_add');
+    Route::post('/addprocess',[AdminController::class,'feedback_addprocess']) ->name('feedback_addprocess');
+    #update
+    Route::get('/update/{code}',[AdminController::class,'feedback_update'])->name('feedback_update');
+    Route::post('/updateprocess/{code}',[AdminController::class,'feedback_updateprocess'])->name('feedback_updateprocess');
+    #delete
+    Route::get('/delete/{code}',[AdminController::class,'feedback_delete'])->name('feedback_delete');
 });
