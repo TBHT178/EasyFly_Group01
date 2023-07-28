@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="container">
-    <h1 style="padding:20px 0px;text-align: center;">them khach hang</h1>
+    <h1 style="padding:20px 0px;text-align: center;">add customer</h1>
     <form action="{{route('kh_addprocess')}}" method="POST">
         @csrf
         <table class="table">
@@ -38,6 +38,3 @@
     </form>
 </div>
 @endsection
-// Compare this snippet from resources/views/admin/sanbay_update.blade.php:
-// @extends('admin.layouts.app')
-// @section('content')
