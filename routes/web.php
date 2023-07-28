@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminController;
 
 
-Route::get('/', [ProjectController::class, 'index']) ->name('index');
+Route::get('/', [ProjectController::class, 'index'])->name('index');
 Route::get('/login', [ProjectController::class, 'login']);
 Route::get('/contact', [ProjectController::class, 'contact']);
 Route::get('/about', [ProjectController::class, 'about']);
@@ -28,18 +29,32 @@ Route::post('forget-password', [ForgotPasswordController::class, 'postEmail'])->
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
-Route::get('/admin',[AdminController::class,'dashboard'])->name('dashboard');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 #Admin
 
-Route::prefix('/admin/airport')->group(function(){
-    #maybay
-    Route::get('/',[AdminController::class,'sanbay'])->name('sanbay');
+// Route::prefix('/admin/airport')->group(function () {
+//     #maybay
+//     Route::get('/', [AdminController::class, 'sanbay'])->name('sanbay');
+//     #them
+//     Route::get('/add', [AdminController::class, 'sb_add'])->name('sb_add');
+//     Route::post('/addprocess', [AdminController::class, 'sb_addprocess'])->name('sb_addprocess');
+//     #update
+//     Route::get('/update/{code}', [AdminController::class, 'sb_update'])->name('sb_update');
+//     Route::post('/updateprocess/{code}', [AdminController::class, 'sb_updateprocess'])->name('sb_updateprocess');
+//     #delete
+//     Route::get('/delete/{code}', [AdminController::class, 'sb_delete'])->name('sb_delete');
+// });
+
+// khachhang
+Route::prefix('/admin/customer')->group(function () {
+    #khachhang
+    Route::get('/', [AdminController::class, 'khachhang'])->name('khachhang');
     #them
-    Route::get('/add',[AdminController::class,'sb_add']) ->name('sb_add');
-    Route::post('/addprocess',[AdminController::class,'sb_addprocess']) ->name('sb_addprocess');
+    Route::get('/add', [AdminController::class, 'kh_add'])->name('kh_add');
+    Route::post('/addprocess', [AdminController::class, 'kh_addprocess'])->name('kh_addprocess');
     #update
-    Route::get('/update/{code}',[AdminController::class,'sb_update'])->name('sb_update');
-    Route::post('/updateprocess/{code}',[AdminController::class,'sb_updateprocess'])->name('sb_updateprocess');
+    Route::get('/update/{code}', [AdminController::class, 'kh_update'])->name('kh_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'kh_updateprocess'])->name('kh_updateprocess');
     #delete
-    Route::get('/delete/{code}',[AdminController::class,'sb_delete'])->name('sb_delete');
+    Route::get('/delete/{code}', [AdminController::class, 'kh_delete'])->name('kh_delete');
 });
