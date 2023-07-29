@@ -9,19 +9,26 @@ use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
     public function index(){
-        $airports = DB::table('airport')->get();
-        return view('index',['airports' => $airports]);
-    }
-
-    public function login(){
-        return view('login');
-    }
-
-    public function contact(){
-        return view('contacts');
+        return view('index');
     }
 
     public function about(){
-        return view('about-us');
+        return view('about');
+    }
+
+    public function contact(){
+        return view('contact');
+    }
+    public function blogdetails(){
+        return view('blog-details');
+    }
+    public function blog(){
+        return view('blog');
+    }
+    public function register(){
+        return view('auth.regsiter');
+    }
+    public function signin(){
+        return view('auth.login');
     }
 }
