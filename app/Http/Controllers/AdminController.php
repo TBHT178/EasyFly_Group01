@@ -92,19 +92,20 @@ class AdminController extends Controller
     }
 
     public function searchflight(Request $request)
-    {       $output='';
+    {
+        $output = '';
         $search = $request->input('search');
         $flights = DB::table('flight')->where('flight_id', 'like', '%' . $search . '%')
-        ->orWhere('planecode', 'like', '%' . $search . '%')
-        ->orWhere('FromPlace', 'like', '%' . $search . '%')
-        ->orWhere('ToPlace', 'like', '%' . $search . '%')
-        ->orWhere('departure', 'like', '%' . $search . '%')
-        ->orWhere('arrival', 'like', '%' . $search . '%')
-        ->orWhere('avail_seat', 'like', '%' . $search . '%')->get();
+            ->orWhere('planecode', 'like', '%' . $search . '%')
+            ->orWhere('FromPlace', 'like', '%' . $search . '%')
+            ->orWhere('ToPlace', 'like', '%' . $search . '%')
+            ->orWhere('departure', 'like', '%' . $search . '%')
+            ->orWhere('arrival', 'like', '%' . $search . '%')
+            ->orWhere('avail_seat', 'like', '%' . $search . '%')->get();
 
-        foreach( $flights as $flight){
-            $output .= 
-            '<tr>
+        foreach ($flights as $flight) {
+            $output .=
+                '<tr>
             <td>' . $flight->flight_id . '</td>
             <td>' . $flight->planecode . '</td>
             <td>' . $flight->FromPlace . '</td>
@@ -112,11 +113,11 @@ class AdminController extends Controller
             <td>' . date('d-m-Y  h : i A', strtotime($flight->departure)) . '</td>
             <td>' . date('d-m-Y  h : i A', strtotime($flight->arrival)) . '</td>
             <td>' . $flight->avail_seat . '</td>
-            <td><a href="/admin/flight/update/'.$flight->flight_id .'"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/flight/delete/'.$flight->flight_id .'"><button class="btn btn-danger">Delete</button></a></td>
+            <td><a href="/admin/flight/update/' . $flight->flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/flight/delete/' . $flight->flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
             </tr>';
         }
         return response($output);
-}
+    }
 
     public function flight_add()
     {
@@ -204,24 +205,25 @@ class AdminController extends Controller
     }
 
     public function searchfeedback(Request $request)
-    {       $output='';
-            $search = $request->input('search');
-            $feedbacks = DB::table('feedback')->where('FeedbackId', 'like', '%' . $search . '%')
+    {
+        $output = '';
+        $search = $request->input('search');
+        $feedbacks = DB::table('feedback')->where('FeedbackId', 'like', '%' . $search . '%')
             ->orWhere('customer_id', 'like', '%' . $search . '%')
             ->orWhere('Comment', 'like', '%' . $search . '%')
             ->orWhere('FeedbackDate', 'like', '%' . $search . '%')->get();
 
-            foreach( $feedbacks as $feedback){
-                $output .= 
+        foreach ($feedbacks as $feedback) {
+            $output .=
                 '<tr>
                 <td>' . $feedback->FeedbackId . '</td>
                 <td>' . $feedback->customer_id . '</td>
                 <td>' . $feedback->Comment . '</td>
                 <td>' . date('d-m-Y ', strtotime($feedback->FeedbackDate)) . '</td>
-                <td><a href="/admin/feedback/update/'.$feedback->FeedbackId .'"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/feedback/delete/'.$feedback->FeedbackId .'"><button class="btn btn-danger">Delete</button></a></td>
+                <td><a href="/admin/feedback/update/' . $feedback->FeedbackId . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/feedback/delete/' . $feedback->FeedbackId . '"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>';
-            }
-            return response($output);
+        }
+        return response($output);
     }
 
 
@@ -280,4 +282,91 @@ class AdminController extends Controller
         $rs = DB::table('feedback')->where('FeedbackId', $code)->delete();
         return redirect()->route('feedback');
     }
+    #seatclass
+    public function seatclass()
+    {
+        $seatclasses = DB::table('seat_class')->paginate(7);
+        return view('admin.seatclass', ['seatclasses' => $seatclasses]);
+    }
+    // search
+    // public function searchseatclass(Request $request)
+    // {
+    //     $output = '';
+    //     $search = $request->input('search');
+    //     $seatclasses = DB::table('seat_class')->where('Flight_id', 'like', '%' . $search . '%')
+    //         ->orWhere('price_class_TG', 'like', '%' . $search . '%')
+    //         ->orWhere('num_class_PT', 'like', '%' . $search . '%')
+    //         ->orWhere('num_class_TG', 'like', '%' . $search . '%')
+    //         ->orWhere('price_class_PT', 'like', '%' . $search . '%')->get();
+
+    //     foreach ($seatclasses as $seatclass) {
+    //         $output .=
+    //             '<tr>
+    //             <td>' . $seatclass->Flight_id . '</td>
+    //             <td>' . $seatclass->price_class_TG . '</td>
+    //             <td>' . $seatclass->num_class_PT . '</td>
+    //             <td>' . $seatclass->num_class_TG . '</td>
+    //             <td>' . $seatclass->price_class_PT . '</td>
+    //             <td><a href="/admin/seatclass/update/' . $seatclass->Flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/seatclass/delete/' . $seatclass->Flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
+    //             </tr>';
+    //     }
+    //     return response($output);
+    // }
+    // // add
+    // public function seatclass_add()
+    // {
+    //     $flights = DB::table('seat_class')->get();
+    //     return view('admin.seatclass_add', ['flights' => $flights]);
+    // }
+    // public function seatclass_addprocess(Request $request)
+    // {
+    //     $max = DB::table('flight')->latest('flight_id')->first();
+    //     $valid = $max->flight_id;
+    //     $request->validate([
+    //         'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid],
+    //         'price_class_TG' => 'required',
+    //         'num_class_PT' => 'required',
+    //         'num_class_TG' => 'required',
+    //         'price_class_PT' => 'required',
+    //     ]);
+
+    //     DB::table('seat_class')->updateOrInsert([
+    //         'Flight_id' => $request->input('Flight_id'),
+    //         'price_class_TG' => $request->input('price_class_TG'),
+    //         'num_class_PT' => $request->input('num_class_PT'),
+    //         'num_class_TG' => $request->input('num_class_TG'),
+    //         'price_class_PT' => $request->input('price_class_PT'),
+    //     ]);
+    //     return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
+    // }
+    // // update
+    // public function seatclass_update($code)
+    // {
+    //     $rs = DB::table('seat_class')
+    //         ->where('Flight_id', $code)->first();
+    //     return view('admin.seatclass_update', ['rs' => $rs]);
+    // }
+    // public function seatclass_updateprocess(Request $request, $code)
+    // {
+    //     $max = DB::table('flight')->latest('flight_id')->first();
+    //     $valid = $max->flight_id;
+    //     $request->validate([
+    //         'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid]
+    //     ]);
+    //     $Flight_id =  $request->input('Flight_id');
+    //     $price_class_TG = $request->input('price_class_TG');
+    //     $num_class_PT = $request->input('num_class_PT');
+    //     $num_class_TG = $request->input('num_class_TG');
+    //     $price_class_PT = $request->input('price_class_PT');
+    //     $rs = DB::table('seat_class')->where('Flight_id', $code)
+    //         ->update([
+    //             'Flight_id' => $Flight_id,
+    //             'price_class_TG' => $price_class_TG,
+    //             'num_class_PT' => $num_class_PT,
+    //             'num_class_TG' => $num_class_TG,
+    //             'price_class_PT' => $price_class_PT
+    //         ]);
+    //     return redirect()->route('seatclass')->with('message', 'Update Seat Class Successful!');
+    // }
 }
+// 
