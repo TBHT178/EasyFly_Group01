@@ -29,6 +29,9 @@ class ProjectController extends Controller
         return view('auth.regsiter');
     }
     public function signin(){
-        return view('auth.login');
+        return view('login');
+    }
+    public function todayflights(){
+        return view('booking-list');
     }
 }

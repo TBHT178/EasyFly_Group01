@@ -63,7 +63,7 @@
                             <div class="footer-contact">
                                 <p>PO Box W75 Street lan West new queens</p>
                                 <h2 class="title"><a href="tel:0123456789">+1 246 333 - 0079</a></h2>
-                                <a href="#">geair@company.com</a>
+                                <a href="#">EasyFly@company.com</a>
                                 <form action="#">
                                     <input type="email" placeholder="Enter your email">
                                     <button type="submit"><i class="flaticon-send"></i></button>
@@ -79,7 +79,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="copyright-text">
-                            <p>Copyright © 2022.All Rights Reserved By <span>Geair</span></p>
+                            <p>Copyright © 2023.All Rights Reserved By <span>EasyFly</span></p>
                         </div>
                     </div>
                     <div class="col-lg-6">

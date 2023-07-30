@@ -80,11 +80,11 @@
                                         <ul class="navigation">
                                             <li class="{{ Route::currentRouteNamed('index') ? 'active' : ' ' }}"><a href="{{route('index')}}">Home</a></li>
                                             <li class="{{ Route::currentRouteNamed('about') ? 'active' : ' ' }}"><a href="{{route('about')}}">About</a></li>
-                                            <li class="menu-item-has-children"><a href="#">Pages</a>
-                                                <ul class="submenu">
+                                            <li class="{{ Route::currentRouteNamed('todayflights') ? 'active' : ' ' }}"><a href="{{route('todayflights')}}">Flights</a>
+                                                <!-- <ul class="submenu">
                                                     <li><a href="booking-list.html">Booking List</a></li>
                                                     <li><a href="booking-details.html">Booking Details</a></li>
-                                                </ul>
+                                                </ul> -->
                                             </li>
                                             <li class="menu-item-has-children"><a href="#">Blog</a>
                                                 <ul class="submenu ">
@@ -97,10 +97,10 @@
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul>
-                                            <li class="country"><a href="#">usd <img src="assets/img/icon/united-states.png" alt=""></a></li>
-                                            <li class="question"><a href="contact.html">?</a></li>
+                                            <!-- <li class="country"><a href="#">usd <img src="assets/img/icon/united-states.png" alt=""></a></li> -->
+                                            <!-- <li class="question"><a href="contact.html">?</a></li> -->
                                             <li class="header-btn"><a href="contact.html" class="btn">Register</a></li>
-                                            <li class="header-btn sign-in"><a href="contact.html" class="btn">Sign In</a></li>
+                                            <li class="header-btn sign-in"><a href="{{route('login')}}" class="btn">Sign In</a></li>
                                         </ul>
                                     </div>
                                 </nav>

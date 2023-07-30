@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-lg-7 order-0 order-lg-2">
                 <div class="about-img">
-                    <img src="assets/img/images/about_img01.jpg" alt="img">
+                    <img src="assets/img/images/about_img01-1.jpg" alt="img">
                     <img src="assets/img/images/about_img02.jpg" alt="img" class="img-two">
                 </div>
             </div>
@@ -38,9 +38,9 @@
                 <div class="about-content">
                     <div class="section-title">
                         <span class="sub-title">who we are</span>
-                        <h2 class="title">Magical Singapore now even more amazing!</h2>
+                        <h2 class="title">The most famous airline in Vietnam!</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitIn interdum imperdiet ipsum. denounce with rieous indiation and dislike men who beguiled demor.</p>
+                    <p>On the journey to explore the sky, EasyFly has connected potential destinations, thereby bringing good values of Vietnamese culture and people to the rest of the world.</p>
                     <ul>
                         <li><i class="flaticon-tick-1"></i>Pre-Book Your Baggage Donating</li>
                         <li><i class="flaticon-tick-1"></i>Accusamus Iusto Odio Dignissimos Ducimus</li>
@@ -64,7 +64,7 @@
                     <h2 class="title">Your Great Destination</h2>
                 </div>
                 <div class="destination-content">
-                    <p>Get rewarded for your travels – unlock instant savings of 10% or more with a free <span>Geairinfo.com</span> account</p>
+                    <p>Get rewarded for your travels – unlock instant savings of 10% or more with a free <span>EasyFly</span> account</p>
                     <ul>
                         <li>
                             <div class="counter-item">

@@ -371,6 +371,7 @@ label {
 	align-items: center;
 	flex-wrap: wrap;
 	justify-content: flex-start;
+	padding: 0px 30px;
 }
 .logo img {
     max-width: 200px;
