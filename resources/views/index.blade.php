@@ -12,8 +12,8 @@
                             <div class="row">
                                 <div class="col-xl-8 col-lg-10">
                                     <div class="slider-content">
-                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's Genius.</h2>
-                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free Geairinfo.com account</p>
+                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
                                         <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                                     </div>
                                 </div>
@@ -25,8 +25,8 @@
                             <div class="row">
                                 <div class="col-xl-8 col-lg-10">
                                     <div class="slider-content">
-                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's Genius.</h2>
-                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free Geairinfo.com account</p>
+                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
                                         <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                                     </div>
                                 </div>
@@ -38,8 +38,8 @@
                             <div class="row">
                                 <div class="col-xl-8 col-lg-10">
                                     <div class="slider-content">
-                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's Genius.</h2>
-                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free Geairinfo.com account</p>
+                                        <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
                                         <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                                     </div>
                                 </div>
@@ -58,9 +58,9 @@
                             <div class="booking-tag">
                                 <ul>
                                     <li><a href="booking-list.html"><i class="flaticon-flight"></i>Flights</a></li>
-                                    <li><a href="booking-list.html"><i class="flaticon-car-1"></i>Car Rentals</a></li>
+                                    <!-- <li><a href="booking-list.html"><i class="flaticon-car-1"></i>Car Rentals</a></li>
                                     <li><a href="booking-list.html"><i class="flaticon-eiffel-tower"></i>Attractions</a></li>
-                                    <li><a href="booking-list.html"><i class="flaticon-taxi"></i>Airport Taxis</a></li>
+                                    <li><a href="booking-list.html"><i class="flaticon-taxi"></i>Airport Taxis</a></li> -->
                                 </ul>
                             </div>
                             <div class="booking-wrap">
@@ -69,7 +69,7 @@
                                         <button class="nav-link active" id="bOOKing-tab" data-bs-toggle="tab" data-bs-target="#bOOKing-tab-pane" type="button"
                                             role="tab" aria-controls="bOOKing-tab-pane" aria-selected="true"><i class="flaticon-flight"></i>air BOOKing</button>
                                     </li>
-                                    <li class="nav-item" role="presentation">
+                                    <!-- <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="trips-tab" data-bs-toggle="tab" data-bs-target="#trips-tab-pane" type="button"
                                             role="tab" aria-controls="trips-tab-pane" aria-selected="false"><i class="flaticon-file"></i> my trips</button>
                                     </li>
@@ -80,7 +80,7 @@
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight-tab-pane" type="button"
                                             role="tab" aria-controls="flight-tab-pane" aria-selected="false"><i class="flaticon-clock"></i> Flight status</button>
-                                    </li>
+                                    </li> -->
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="bOOKing-tab-pane" role="tabpanel" aria-labelledby="bOOKing-tab" tabindex="0">
@@ -90,7 +90,7 @@
                                                     <div class="content-top">
                                                         <ul>
                                                             <li>Flights</li>
-                                                            <li><span>Just from $12</span>Geair Stopover</li>
+                                                            <li><span>Just from $12</span>EasyFly Stopover</li>
                                                         </ul>
                                                     </div>
                                                     <form action="#" class="booking-form">
@@ -155,7 +155,7 @@
                                                     <div class="content-top">
                                                         <ul>
                                                             <li>Flights</li>
-                                                            <li><span>Just from $12</span>Geair Stopover</li>
+                                                            <li><span>Just from $12</span>EasyFly Stopover</li>
                                                         </ul>
                                                     </div>
                                                     <form action="#" class="booking-form">
@@ -220,7 +220,7 @@
                                                     <div class="content-top">
                                                         <ul>
                                                             <li>Flights</li>
-                                                            <li><span>Just from $12</span>Geair Stopover</li>
+                                                            <li><span>Just from $12</span>EasyFly Stopover</li>
                                                         </ul>
                                                     </div>
                                                     <form action="#" class="booking-form">
@@ -285,7 +285,7 @@
                                                     <div class="content-top">
                                                         <ul>
                                                             <li>Flights</li>
-                                                            <li><span>Just from $12</span>Geair Stopover</li>
+                                                            <li><span>Just from $12</span>EasyFly Stopover</li>
                                                         </ul>
                                                     </div>
                                                     <form action="#" class="booking-form">
@@ -544,7 +544,7 @@
                                 <h2 class="title">Your Great Destination</h2>
                             </div>
                             <div class="destination-content">
-                                <p>Get rewarded for your travels – unlock instant savings of 10% or more with a free <span>Geairinfo.com</span> account</p>
+                                <p>Get rewarded for your travels – unlock instant savings of 10% or more with a free <span>EasyFlyinfo.com</span> account</p>
                                 <ul>
                                     <li>
                                         <div class="counter-item">
@@ -595,8 +595,8 @@
                         <div class="col-lg-7">
                             <div class="fly-next-nav">
                                 <button class="active" data-filter="*">Flights <i class="flaticon-flight"></i></button>
-                                <button class="" data-filter=".cat-one">Car Rentals <i class="flaticon-car-1"></i></button>
-                                <button class="" data-filter=".cat-two">Taxis <i class="flaticon-taxi"></i></button>
+                                <!-- <button class="" data-filter=".cat-one">Car Rentals <i class="flaticon-car-1"></i></button>
+                                <button class="" data-filter=".cat-two">Taxis <i class="flaticon-taxi"></i></button> -->
                             </div>
                         </div>
                     </div>
@@ -800,7 +800,7 @@
                     <div class="row align-items-end mb-50">
                         <div class="col-md-8">
                             <div class="section-title">
-                                <span class="sub-title">Why Air geair</span>
+                                <span class="sub-title">Why Air EasyFly</span>
                                 <h2 class="title">Our Great Flight Options</h2>
                             </div>
                         </div>
