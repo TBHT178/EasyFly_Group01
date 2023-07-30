@@ -958,7 +958,7 @@ label {
 	border-radius: 20px 0 0 0;
 }
 .booking-wrap .nav-tabs .nav-item:last-child .nav-link {
-	border-radius: 0 20px 0 0;
+	border-radius: 20px 20px 0 0;
 }
 .booking-wrap .nav-tabs .nav-item.show .nav-link,
 .booking-wrap .nav-tabs .nav-link.active {
@@ -968,23 +968,25 @@ label {
 .booking-area .tab-content-wrap {
 	background: #fff;
 	padding: 25px;
-	border-radius: 0 0 20px 20px;
+	border-radius: 20px 20px 20px 20px;
 }
 .content-top ul {
-	display: flex;
+	/* display: flex;
 	align-items: flex-end;
-	flex-wrap: wrap;
+	flex-wrap: wrap; */
+	display: flex;
+  flex-direction: row;
 }
 .content-top ul li {
 	font-size: 14px;
 	font-weight: 600;
 	color: #6a2e4d;
 	position: relative;
-	margin-right: 15px;
+	/* margin-right: 40px; */
 	padding-right: 15px;
-	margin-bottom: 12px;
+	margin-bottom: 15px;
 }
-.content-top ul li::before {
+/* .content-top ul li::before {
 	content: "";
 	position: absolute;
 	right: 0;
@@ -993,7 +995,7 @@ label {
 	height: 13px;
 	background: #6a2e4d;
 	opacity: .5;
-}
+} */
 .content-top ul li:last-child {
 	margin-right: 0;
 	padding-right: 0;
@@ -1239,8 +1241,8 @@ label {
 	display: none;
 }
 .booking-area.booking-style-two .tab-content-wrap {
-	padding: 25px 0 40px;
-	border-radius: 0;
+	padding: 25px 15px 40px;
+	border-radius: 0px 0px 20px 20px;
 }
 
 /* 7. Features */
