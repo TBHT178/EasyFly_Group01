@@ -6,10 +6,10 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="assets/img/logo/easyfly.png" style="max-height: 150px;" alt=""></a>
                             </div>
                             <div class="footer-content">
-                                <p>Online to make your journey even more memorable access or meet</p>
+                                <!-- <p>Online to make your journey even more memorable access or meet</p> -->
                                 <ul class="footer-social">
                                     <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>

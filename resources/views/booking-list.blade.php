@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('content')
         <!-- main-area -->
         <main>
 
@@ -797,5 +798,5 @@
 
         </main>
         <!-- main-area-end -->
-@section('content')
+
 @endsection

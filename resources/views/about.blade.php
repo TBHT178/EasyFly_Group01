@@ -43,8 +43,8 @@
                     <p>On the journey to explore the sky, EasyFly has connected potential destinations, thereby bringing good values of Vietnamese culture and people to the rest of the world.</p>
                     <ul>
                         <li><i class="flaticon-tick-1"></i>Pre-Book Your Baggage Donating</li>
-                        <li><i class="flaticon-tick-1"></i>Accusamus Iusto Odio Dignissimos Ducimus</li>
-                        <li><i class="flaticon-tick-1"></i>Dislike Men Who are so Beguiled</li>
+                        <li><i class="flaticon-tick-1"></i>Reserve preferred seat!</li>
+                        <li><i class="flaticon-tick-1"></i>90% of baggage charges</li>
                     </ul>
                     <a href="contact.html" class="btn">Contact Us</a>
                 </div>
@@ -182,7 +182,7 @@
                         <span class="sub-title">asked questions</span>
                         <h2 class="title">Flight Asked Questions</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitIn imperdiet interdum imperdiet ipsum.</p>
+                    <p>Frequently Asked Questions About Flights.</p>
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -194,7 +194,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adiping elitIn imperdiet interdum imperdiet ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>
+                                    <p>Prepaid baggage must be purchased at least 06 hours before departure. Pre-paid baggage is allowed to change travel date/ itinerary with equal or higher cost.</p>
                                 </div>
                             </div>
                         </div>
@@ -202,13 +202,13 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Search and Save on Cheap Car Rentals <span class="dot"></span>
+                                    Search and Save on Cheap Flights <span class="dot"></span>
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adiping elitIn imperdiet interdum imperdiet ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>
+                                    <p>Compare cheap flight prices from all major airlines and travel agents, and find the cheapest tickets to all your favourite destinations. Book online today.</p>
                                 </div>
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adiping elitIn imperdiet interdum imperdiet ipsum generators on the Internet tend to repeat predefined chunks as necessary</p>
+                                    <p>Collect Your Luggage. Finding the baggage terminal for your flight can be tricky in an unfamiliar airport.</p>
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,6 @@ Route::get('/contact', [ProjectController::class, 'contact']) ->name('contact');
 Route::get('/blog-details', [ProjectController::class, 'blogdetails']) ->name('blog-details');
 Route::get('/blog', [ProjectController::class, 'blog']) ->name('blog');
 Route::get('/login', [ProjectController::class, 'login']) ->name('login');
-Route::get('register', [RegisterController::class, 'index']);
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::get('login', [LoginController::class, 'login']);

@@ -56,12 +56,12 @@
                         <div class="col-xl-8">
                             <div class="header-top-right">
                                 <ul>
-                                    <li><a href="contact.html">Corporate Club</a></li>
-                                    <li><a href="contact.html">Miles&Smiles</a></li>
-                                    <li><a href="about.html"><i class="fa-solid fa-comments"></i>Feedback</a></li>
+                                    <li><a href="#">Corporate Club</a></li>
+                                    <li><a href="#">Miles&Smiles</a></li>
+                                    <li><a href="#"><i class="fa-solid fa-comments"></i>Feedback</a></li>
                                     <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Search</a></li>
-                                    <li><a href="contact.html"><i class="fa-solid fa-dollar-sign"></i>Currency</a></li>
-                                    <li><a href="booking-list.html"><i class="fa-solid fa-earth-asia"></i>EN - INT</a></li>
+                                    <li><a href="#"><i class="fa-solid fa-dollar-sign"></i>Currency</a></li>
+                                    <li><a href="#"><i class="fa-solid fa-earth-asia"></i>EN - INT</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
                             <div class="menu-wrap">
                                 <nav class="menu-nav">
-                                    <div class="logo"><a href="{{route('index')}}"><img src="assets/img/logo/logo.png" alt=""></a></div>
+                                    <div class="logo"><a href="{{route('index')}}"><img src="assets/img/logo/easyfly.png" style="max-height:97px;" alt=""></a></div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             <li class="{{ Route::currentRouteNamed('index') ? 'active' : ' ' }}"><a href="{{route('index')}}">Home</a></li>

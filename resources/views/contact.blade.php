@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('content')
         <!-- main-area -->
         <main>
 
@@ -78,5 +79,4 @@
             <!-- contact-map-end -->
         </main>
         <!-- main-area-end -->
-@section('content')
 @endsection
