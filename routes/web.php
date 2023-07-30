@@ -49,6 +49,8 @@ Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::prefix('/admin/customer')->group(function () {
     #khachhang
     Route::get('/', [AdminController::class, 'khachhang'])->name('khachhang');
+    // search
+    Route::post('/search', [AdminController::class, 'searchkh'])->name('searchkh');
     #them
     Route::get('/add', [AdminController::class, 'kh_add'])->name('kh_add');
     Route::post('/addprocess', [AdminController::class, 'kh_addprocess'])->name('kh_addprocess');
@@ -57,4 +59,6 @@ Route::prefix('/admin/customer')->group(function () {
     Route::post('/updateprocess/{code}', [AdminController::class, 'kh_updateprocess'])->name('kh_updateprocess');
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'kh_delete'])->name('kh_delete');
+    #search
+
 });
