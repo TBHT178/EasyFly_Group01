@@ -970,6 +970,8 @@ label {
 	background: #fff;
 	padding: 25px;
 	border-radius: 20px 20px 20px 20px;
+	position: relative;
+	top: -120px;
 }
 .content-top ul {
 	/* display: flex;
