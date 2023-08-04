@@ -101,3 +101,17 @@ Route::prefix('/admin/customer')->group(function () {
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'customer_delete'])->name('customer_delete');
 });
+// order(booking)
+Route::prefix('/admin/order')->group(function () {
+    #order
+    Route::get('/', [AdminController::class, 'order'])->name('order');
+    Route::post('/search', [AdminController::class, 'searchorder'])->name('searchorder');
+    #them
+    Route::get('/add', [AdminController::class, 'order_add'])->name('order_add');
+    Route::post('/addprocess', [AdminController::class, 'order_addprocess'])->name('order_addprocess');
+    #update
+    Route::get('/update/{code}', [AdminController::class, 'order_update'])->name('order_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'order_updateprocess'])->name('order_updateprocess');
+    #delete
+    Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
+});
