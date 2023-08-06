@@ -1,11 +1,13 @@
 <?php
 
 namespace Database\Seeders;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class UserSeeder extends Seeder
 
 {
@@ -22,7 +24,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'name' => 'tramtran',
-            'email' => 'tramtran.com',
+            'email' => 'tramtran@gmail.com',
             'password' => Hash::make('123'),
         ]);
         DB::table('users')->insert([

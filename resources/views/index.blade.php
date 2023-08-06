@@ -14,7 +14,7 @@
                             <div class="slider-content">
                                 <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
                                 <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
-                                <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
+                                <a href="{{route('login')}}" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <div class="slider-content">
                                 <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
                                 <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
-                                <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
+                                <a href="{{route('login')}}" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             <div class="slider-content">
                                 <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts? It's EasyFly.</h2>
                                 <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock instant savings of 10% or more with a free EasyFlyinfo.com account</p>
-                                <a href="contact.html" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
+                                <a href="{{route('login')}}" class="btn" data-animation="fadeInUp" data-delay=".6s">Sign in / Register</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,8 @@
                                                             <!-- <li><a href="#">Multi-city</a></li> -->
                                                         </ul>
                                                     </div>
-                                                    <form action="#" class="booking-form">
+                                                    <form action="{{route('searchflight')}}" method="POST" class="booking-form">
+                                                        @csrf
                                                         <ul>
                                                             <li>
                                                                 {{-- <div class="form-grp">
@@ -118,16 +119,20 @@
                                                                         <option value="{{$airport->airport_code}}">{{$airport->airport_name}}</option>
                                                                         @endforeach 
                                                                     </select>
+                                                                    @error('to')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="form-grp select">
-                                                                    <label for="shortBy">Economy</label>
-                                                                    <select id="shortBy" name="select" class="form-select"
+                                                                    <label for="shortBy">Seat Class</label>
+                                                                    <select id="class" name="class" class="form-select"
                                                                         aria-label="Default select example">
-                                                                        <option value="">Class economy</option>
-                                                                        <option>Business economy</option>
-                                                                        
+                                                                        <option value="1" selected>Economy</option>
+                                                                        <option value="2">Business</option>                                                                       
                                                                     </select>
                                                                 </div>
                                                             </li>
@@ -136,12 +141,12 @@
                                                                     <ul>
                                                                         <li>
                                                                             <label for="shortBy">Depart</label>
-                                                                            <input type="text" class="date"
+                                                                            <input type="text" class="date" name="depart"
                                                                                 placeholder="Select Date">
                                                                         </li>
                                                                         <li>
                                                                             <label for="shortBy">Return</label>
-                                                                            <input type="text" class="date"
+                                                                            <input type="text" class="date" name="return"
                                                                                 placeholder="Select Date">
                                                                         </li>
                                                                     </ul>
@@ -150,15 +155,20 @@
                                                             <li>
                                                                 <div class="form-grp economy">
                                                                     <label for="text">Passenger</label>
-                                                                    <input type="number" id="text" placeholder="0">
+                                                                    <input type="number" id="text" placeholder="0" name="passenger">
+                                                                    @error('passenger')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </li>
                                                         </ul>
+                                                        <div class="content-bottom">
+                                                            <a href="#" class="promo-code">+ Add Promo code</a>
+                                                            <button type="submit" class="btn">Show Flights <i class="flaticon-flight-1"></i></button>
+                                                        </div>
                                                     </form>
-                                                    <div class="content-bottom">
-                                                        <a href="booking-details.html" class="promo-code">+ Add Promo code</a>
-                                                        <a href="booking-details.html" class="btn">Show Flights <i class="flaticon-flight-1"></i></a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

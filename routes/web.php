@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FlightController;
 
 Route::get('/flights', [ProjectController::class, 'todayflights'])->name('todayflights');
 Route::get('/', [ProjectController::class, 'index'])->name('index');
@@ -14,7 +15,8 @@ Route::get('/about', [ProjectController::class, 'about'])->name('about');
 Route::get('/contact', [ProjectController::class, 'contact'])->name('contact');
 Route::get('/blog-details', [ProjectController::class, 'blogdetails'])->name('blog-details');
 Route::get('/blog', [ProjectController::class, 'blog'])->name('blog');
-Route::get('/login', [ProjectController::class, 'login']) ->name('login');
+
+Route::get('register', [RegisterController::class, 'index']);
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::get('login', [LoginController::class, 'login']);
@@ -116,3 +118,6 @@ Route::prefix('/admin/order')->group(function () {
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
 });
+
+//////////////////////////////////FlightController//////////////////////////////////////////
+Route::post('/search',[FlightController::class, 'search'])->name('searchflight');
