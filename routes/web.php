@@ -8,14 +8,13 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/flights', [ProjectController::class, 'todayflights']) ->name('todayflights');
+Route::get('/flights', [ProjectController::class, 'todayflights'])->name('todayflights');
 Route::get('/', [ProjectController::class, 'index'])->name('index');
 Route::get('/about', [ProjectController::class, 'about'])->name('about');
 Route::get('/contact', [ProjectController::class, 'contact'])->name('contact');
 Route::get('/blog-details', [ProjectController::class, 'blogdetails'])->name('blog-details');
 Route::get('/blog', [ProjectController::class, 'blog'])->name('blog');
-
-Route::get('register', [RegisterController::class, 'index']);
+Route::get('/login', [ProjectController::class, 'login']) ->name('login');
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::get('login', [LoginController::class, 'login']);
@@ -88,4 +87,32 @@ Route::prefix('/admin/seatclass')->group(function () {
     Route::post('/updateprocess/{code}', [AdminController::class, 'seatclass_updateprocess'])->name('seatclass_updateprocess');
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'seatclass_delete'])->name('seatclass_delete');
+});
+// customer
+Route::prefix('/admin/customer')->group(function () {
+    #customer
+    Route::get('/', [AdminController::class, 'customer'])->name('customer');
+    Route::post('/search', [AdminController::class, 'searchcustomer'])->name('searchcustomer');
+    #them
+    Route::get('/add', [AdminController::class, 'customer_add'])->name('customer_add');
+    Route::post('/addprocess', [AdminController::class, 'customer_addprocess'])->name('customer_addprocess');
+    #update
+    Route::get('/update/{code}', [AdminController::class, 'customer_update'])->name('customer_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'customer_updateprocess'])->name('customer_updateprocess');
+    #delete
+    Route::get('/delete/{code}', [AdminController::class, 'customer_delete'])->name('customer_delete');
+});
+// order(booking)
+Route::prefix('/admin/order')->group(function () {
+    #order
+    Route::get('/', [AdminController::class, 'order'])->name('order');
+    Route::post('/search', [AdminController::class, 'searchorder'])->name('searchorder');
+    #them
+    Route::get('/add', [AdminController::class, 'order_add'])->name('order_add');
+    Route::post('/addprocess', [AdminController::class, 'order_addprocess'])->name('order_addprocess');
+    #update
+    Route::get('/update/{code}', [AdminController::class, 'order_update'])->name('order_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'order_updateprocess'])->name('order_updateprocess');
+    #delete
+    Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
 });

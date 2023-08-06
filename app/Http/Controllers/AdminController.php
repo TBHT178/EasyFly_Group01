@@ -282,91 +282,286 @@ class AdminController extends Controller
         $rs = DB::table('feedback')->where('FeedbackId', $code)->delete();
         return redirect()->route('feedback');
     }
-    #seatclass
+    //////////////////////////////// SeatClass /////////////////////////////////////////////
     public function seatclass()
     {
         $seatclasses = DB::table('seat_class')->paginate(7);
         return view('admin.seatclass', ['seatclasses' => $seatclasses]);
     }
-    // search
-    // public function searchseatclass(Request $request)
-    // {
-    //     $output = '';
-    //     $search = $request->input('search');
-    //     $seatclasses = DB::table('seat_class')->where('Flight_id', 'like', '%' . $search . '%')
-    //         ->orWhere('price_class_TG', 'like', '%' . $search . '%')
-    //         ->orWhere('num_class_PT', 'like', '%' . $search . '%')
-    //         ->orWhere('num_class_TG', 'like', '%' . $search . '%')
-    //         ->orWhere('price_class_PT', 'like', '%' . $search . '%')->get();
 
-    //     foreach ($seatclasses as $seatclass) {
-    //         $output .=
-    //             '<tr>
-    //             <td>' . $seatclass->Flight_id . '</td>
-    //             <td>' . $seatclass->price_class_TG . '</td>
-    //             <td>' . $seatclass->num_class_PT . '</td>
-    //             <td>' . $seatclass->num_class_TG . '</td>
-    //             <td>' . $seatclass->price_class_PT . '</td>
-    //             <td><a href="/admin/seatclass/update/' . $seatclass->Flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/seatclass/delete/' . $seatclass->Flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
-    //             </tr>';
-    //     }
-    //     return response($output);
-    // }
-    // // add
-    // public function seatclass_add()
-    // {
-    //     $flights = DB::table('seat_class')->get();
-    //     return view('admin.seatclass_add', ['flights' => $flights]);
-    // }
-    // public function seatclass_addprocess(Request $request)
-    // {
-    //     $max = DB::table('flight')->latest('flight_id')->first();
-    //     $valid = $max->flight_id;
-    //     $request->validate([
-    //         'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid],
-    //         'price_class_TG' => 'required',
-    //         'num_class_PT' => 'required',
-    //         'num_class_TG' => 'required',
-    //         'price_class_PT' => 'required',
-    //     ]);
+    public function searchseatclass(Request $request)
+    {
+        $output = '';
+        $search = $request->input('search');
+        $seatclasses = DB::table('seat_class')->where('Flight_id', 'like', '%' . $search . '%')
+            ->orWhere('price_class_TG', 'like', '%' . $search . '%')
+            ->orWhere('num_class_PT', 'like', '%' . $search . '%')
+            ->orWhere('num_class_TG', 'like', '%' . $search . '%')
+            ->orWhere('price_class_PT', 'like', '%' . $search . '%')->get();
 
-    //     DB::table('seat_class')->updateOrInsert([
-    //         'Flight_id' => $request->input('Flight_id'),
-    //         'price_class_TG' => $request->input('price_class_TG'),
-    //         'num_class_PT' => $request->input('num_class_PT'),
-    //         'num_class_TG' => $request->input('num_class_TG'),
-    //         'price_class_PT' => $request->input('price_class_PT'),
-    //     ]);
-    //     return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
-    // }
-    // // update
-    // public function seatclass_update($code)
-    // {
-    //     $rs = DB::table('seat_class')
-    //         ->where('Flight_id', $code)->first();
-    //     return view('admin.seatclass_update', ['rs' => $rs]);
-    // }
-    // public function seatclass_updateprocess(Request $request, $code)
-    // {
-    //     $max = DB::table('flight')->latest('flight_id')->first();
-    //     $valid = $max->flight_id;
-    //     $request->validate([
-    //         'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid]
-    //     ]);
-    //     $Flight_id =  $request->input('Flight_id');
-    //     $price_class_TG = $request->input('price_class_TG');
-    //     $num_class_PT = $request->input('num_class_PT');
-    //     $num_class_TG = $request->input('num_class_TG');
-    //     $price_class_PT = $request->input('price_class_PT');
-    //     $rs = DB::table('seat_class')->where('Flight_id', $code)
-    //         ->update([
-    //             'Flight_id' => $Flight_id,
-    //             'price_class_TG' => $price_class_TG,
-    //             'num_class_PT' => $num_class_PT,
-    //             'num_class_TG' => $num_class_TG,
-    //             'price_class_PT' => $price_class_PT
-    //         ]);
-    //     return redirect()->route('seatclass')->with('message', 'Update Seat Class Successful!');
-    // }
+        foreach ($seatclasses as $seatclass) {
+            $output .=
+                '<tr>
+                <td>' . $seatclass->Flight_id . '</td>
+                <td>' . $seatclass->price_class_TG . '</td>
+                <td>' . $seatclass->num_class_PT . '</td>
+                <td>' . $seatclass->num_class_TG . '</td>
+                <td>' . $seatclass->price_class_PT . '</td>
+                <td><a href="/admin/seatclass/update/' . $seatclass->Flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/seatclass/delete/' . $seatclass->Flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>';
+        }
+        return response($output);
+    }
+    // add
+    public function seatclass_add()
+    {
+        $flights = DB::table('seat_class')->get();
+        return view('admin.seatclass_add', ['flights' => $flights]);
+    }
+    public function seatclass_addprocess(Request $request)
+    {
+        $max = DB::table('flight')->latest('flight_id')->first();
+        $valid = $max->flight_id;
+        $request->validate([
+            'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid],
+            'price_class_TG' => 'required',
+            'num_class_PT' => 'required',
+            'num_class_TG' => 'required',
+            'price_class_PT' => 'required',
+        ]);
+
+        DB::table('seat_class')->updateOrInsert([
+            'Flight_id' => $request->input('Flight_id'),
+            'price_class_TG' => $request->input('price_class_TG'),
+            'num_class_PT' => $request->input('num_class_PT'),
+            'num_class_TG' => $request->input('num_class_TG'),
+            'price_class_PT' => $request->input('price_class_PT'),
+        ]);
+        return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
+    }
+    // update
+    public function seatclass_update($code)
+    {
+        $rs = DB::table('seat_class')
+            ->where('Flight_id', $code)->first();
+        return view('admin.seatclass_update', ['rs' => $rs]);
+    }
+    public function seatclass_updateprocess(Request $request, $code)
+    {
+        $max = DB::table('flight')->latest('flight_id')->first();
+        $valid = $max->flight_id;
+        $request->validate([
+            'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid]
+        ]);
+        $Flight_id =  $request->input('Flight_id');
+        $price_class_TG = $request->input('price_class_TG');
+        $num_class_PT = $request->input('num_class_PT');
+        $num_class_TG = $request->input('num_class_TG');
+        $price_class_PT = $request->input('price_class_PT');
+        $rs = DB::table('seat_class')->where('Flight_id', $code)
+            ->update([
+                'Flight_id' => $Flight_id,
+                'price_class_TG' => $price_class_TG,
+                'num_class_PT' => $num_class_PT,
+                'num_class_TG' => $num_class_TG,
+                'price_class_PT' => $price_class_PT
+            ]);
+        return redirect()->route('seatclass')->with('message', 'Update Seat Class Successful!');
+    }
+    // delete
+    public function seatclass_delete($code)
+    {
+        $rs = DB::table('seat_class')->where('Flight_id', $code)->delete();
+        return redirect()->route('seatclass');
+    }
+    ////////////////////////////////customer///////////////////////////////////////////// 
+    public function customer()
+    {
+        $customers = DB::table('customer')->paginate(7);
+        return view('admin.customer', ['customers' => $customers]);
+    }
+
+    public function searchcustomer(Request $request)
+    {
+        $output = '';
+        $search = $request->input('search');
+        $customers = DB::table('customer')->where('customer_id', 'like', '%' . $search . '%')
+            ->orWhere('customer_name', 'like', '%' . $search . '%')
+            ->orWhere('customer_email', 'like', '%' . $search . '%')
+            ->orWhere('customer_phone', 'like', '%' . $search . '%')
+            ->orWhere('customer_address', 'like', '%' . $search . '%')->get();
+
+        foreach ($customers as $customer) {
+            $output .=
+                '<tr>
+                <td>' . $customer->customer_id . '</td>
+                <td>' . $customer->customer_name . '</td>
+                <td>' . $customer->customer_email . '</td>
+                <td>' . $customer->customer_phone . '</td>
+                <td>' . $customer->customer_address . '</td>
+                <td><a href="/admin/customer/update/' . $customer->customer_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/customer/delete/' . $customer->customer_id . '"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>';
+        }
+        return response($output);
+    }
+    // add
+    public function customer_add()
+    {
+        return view('admin.customer_add');
+    }
+    public function customer_addprocess(Request $request)
+    {
+        $request->validate([
+            'customer_id' => 'required',
+            'customer_name' => 'required',
+            'customer_email' => 'required',
+            'customer_phone' => 'required',
+            'customer_address' => 'required',
+        ]);
+
+        DB::table('customer')->updateOrInsert([
+            'customer_id' => $request->input('customer_id'),
+            'customer_name' => $request->input('customer_name'),
+            'customer_email' => $request->input('customer_email'),
+            'customer_phone' => $request->input('customer_phone'),
+            'customer_address' => $request->input('customer_address'),
+        ]);
+        return redirect()->route('customer')->with('message', 'Add New Customer Successful!');
+    }
+    // update
+    public function customer_update($code)
+    {
+        $rs = DB::table('customer')
+            ->where('customer_id', $code)->first();
+        return view('admin.customer_update', ['rs' => $rs]);
+    }
+    public function customer_updateprocess(Request $request, $code)
+    {
+        $request->validate([
+            'customer_id' => 'required',
+            'customer_name' => 'required',
+            'customer_email' => 'required',
+            'customer_phone' => 'required',
+            'customer_address' => 'required',
+        ]);
+        $customer_id =  $request->input('customer_id');
+        $customer_name = $request->input('customer_name');
+        $customer_email = $request->input('customer_email');
+        $customer_phone = $request->input('customer_phone');
+        $customer_address = $request->input('customer_address');
+        $rs = DB::table('customer')->where('customer_id', $code)
+            ->update([
+                'customer_id' => $customer_id,
+                'customer_name' => $customer_name,
+                'customer_email' => $customer_email,
+                'customer_phone' => $customer_phone,
+                'customer_address' => $customer_address
+            ]);
+        return redirect()->route('customer')->with('message', 'Update Customer Successful!');
+    }
+    // delete
+    public function customer_delete($code)
+    {
+        $rs = DB::table('customer')->where('customer_id', $code)->delete();
+        return redirect()->route('customer');
+    }
+    ////////////////////////////////Order/////////////////////////////////////////////
+    public function order()
+    {
+        $orders = DB::table('order')->paginate(7);
+        return view('admin.order', ['orders' => $orders]);
+    }
+
+    public function searchorder(Request $request)
+    {
+        $output = '';
+        $search = $request->input('search');
+        $orders = DB::table('order')->where('order_id', 'like', '%' . $search . '%')
+            ->orWhere('customer_id', 'like', '%' . $search . '%')
+            ->orWhere('flight_id', 'like', '%' . $search . '%')
+            ->orWhere('seat_class', 'like', '%' . $search . '%')
+            ->orWhere('order_date', 'like', '%' . $search . '%')
+            ->orWhere('order_total', 'like', '%' . $search . '%')->get();
+
+        foreach ($orders as $order) {
+            $output .=
+                '<tr>
+                <td>' . $order->order_id . '</td>
+                <td>' . $order->customer_id . '</td>
+                <td>' . $order->flight_id . '</td>
+                <td>' . $order->seat_class . '</td>
+                <td>' . $order->order_date . '</td>
+                <td>' . $order->order_total . '</td>
+                <td><a href="/admin/order/update/' . $order->order_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/order/delete/' . $order->order_id . '"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>';
+        }
+        return response($output);
+    }
+    // add
+    public function order_add()
+    {
+        return view('admin.order_add');
+    }
+
+    public function order_addprocess(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required',
+            'customer_id' => 'required',
+            'flight_id' => 'required',
+            'seat_class' => 'required',
+            'order_date' => 'required',
+            'order_total' => 'required',
+        ]);
+
+        DB::table('order')->updateOrInsert([
+            'order_id' => $request->input('order_id'),
+            'customer_id' => $request->input('customer_id'),
+            'flight_id' => $request->input('flight_id'),
+            'seat_class' => $request->input('seat_class'),
+            'order_date' => $request->input('order_date'),
+            'order_total' => $request->input('order_total'),
+        ]);
+        return redirect()->route('order')->with('message', 'Add New Order Successful!');
+    }
+    // update
+    public function order_update($code)
+    {
+        $rs = DB::table('order')
+            ->where('order_id', $code)->first();
+        return view('admin.order_update', ['rs' => $rs]);
+    }
+    public function order_updateprocess(Request $request, $code)
+    {
+        $request->validate([
+            'order_id' => 'required',
+            'customer_id' => 'required',
+            'flight_id' => 'required',
+            'seat_class' => 'required',
+            'order_date' => 'required',
+            'order_total' => 'required',
+        ]);
+        $order_id =  $request->input('order_id');
+        $customer_id = $request->input('customer_id');
+        $flight_id = $request->input('flight_id');
+        $seat_class = $request->input('seat_class');
+        $order_date = $request->input('order_date');
+        $order_total = $request->input('order_total');
+        $rs = DB::table('order')->where('order_id', $code)
+            ->update([
+                'order_id' => $order_id,
+                'customer_id' => $customer_id,
+                'flight_id' => $flight_id,
+                'seat_class' => $seat_class,
+                'order_date' => $order_date,
+                'order_total' => $order_total
+            ]);
+        return redirect()->route('order')->with('message', 'Update Order Successful!');
+    }
+    // delete
+    public function order_delete($code)
+    {
+        $rs = DB::table('order')->where('order_id', $code)->delete();
+        return redirect()->route('order');
+    }
 }
-// 
