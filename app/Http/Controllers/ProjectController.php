@@ -30,4 +30,5 @@ class ProjectController extends Controller
     public function todayflights(){
         return view('booking-list');
     }
+
 }

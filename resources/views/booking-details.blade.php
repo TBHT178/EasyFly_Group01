@@ -31,7 +31,7 @@
                         <div class="col-12">
                             <div class="customer-details-content">
                                 <div class="icon">
-                                    <img src="assets/img/icon/customer_det_icon.jpg" alt="">
+                                    <img src="{{asset('assets/img/icon/customer_det_icon.jpg')}}" alt="">
                                 </div>
                                 <div class="content">
                                     <h2 class="title">Customer Details: Please fill in with valid information.</h2>
@@ -231,8 +231,8 @@
                                 <h2 class="main-title">Booking Info</h2>
                                 <div class="widget">
                                     <ul class="flight-info">
-                                        <li><img src="assets/img/icon/sidebar_flight_icon.jpg" alt=""> <p>12:0 (DEK) <span>Dubai</span></p></li>
-                                        <li><p>16:30 (DEK) <span>istanbul</span></p></li>
+                                        <li><img src="{{asset('assets/img/icon/sidebar_flight_icon.jpg')}}" alt=""> <p>{{date('h : i A' , strtotime($rs->departure))}} <span>{{$rs->FromPlace}}</span></p></li>
+                                        <li><p>{{date('h : i A' , strtotime($rs->arrival))}} <span>{{$rs->ToPlace}}</span></p></li>
                                     </ul>
                                 </div>
                                 <div class="widget">
@@ -246,12 +246,12 @@
                                 <div class="widget">
                                     <h2 class="widget-title">Your Preferred Bank</h2>
                                     <ul class="preferred-bank-wrap">
-                                        <li><a href="#"><img src="assets/img/images/bank_logo01.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/images/bank_logo02.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/images/bank_logo03.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/images/bank_logo04.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/images/bank_logo05.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/images/bank_logo06.png" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo01.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo02.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo03.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo04.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo05.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img src="{{asset('assets/img/images/bank_logo06.png')}}" alt=""></a></li>
                                     </ul>
                                 </div>
                                 <div class="widget">

@@ -6,7 +6,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/img/logo/easyfly.png" style="max-height: 150px;" alt=""></a>
+                                <a href="index.html"><img src="{{asset('assets/img/logo/easyfly.png')}}" style="max-height: 150px;" alt=""></a>
                             </div>
                             <div class="footer-content">
                                 <!-- <p>Online to make your journey even more memorable access or meet</p> -->
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cart-img text-end">
-                            <img src="assets/img/images/cart.png" alt="">
+                            <img src="{{asset('assets/img/images/cart.png')}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -96,17 +96,17 @@
 
 
 <!-- JS here -->
-<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.odometer.min.js"></script>
-<script src="assets/js/bootstrap-datepicker.min.js"></script>
-<script src="assets/js/jquery.appear.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.odometer.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.appear.js')}}"></script>
+<script src="{{asset('assets/js/slick.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('assets/js/wow.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 </html>

@@ -11,18 +11,18 @@
         <!-- Place favicon.ico in the root directory -->
 
         <!-- CSS here -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/animate.min.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
-        <link rel="stylesheet" href="assets/css/odometer.css">
-        <link rel="stylesheet" href="assets/css/flaticon.css">
-        <link rel="stylesheet" href="assets/css/jquery-ui.css">
-        <link rel="stylesheet" href="assets/css/slick.css">
-        <link rel="stylesheet" href="assets/css/default.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/odometer.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/default.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     </head>
     <body>
 
@@ -75,7 +75,7 @@
                             <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
                             <div class="menu-wrap">
                                 <nav class="menu-nav">
-                                    <div class="logo"><a href="{{route('index')}}"><img src="assets/img/logo/easyfly.png" style="max-height:97px;" alt=""></a></div>
+                                    <div class="logo"><a href="{{route('index')}}"><img src="{{asset('assets/img/logo/easyfly.png')}}" style="max-height:97px;" alt=""></a></div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             <li class="{{ Route::currentRouteNamed('index') ? 'active' : ' ' }}"><a href="{{route('index')}}">Home</a></li>
@@ -114,7 +114,7 @@
                             <div class="mobile-menu">
                                 <nav class="menu-box">
                                     <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
-                                    <div class="nav-logo"><a href="index.html"><img src="assets/img/logo/logo_02.png" alt="" title=""></a>
+                                    <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/img/logo/easyfly.png')}}" alt="" title=""></a>
                                     </div>
                                     <div class="menu-outer">
                                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
