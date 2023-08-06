@@ -99,8 +99,13 @@
                                         <ul>
                                             <!-- <li class="country"><a href="#">usd <img src="assets/img/icon/united-states.png" alt=""></a></li> -->
                                             <!-- <li class="question"><a href="contact.html">?</a></li> -->
-                                            <li class="header-btn"><a href="contact.html" class="btn">Register</a></li>
+                                            @guest
+                                            <li class="header-btn"><a href="{{route('register')}}" class="btn">Register</a></li>
                                             <li class="header-btn sign-in"><a href="{{route('login')}}" class="btn">Sign In</a></li>
+                                            @else
+                                            <li class="header-btn"><a href="#" class="btn">Dashboard</a></li>
+                                            <li class="header-btn sign-in"><a href="{{route('userlogout')}}" class="btn">Log out</a></li>
+                                            @endguest
                                         </ul>
                                     </div>
                                 </nav>

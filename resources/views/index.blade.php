@@ -96,15 +96,28 @@
                                                     <form action="#" class="booking-form">
                                                         <ul>
                                                             <li>
-                                                                <div class="form-grp">
+                                                                {{-- <div class="form-grp">
                                                                     <input type="text" placeholder="From">
+                                                                </div> --}}
+                                                                <div class="form-grp select">
+                                                                    <label for="from">From</label>
+                                                                    <select id="from" name="from" class="form-select"
+                                                                        aria-label="Default select example">
+                                                                        @foreach ($airports as $airport)                                                                            
+                                                                        <option value="{{$airport->airport_code}}">{{$airport->airport_name}}</option>
+                                                                        @endforeach                                                 
+                                                                    </select>
                                                                 </div>
                                                             </li>
                                                             <li>
-                                                                <div class="form-grp">
-                                                                    <input type="text" placeholder="To">
-                                                                    <button class="exchange-icon"><i
-                                                                            class="flaticon-exchange-1"></i></button>
+                                                                <div class="form-grp select">
+                                                                    <label for="to">To</label>
+                                                                    <select id="to" name="to" class="form-select"
+                                                                        aria-label="Default select example">
+                                                                        @foreach ($airports as $airport)                                                                            
+                                                                        <option value="{{$airport->airport_code}}">{{$airport->airport_name}}</option>
+                                                                        @endforeach 
+                                                                    </select>
                                                                 </div>
                                                             </li>
                                                             <li>

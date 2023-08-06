@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
     public function index(){
-        return view('index');
+        $airport = DB::table('airport')->get();
+        return view('index', ['airports'=>$airport]);
     }
 
     public function about(){
@@ -25,12 +26,7 @@ class ProjectController extends Controller
     public function blog(){
         return view('blog');
     }
-    public function register(){
-        return view('auth.regsiter');
-    }
-    public function signin(){
-        return view('login2');
-    }
+
     public function todayflights(){
         return view('booking-list');
     }

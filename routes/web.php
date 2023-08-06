@@ -14,7 +14,8 @@ Route::get('/about', [ProjectController::class, 'about'])->name('about');
 Route::get('/contact', [ProjectController::class, 'contact'])->name('contact');
 Route::get('/blog-details', [ProjectController::class, 'blogdetails'])->name('blog-details');
 Route::get('/blog', [ProjectController::class, 'blog'])->name('blog');
-Route::get('/login', [ProjectController::class, 'login']) ->name('login');
+
+Route::get('register', [RegisterController::class, 'index']);
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::get('login', [LoginController::class, 'login']);
@@ -26,13 +27,14 @@ Route::get('home', [LoginController::class, 'home'])->name('home');
 Route::get('forget-password', [ForgotPasswordController::class, 'getEmail'])->name('password.request');
 Route::post('forget-password', [ForgotPasswordController::class, 'postEmail'])->name('password.email');
 
+Route::get('userlogout', [LoginController::class, 'userlogout'])->name('userlogout');
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
-Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('isAdmin');
 #Admin
 
-Route::prefix('/admin/airport')->group(function () {
+Route::prefix('/admin/airport')->middleware('isAdmin')->group(function () {
     #airport
     Route::get('/', [AdminController::class, 'sanbay'])->name('sanbay');
     Route::post('/search', [AdminController::class, 'searchairport'])->name('searchairport');
