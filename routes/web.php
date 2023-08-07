@@ -108,7 +108,7 @@ Route::prefix('/admin/customer')->group(function () {
 Route::prefix('/admin/order')->group(function () {
     #order
     Route::get('/', [AdminController::class, 'order'])->name('order');
-    Route::post('/search', [AdminController::class, 'searchorder'])->name('searchorder');
+    Route::post('/search', [AdminController::class, 'searchOrder'])->name('searchOrder');
     #them
     Route::get('/add', [AdminController::class, 'order_add'])->name('order_add');
     Route::post('/addprocess', [AdminController::class, 'order_addprocess'])->name('order_addprocess');
@@ -120,5 +120,5 @@ Route::prefix('/admin/order')->group(function () {
 });
 
 //////////////////////////////////FlightController//////////////////////////////////////////
-Route::post('/search',[FlightController::class, 'search'])->name('searchflight');
-Route::get('/booking/{id}',[FlightController::class,'booking'])->name('booking');
+Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
+Route::get('/booking/{id}', [FlightController::class, 'booking'])->name('booking');

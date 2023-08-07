@@ -323,6 +323,7 @@ class AdminController extends Controller
         $max = DB::table('flight')->latest('flight_id')->first();
         $valid = $max->flight_id;
         $request->validate([
+            // Flith_id số max lấy cuối cùng trong bảng flight
             'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid],
             'price_class_TG' => 'required',
             'num_class_PT' => 'required',
@@ -337,7 +338,7 @@ class AdminController extends Controller
             'num_class_TG' => $request->input('num_class_TG'),
             'price_class_PT' => $request->input('price_class_PT'),
         ]);
-        return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
+        return redirect()->route('seatclass')->with('message', 'Add New SeatClass Successful!');
     }
     // update
     public function seatclass_update($code)
@@ -472,7 +473,7 @@ class AdminController extends Controller
         return view('admin.order', ['orders' => $orders]);
     }
 
-    public function searchorder(Request $request)
+    public function searchOrder(Request $request)
     {
         $output = '';
         $search = $request->input('search');

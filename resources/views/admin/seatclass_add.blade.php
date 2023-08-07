@@ -12,18 +12,14 @@
         <!-- Flight_id	price_class_TG	num_class_PT	num_class_TG	price_class_PT -->
         <div class="form-group">
             <label>Flight_id</label>
-            <select name="Flight_id" class="form-control">
-                <option value="">Choose Flight</option>
-                @foreach ($flights as $key => $value)
-                <option value="{{ $value->Flight_id }}" @selected(old('Flight_id')==$value->Flight_id)> {{ $value->Flight_id }}</option>
-                @endforeach
-            </select>
+            <input type="text" name="Flight_id" class="form-control" value="{{ old('Flight_id') }}" placeholder="Enter Flight ID or Choose from the list">
             @error('Flight_id')
             <div style="color:red">
-                {{$message}}
+                {{ $message }}
             </div>
             @enderror
         </div>
+
         <div class="form-group">
             <label>price_class_TG</label>
             <input type="text" class="form-control" name="price_class_TG" value="{{ old('price_class_TG')}}">
