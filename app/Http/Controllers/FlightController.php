@@ -52,14 +52,17 @@ class FlightController extends Controller
                 ->whereDate('departure', '=', $depart)
                 ->get();
                 $class = 'Bussiness';
-                $passenfer=$request->passenger;
-                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenfer]);
+                $passenger=$request->passenger;
+                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenger]);
         }
     }
 
-    public function booking($id){
+    public function booking(Request $request, $id){
+        $price=$request->input('price');
+        $class=$request->class;
+        $qty = $request->qty;
         $rs = DB::table('flight')
         ->where('flight_id', $id)->first();
-        return view('booking-details',['rs'=>$rs]);
+        return view('booking-details',['rs'=>$rs,'price'=>$price,'class'=>$class,'qty'=>$qty]);
     }
 }

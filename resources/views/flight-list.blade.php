@@ -456,8 +456,14 @@
                                                 <li class="time"><span> {{date('h : i A' , strtotime($result->departure))}}</span></li>
                                             </ul>
                                             <div class="flight-price">
-                                                <h4 class="title">{{$result->price}}</h4>
-                                                <a href="{{route('booking',['id'=>$result->flight_id])}}"  class="btn">Select <i class="flaticon-flight-1"></i></a>
+                                                <h4 class="title">${{$result->price}}</h4>
+                                                <form action="{{route('booking',['id'=>$result->flight_id])}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="price" value="{{$result->price}}">
+                                                    <input type="hidden" name="class" value="{{$class}}">
+                                                    <input type="hidden" name="qty" value="{{$passenger}}">
+                                                    <button  type="submit" class="btn">Select <i class="flaticon-flight-1"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="booking-list-bottom">
