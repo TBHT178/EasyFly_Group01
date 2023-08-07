@@ -45,8 +45,7 @@
         }
         $.ajax({
             type: 'POST',
-            url: '{{ route('
-            searchOrder ') }}',
+            url: "{{ route('searchOrder') }}",
             data: {
                 'search': value,
                 '_token': '{{ csrf_token() }}'
