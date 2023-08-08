@@ -32,12 +32,12 @@ class FlightController extends Controller
                 ->select('a.city as fromcity', 'b.city as tocity', 'fli.*', 'c.PlaneName', 'd.price_class_PT as price', 'd.num_class_PT as seat')
                 ->where('FromPlace', '=', $request->from)
                 ->where('ToPlace', '=', $request->to)
-                ->where('num_class_PT','>=',$request->passenger)
+                ->where('num_class_PT', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
                 ->get();
-                $class = 'Economy';
-                $passenfer=$request->passenger;
-                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenfer]);
+            $class = 'Economy';
+            $passenfer = $request->passenger;
+            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenfer]);
         } else {
             $depart = $request->depart;
             $result = DB::table('flight as fli')
@@ -48,21 +48,50 @@ class FlightController extends Controller
                 ->select('a.city as fromcity', 'b.city as tocity', 'fli.*', 'c.PlaneName', 'd.price_class_TG as price', 'd.num_class_TG as seat')
                 ->where('FromPlace', '=', $request->from)
                 ->where('ToPlace', '=', $request->to)
-                ->where('num_class_TG','>=',$request->passenger)
+                ->where('num_class_TG', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
                 ->get();
-                $class = 'Bussiness';
-                $passenger=$request->passenger;
-                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenger]);
+            $class = 'Bussiness';
+            $passenger = $request->passenger;
+            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenger]);
         }
     }
 
-    public function booking(Request $request, $id){
-        $price=$request->input('price');
-        $class=$request->class;
+    public function booking(Request $request, $id)
+    {
+        $price = $request->input('price');
+        $class = $request->class;
         $qty = $request->qty;
         $rs = DB::table('flight')
-        ->where('flight_id', $id)->first();
-        return view('booking-details',['rs'=>$rs,'price'=>$price,'class'=>$class,'qty'=>$qty]);
+            ->where('flight_id', $id)->first();
+        return view('booking-details', ['rs' => $rs, 'price' => $price, 'class' => $class, 'qty' => $qty]);
+    }
+
+    public function processBooking(Request $request)
+    {
+        // nguời dùng mới khi điền thông tin form booking detail và truyền dữ liệu mới vô trong database customer
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $phone = $request->input('phone');
+        $email = $request->input('email');
+        $rs = DB::table('customer')->insertGetId([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'phone' => $phone,
+            'email' => $email
+        ]);
+        $flight_id = $request->input('flight_id');
+        $class = $request->input('class');
+        $qty = $request->input('qty');
+        $price = $request->input('price');
+        $total = $qty * $price;
+        $rs = DB::table('booking')->insertGetId([
+            'flight_id' => $flight_id,
+            'customer_id' => $rs,
+            'class' => $class,
+            'qty' => $qty,
+            'total' => $total
+        ]);
+        return redirect()->route('payment', ['id' => $rs]);
     }
 }
