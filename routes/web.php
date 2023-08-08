@@ -122,3 +122,9 @@ Route::prefix('/admin/order')->group(function () {
 //////////////////////////////////FlightController//////////////////////////////////////////
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
+//////////////////////////////////Thanh toán vé//////////////////////////////////////////
+
+Route::get('/payment/{id}', [PaymentController::class, 'payment'])->name('payment');
+Route::post('/payment/{id}', [PaymentController::class, 'postpayment'])->name('postpayment');
+Route::get('/payment-success', [PaymentController::class, 'payment_success'])->name('payment_success');
+Route::get('/payment-fail', [PaymentController::class, 'payment_fail'])->name('payment_fail');

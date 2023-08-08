@@ -77,7 +77,7 @@
                         <h2 class="title">Primary Contact</h2>
                     </div>
                     <div class="booking-details-wrap">
-                        <form action="#">
+                        <form action="{{route('payment')}}" method="POST">
                             <!-- <div class="form-grp select-form">
                                         <div class="icon">
                                             <i class="flaticon-add-user"></i>
