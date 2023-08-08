@@ -1,6 +1,8 @@
 @extends('layout.main')
 
 @section('content')
+<!-- customer_id AccountId firstname lastname gender email phone -->
+<!-- nhập dữ liệu mới trong bảng customer -->
 <!-- main-area -->
 <main>
 
@@ -63,7 +65,8 @@
         </div>
     </section>
     <!-- customer-details-area-end -->
-
+    <!-- customer_id AccountId firstname lastname gender email phone -->
+    <!-- nhập dữ liệu mới trong bảng customer -->
     <!-- booking-details-area -->
     <section class="booking-details-area">
         <div class="container">
