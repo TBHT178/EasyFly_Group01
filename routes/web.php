@@ -121,4 +121,4 @@ Route::prefix('/admin/order')->group(function () {
 
 //////////////////////////////////FlightController//////////////////////////////////////////
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
-Route::get('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
+Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
