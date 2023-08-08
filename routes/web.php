@@ -119,8 +119,8 @@ Route::prefix('/admin/order')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
 });
 
+
 //////////////////////////////////FlightController//////////////////////////////////////////
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
-//////////////////////////////////Thanh toán vé//////////////////////////////////////////
-Route::get('/payment/{id}', [FlightController::class, 'payment'])->name('payment');
+Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');

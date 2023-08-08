@@ -77,22 +77,8 @@
                         <h2 class="title">Primary Contact</h2>
                     </div>
                     <div class="booking-details-wrap">
-                        <form action="{{route('payment')}}" method="POST">
-                            <!-- <div class="form-grp select-form">
-                                        <div class="icon">
-                                            <i class="flaticon-add-user"></i>
-                                        </div>
-                                        <div class="form">
-                                            <label for="shortBy">Select Travellers from your Favourties List</label>
-                                            <select id="shortBy" name="select" class="form-select" aria-label="Default select example">
-                                                <option value="">Select One..</option>
-                                                <option>Select Two..</option>
-                                                <option>Select Three..</option>
-                                                <option>Select Four..</option>
-                                                <option>Select Five..</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
+                        <form method="POST" action="{{ route('processBooking') }}">
+                            @csrf
                             <ul>
                                 <li>
                                     <div class="form-grp">
@@ -100,55 +86,32 @@
                                             <i class="flaticon-user-1"></i>
                                         </div>
                                         <div class="form">
-                                            <input type="text" placeholder="First Name">
+                                            <input type="text" name="firstname" placeholder="First Name">
                                         </div>
                                     </div>
                                 </li>
-                                <!-- <li>
-                                            <div class="form-grp">
-                                                <input type="text" placeholder="Give Name">
-                                            </div>
-                                        </li> -->
                                 <li>
                                     <div class="form-grp">
-                                        <input type="text" placeholder="Last Name *">
+                                        <input type="text" name="lastname" placeholder="Last Name *">
                                     </div>
                                 </li>
                             </ul>
-                            <div class="gender-select">
-                                <h2 class="title">Select Your Gender*</h2>
-                                <ul>
-                                    <li class="active"><i class="flaticon-little-kid"></i> Male</li>
-                                    <li><i class="flaticon-little-girl"></i> Female</li>
-                                </ul>
+                            <div class="form-grp">
+                                <label for="gender">Gender*</label>
+                                <select id="gender" name="gender" class="form-select" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
                             </div>
+
                             <div class="row">
-                                <!-- <div class="col-md-6">
-                                            <div class="form-grp">
-                                                <div class="icon">
-                                                    <i class="flaticon-globe-1"></i>
-                                                </div>
-                                                <div class="form">
-                                                    <label for="nationality">Nationality</label>
-                                                    <select id="nationality" name="select" class="form-select" aria-label="Default select example">
-                                                        <option value="">Bangladesh</option>
-                                                        <option>United States</option>
-                                                        <option>Dubai</option>
-                                                        <option>Saudi Arabia</option>
-                                                        <option>Australia</option>
-                                                        <option>South Africa</option>
-                                                        <option>Pakistan</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                 <div class="col-md-6">
                                     <div class="form-grp">
                                         <div class="icon">
                                             <i class="flaticon-telephone-call"></i>
                                         </div>
                                         <div class="form">
-                                            <input type="number" placeholder="Mobile Number *">
+                                            <input type="number" name="phone" placeholder="Mobile Number *">
                                         </div>
                                     </div>
                                 </div>
@@ -158,21 +121,11 @@
                                             <i class="flaticon-calendar"></i>
                                         </div>
                                         <div class="form">
-                                            <label for="shortBy">Date of Birth</label>
-                                            <input type="text" class="date" placeholder="Select Date">
+                                            <label for="dob">Date of Birth</label>
+                                            <input type="text" name="dob" class="date" placeholder="Select Date">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                            <div class="form-grp">
-                                                <div class="icon">
-                                                    <i class="flaticon-home"></i>
-                                                </div>
-                                                <div class="form">
-                                                    <input type="text" placeholder="Post Code *">
-                                                </div>
-                                            </div>
-                                        </div> -->
                                 <div class="col-md-6">
                                     <div class="form-grp">
                                         <div class="icon">
@@ -180,47 +133,16 @@
                                         </div>
                                         <div class="form">
                                             <label for="email">Your Email</label>
-                                            <input type="email" id="email" placeholder="youinfo@gmail.com">
+                                            <input type="email" name="email" id="email" placeholder="youinfo@gmail.com">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                            <div class="form-grp">
-                                                <div class="icon">
-                                                    <i class="flaticon-five-stars"></i>
-                                                </div>
-                                                <div class="form">
-                                                    <input type="text" placeholder="FlyerNumber :  98265">
-                                                </div>
-                                            </div>
-                                        </div> -->
                             </div>
-                            <!-- <div class="optional-item">
-                                        <div class="form-grp">
-                                            <div class="form">
-                                                <select id="optional" name="select" class="form-select" aria-label="Default select example">
-                                                    <option value="">Select meal type ( optional )</option>
-                                                    <option>Select meal type ( optional )</option>
-                                                    <option>Select meal type ( optional )</option>
-                                                    <option>Select meal type ( optional )</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-grp">
-                                            <div class="form">
-                                                <select id="optionalTwo" name="select" class="form-select" aria-label="Default select example">
-                                                    <option value="">Request wheelchair ( optional )</option>
-                                                    <option>Request wheelchair ( optional )</option>
-                                                    <option>Select meal type ( optional )</option>
-                                                    <option>Select meal type ( optional )</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
                             <div class="form-grp checkbox-grp">
                                 <input type="checkbox" id="checkbox">
                                 <label for="checkbox">Add this person to passenger quick pick list</label>
                             </div>
+                            <button type="submit" class="btn">Pay now</button>
                         </form>
                     </div>
                 </div>
@@ -272,7 +194,7 @@
                                     <li>Discount<span>- $110</span></li>
                                     <li>Total Payable<span>$981.00</span></li>
                                 </ul>
-                                <a href="#" class="btn">Pay now</a>
+                                <a href="#" class="btn">Book Now</a>
                             </div>
                         </div>
                     </aside>
