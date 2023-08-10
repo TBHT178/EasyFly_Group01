@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h1 style="padding:20px 0px;text-align: center;">add customer</h1>
-    <form action="{{route('kh_addprocess')}}" method="POST">
+    <form action="{{route('customer_addprocess')}}" method="post">
         @csrf
         <table class="table">
             <tr>
