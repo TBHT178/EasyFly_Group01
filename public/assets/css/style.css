@@ -1,9 +1,4 @@
-/*
-  Theme Name: Geair - Air Ticket Booking System HTML Template.
-  Support: admin@gmail.com
-  Description: Geair - Air Ticket Booking System HTML Template.
-  Version: 1.0
-*/
+
 
 /* CSS Index
 -----------------------------------
@@ -1020,7 +1015,7 @@ label {
 	border: 1px solid #ebebeb;
 }
 .booking-form ul li {
-	width: 230px;
+	width: 300px;
 }
 .booking-form .form-grp {
 	position: relative;
@@ -1099,6 +1094,25 @@ label {
 	font-family: 'Barlow', sans-serif;
 	cursor: pointer;
 }
+.booking-form .form-grp.select .form-select.abc {
+	padding: 0px 20px 0 10px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #2a2a2a;
+	vertical-align: middle;
+	background: url("../img/icon/select_down_arrow.png") no-repeat scroll 97.5% center;
+	background-color: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	transition: .3s ease-in-out;
+	width: 250px;
+	border: none;
+	font-family: 'Barlow', sans-serif;
+	cursor: pointer;
+}
 .booking-form ul li:nth-child(3) {
 	width: 180px;
 }
@@ -1109,7 +1123,7 @@ label {
 	width: 270px;
 }
 .booking-form .form-grp.date {
-	padding: 16px 30px;
+	padding: 16px 30px 16px 15px;
 }
 .booking-form .form-grp.date input {
 	padding: 0;
