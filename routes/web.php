@@ -118,6 +118,20 @@ Route::prefix('/admin/order')->group(function () {
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
 });
+// ticket
+Route::prefix('/admin/ticket')->group(function () {
+    #ticket
+    Route::get('/', [AdminController::class, 'ticket'])->name('ticket');
+    Route::post('/search', [AdminController::class, 'searchticket'])->name('searchticket');
+    #them
+    Route::get('/add', [AdminController::class, 'ticket_add'])->name('ticket_add');
+    Route::post('/addprocess', [AdminController::class, 'ticket_addprocess'])->name('ticket_addprocess');
+    #update
+    Route::get('/update/{code}', [AdminController::class, 'ticket_update'])->name('ticket_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'ticket_updateprocess'])->name('ticket_updateprocess');
+    #delete
+    Route::get('/delete/{code}', [AdminController::class, 'ticket_delete'])->name('ticket_delete');
+});
 
 
 //////////////////////////////////FlightController//////////////////////////////////////////

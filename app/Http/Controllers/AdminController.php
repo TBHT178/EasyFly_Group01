@@ -565,4 +565,38 @@ class AdminController extends Controller
         $rs = DB::table('order')->where('order_id', $code)->delete();
         return redirect()->route('order');
     }
+    ////////////////////////////////Ticket/////////////////////////////////////////////
+    public function ticket()
+    {
+        $tickets = DB::table('ticket')->paginate(7);
+        return view('admin.ticket', ['tickets' => $tickets]);
+    }
+
+    public function searchTicket(Request $request)
+    {
+        $output = '';
+        $search = $request->input('search');
+        $tickets = DB::table('ticket')->where('ticket_id', 'like', '%' . $search . '%')
+            ->orWhere('order_id', 'like', '%' . $search . '%')
+            ->orWhere('customer_id', 'like', '%' . $search . '%')
+            ->orWhere('flight_id', 'like', '%' . $search . '%')
+            ->orWhere('seat_class', 'like', '%' . $search . '%')
+            ->orWhere('ticket_price', 'like', '%' . $search . '%')
+            ->orWhere('ticket_status', 'like', '%' . $search . '%')->get();
+
+        foreach ($tickets as $ticket) {
+            $output .=
+                '<tr>
+                <td>' . $ticket->ticket_id . '</td>
+                <td>' . $ticket->order_id . '</td>
+                <td>' . $ticket->customer_id . '</td>
+                <td>' . $ticket->flight_id . '</td>
+                <td>' . $ticket->seat_class . '</td>
+                <td>' . $ticket->ticket_price . '</td>
+                <td>' . $ticket->ticket_status . '</td>
+                <td><a href="/admin/ticket/update/' . $ticket->ticket_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/ticket/delete/' . $ticket->ticket_id . '"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>';
+        }
+        return response($output);
+    }
 }

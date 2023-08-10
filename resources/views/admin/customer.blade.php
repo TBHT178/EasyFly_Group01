@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="container">
-    <h1 style="padding:20px 0px;text-align: center;">customer Information</h1>
+    <h1 style="padding:20px 0px;text-align: center;">Customer Information</h1>
     <div style="padding-bottom: 20px; float:right;">
         <a href="{{route('customer_add')}}">Add customer</a>
     </div>
