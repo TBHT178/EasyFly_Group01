@@ -70,41 +70,31 @@ class FlightController extends Controller
 
     public function processBooking(Request $request)
     {
-        // Lấy dữ liệu từ form
         $firstname = $request->input('firstname');
         $lastname = $request->input('lastname');
         $phone = $request->input('phone');
         $email = $request->input('email');
-        $gender = $request->input('gender'); // Lấy giá trị giới tính
-
-        // ... Lấy các thông tin khác từ form
-
-        // Lưu thông tin vào bảng customer
+        $gender = $request->input('gender');
         $customerId = DB::table('customer')->insertGetId([
             'firstname' => $firstname,
             'lastname' => $lastname,
             'phone' => $phone,
             'email' => $email,
             'gender' => $gender
-            // ... Lưu các thông tin khác của khách hàng
         ]);
+        // $flight_id = $request->input('flight_id');
+        // $class = $request->input('class');
+        // $qty = $request->input('qty');
+        // $price = $request->input('price');
+        // $total = $qty * $price;
 
-        // Lưu thông tin vào bảng booking
-        $flight_id = $request->input('flight_id');
-        $class = $request->input('class');
-        $qty = $request->input('qty');
-        $price = $request->input('price');
-        $total = $qty * $price;
-
-        $bookingId = DB::table('booking')->insertGetId([
-            'flight_id' => $flight_id,
-            'customer_id' => $customerId, // Sử dụng customer_id vừa lưu
-            'class' => $class,
-            'qty' => $qty,
-            'total' => $total
-        ]);
-
-        // Chuyển hướng đến trang xác nhận hoặc trang thanh toán
-        return redirect()->route('confirmation', ['id' => $bookingId]);
+        // $bookingId = DB::table('booking')->insertGetId([
+        //     'flight_id' => $flight_id,
+        //     'customer_id' => $customerId,
+        //     'class' => $class,
+        //     'qty' => $qty,
+        //     'total' => $total
+        // ]);
+        // return redirect()->route('confirmation', ['id' => $bookingId]);
     }
 }

@@ -99,8 +99,8 @@
                             <div class="form-grp">
                                 <label for="gender">Gender*</label>
                                 <select id="gender" name="gender" class="form-select" required>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
                                 </select>
                             </div>
 
