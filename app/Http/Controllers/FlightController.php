@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class FlightController extends Controller
 {
     public function search(Request $request)
@@ -36,8 +36,8 @@ class FlightController extends Controller
                 ->whereDate('departure', '=', $depart)
                 ->get();
                 $class = 'Economy';
-                $passenfer=$request->passenger;
-                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenfer]);
+                $passenger=$request->passenger;
+                return view('flight-list',['results'=>$result,'class'=>$class,'passenger'=>$passenger]);
         } else {
             $depart = $request->depart;
             $result = DB::table('flight as fli')
@@ -63,6 +63,10 @@ class FlightController extends Controller
         $qty = $request->qty;
         $rs = DB::table('flight')
         ->where('flight_id', $id)->first();
+        if(Auth::check()) {
+            $id= Auth::id();
+            dd($id);
+        }
         return view('booking-details',['rs'=>$rs,'price'=>$price,'class'=>$class,'qty'=>$qty]);
     }
 }

@@ -87,7 +87,7 @@ class AdminController extends Controller
     //////////////////////////////// FLIGHT /////////////////////////////////////////////
     public function flight()
     {
-        $flights = DB::table('flight')->paginate(7);
+        $flights = DB::table('flight')->orderByDesc('flight_id')->paginate(7);
         return view('admin.flight', ['flights' => $flights]);
     }
 

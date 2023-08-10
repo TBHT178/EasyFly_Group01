@@ -23,18 +23,23 @@ class UserSeeder extends Seeder
             'role' => '1',
         ]);
         DB::table('users')->insert([
-            'name' => 'tramtran',
-            'email' => 'tramtran@gmail.com',
-            'password' => Hash::make('123'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'khaibui',
+            'name' => 'Khai Bui',
             'email' => 'khaibui@gmail.com',
             'password' => Hash::make('123'),
         ]);
         DB::table('users')->insert([
-            'name' => 'phatngo',
+            'name' => 'Phat Ngo',
             'email' => 'phatngo@gmail.com',
+            'password' => Hash::make('123'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Le Trang',
+            'email' => 'letrang@gmail.com',
+            'password' => Hash::make('123'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Tram Tran',
+            'email' => 'tramtran@gmail.com',
             'password' => Hash::make('123'),
         ]);
     }

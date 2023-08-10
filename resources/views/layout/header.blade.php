@@ -103,7 +103,11 @@
                                             <li class="header-btn"><a href="{{route('register')}}" class="btn">Register</a></li>
                                             <li class="header-btn sign-in"><a href="{{route('login')}}" class="btn">Sign In</a></li>
                                             @else
-                                            <li class="header-btn"><a href="#" class="btn">Dashboard</a></li>
+                                                @if (Auth::user()->role=='1')                                                  
+                                                    <li class="header-btn"><a href="{{route('dashboard')}}" class="btn">Dashboard</a></li>
+                                                @else
+                                                    <li class="header-btn"><a href="{{route('user')}}" class="btn">Dashboard</a></li>
+                                                @endif
                                             <li class="header-btn sign-in"><a href="{{route('userlogout')}}" class="btn">Log out</a></li>
                                             @endguest
                                         </ul>

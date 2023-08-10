@@ -14,7 +14,7 @@
         <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('sanbay')}}" class="nav-link">
+          <a href="{{route('sanbay')}}" class="nav-link {{ Route::currentRouteNamed('sanbay') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Airport
@@ -51,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('flight')}}" class="nav-link">
+          <a href="{{route('flight')}}" class="nav-link {{ Route::currentRouteNamed('flight') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Flight
@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('seatclass')}}" class="nav-link">
+          <a href="{{route('seatclass')}}" class="nav-link {{ Route::currentRouteNamed('seatclass') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Seat Class
@@ -67,7 +67,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('customer')}}" class="nav-link">
+          <a href="{{route('customer')}}" class="nav-link {{ Route::currentRouteNamed('customer') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Customer
@@ -83,7 +83,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('order')}}" class="nav-link">
+          <a href="{{route('order')}}" class="nav-link {{ Route::currentRouteNamed('order') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Order
@@ -99,7 +99,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('feedback')}}" class="nav-link">
+          <a href="{{route('feedback')}}" class="nav-link {{ Route::currentRouteNamed('feedback') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Feedback

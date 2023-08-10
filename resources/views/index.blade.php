@@ -16,8 +16,10 @@
                                         It's EasyFly.</h2>
                                     <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
                                         instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
                                     <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
                                         data-delay=".6s">Sign in / Register</a>
+                                        @endguest
                                 </div>
                             </div>
                         </div>
@@ -32,8 +34,10 @@
                                         It's EasyFly.</h2>
                                     <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
                                         instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
                                     <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
                                         data-delay=".6s">Sign in / Register</a>
+                                        @endguest
                                 </div>
                             </div>
                         </div>
@@ -48,8 +52,10 @@
                                         It's EasyFly.</h2>
                                     <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
                                         instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
                                     <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
                                         data-delay=".6s">Sign in / Register</a>
+                                        @endguest
                                 </div>
                             </div>
                         </div>

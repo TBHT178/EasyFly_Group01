@@ -149,7 +149,7 @@
                                     <li class="time"><span> {{date('h : i A' , strtotime($result->departure))}}</span></li>
                                 </ul>
                                 <div class="flight-price">
-                                    <h4 class="title">${{$result->price}}</h4>
+                                    <h4 class="title">$ {{$result->price}}</h4>
                                     <form action="{{route('booking',['id'=>$result->flight_id])}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="price" value="{{$result->price}}">
