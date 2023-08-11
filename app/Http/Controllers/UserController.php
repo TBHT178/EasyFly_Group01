@@ -37,16 +37,34 @@ class UserController extends Controller
         return back()->with("status", "Password changed successfully!");
     }
 
-    public function user_ticket(){
+    public function user_ticket()
+    {
         $tickets = DB::table('users as a')
-        ->join('customer as b','b.AccountId','=','a.id')
-        ->join('ticket as c','c.Customer_id','=','b.customer_id')
-        ->join('flight as d','d.flight_id','=','c.flight_id')
-        ->join('plane as e', 'd.planecode', '=', 'e.PlaneCode')
-        ->where('a.id','=',auth()->user()->id)
-        ->get();
+            ->join('customer as b', 'b.AccountId', '=', 'a.id')
+            ->join('ticket as c', 'c.Customer_id', '=', 'b.customer_id')
+            ->join('flight as d', 'd.flight_id', '=', 'c.flight_id')
+            ->join('plane as e', 'd.planecode', '=', 'e.PlaneCode')
+            ->where('a.id', '=', auth()->user()->id)
+            ->get();
         // dd($tickets);
-        return view('user.ticket',['tickets'=>$tickets]);
+        return view('user.ticket', ['tickets' => $tickets]);
     }
 
+    public function information()
+    {
+        return view('user.information');
+    }
+
+    public function updateInformation(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        User::whereId(auth()->user()->id)->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+        return back()->with("status", "Information changed successfully!");
+    }
 }

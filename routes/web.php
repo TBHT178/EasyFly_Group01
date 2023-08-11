@@ -140,12 +140,14 @@ Route::post('/search', [FlightController::class, 'search'])->name('searchflight'
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
 
 ///////////////////////////////// USER ////////////////////////////////////////////
-Route::prefix('/user')->group(function(){
+Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('user')->middleware('auth');
-    Route::get('/changepassword',[UserController::class, 'changepw'])->name('changepw');
-    Route::post('/updatePassword',[UserController::class, 'updatePassword'])->name('updatePassword');
-    Route::get('/ticket',[UserController::class, 'user_ticket'])->name('user_ticket');
-    Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->name('order_details');
+    Route::get('/changepassword', [UserController::class, 'changepw'])->name('changepw');
+    Route::post('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
+    Route::get('/ticket', [UserController::class, 'user_ticket'])->name('user_ticket');
+    Route::get('/orderdetails/{code}', [UserController::class, 'order_details'])->name('order_details');
+    Route::get('/information', [UserController::class, 'information'])->name('information');
+    Route::post('/updateInformation', [UserController::class, 'updateInformation'])->name('updateInformation');
 });
 
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
