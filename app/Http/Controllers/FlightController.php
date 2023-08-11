@@ -66,7 +66,6 @@ class FlightController extends Controller
         ->where('flight_id', $id)->first();
         if(Auth::check()) {
             $id= Auth::id();
-            dd($id);
         }
 
         return view('booking-details', ['rs' => $rs, 'price' => $price, 'class' => $class, 'qty' => $qty]);
