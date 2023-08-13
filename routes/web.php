@@ -104,6 +104,8 @@ Route::prefix('/admin/customer')->group(function () {
     Route::post('/updateprocess/{code}', [AdminController::class, 'customer_updateprocess'])->name('customer_updateprocess');
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'customer_delete'])->name('customer_delete');
+    #search
+    Route::post('/search', [AdminController::class, 'searchcustomer'])->name('searchcustomer');
 });
 // order(booking)
 Route::prefix('/admin/order')->group(function () {
@@ -148,6 +150,7 @@ Route::prefix('/user')->group(function () {
     Route::get('/orderdetails/{code}', [UserController::class, 'order_details'])->name('order_details');
     Route::get('/information', [UserController::class, 'information'])->name('information');
     Route::post('/updateInformation', [UserController::class, 'updateInformation'])->name('updateInformation');
+    Route::get('/cancel-flight/{ticketId}', [UserController::class, 'cancelFlight'])->name('cancel.flight');
 });
 
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');

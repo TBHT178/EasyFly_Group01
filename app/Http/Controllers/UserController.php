@@ -67,4 +67,12 @@ class UserController extends Controller
         ]);
         return back()->with("status", "Information changed successfully!");
     }
+    // ticket cancel
+    public function cancelFlight(Request $request, $ticketId)
+    {
+        DB::table('ticket')->where('ticket_id', $ticketId)->delete();
+
+
+        return redirect()->back()->with('message', 'Flight canceled successfully.');
+    }
 }
