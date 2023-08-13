@@ -104,6 +104,8 @@ Route::prefix('/admin/customer')->group(function () {
     Route::post('/updateprocess/{code}', [AdminController::class, 'customer_updateprocess'])->name('customer_updateprocess');
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'customer_delete'])->name('customer_delete');
+    #search
+    Route::post('/search', [AdminController::class, 'searchcustomer'])->name('searchcustomer');
 });
 // order(booking)
 Route::prefix('/admin/order')->group(function () {
@@ -139,14 +141,19 @@ Route::prefix('/admin/ticket')->group(function () {
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
 Route::post('/return',[FlightController::class,'return'])->name('return');
+Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->name('order_details');   
+Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
 
 ///////////////////////////////// USER ////////////////////////////////////////////
-Route::prefix('/user')->group(function(){
+Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('user')->middleware('auth');
+
     Route::get('/changepassword',[UserController::class, 'changepw'])->name('changepw');
     Route::post('/updatePassword',[UserController::class, 'updatePassword'])->name('updatePassword');
     Route::get('/ticket',[UserController::class, 'user_ticket'])->name('user_ticket');
-    Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->name('order_details');   
-    Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
+    Route::get('/information', [UserController::class, 'information'])->name('information');
+    Route::post('/updateInformation', [UserController::class, 'updateInformation'])->name('updateInformation');
+    Route::get('/cancel-flight/{ticketId}', [UserController::class, 'cancelFlight'])->name('cancel.flight');
+
 });
 

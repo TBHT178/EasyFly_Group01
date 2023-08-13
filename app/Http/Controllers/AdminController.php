@@ -466,6 +466,8 @@ class AdminController extends Controller
         $rs = DB::table('customer')->where('customer_id', $code)->delete();
         return redirect()->route('customer');
     }
+
+
     ////////////////////////////////Order/////////////////////////////////////////////
     public function order()
     {
