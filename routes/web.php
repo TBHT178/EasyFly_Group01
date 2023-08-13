@@ -50,10 +50,10 @@ Route::prefix('/admin/airport')->middleware('isAdmin')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'sb_delete'])->name('sb_delete');
 });
 
-Route::prefix('/admin/flight')->group(function () {
+Route::prefix('/admin/flight')->middleware('isAdmin')->group(function () {
     #flight
     Route::get('/', [AdminController::class, 'flight'])->name('flight');
-    Route::post('/search', [AdminController::class, 'searchflight'])->name('searchflight');
+    Route::post('/search', [AdminController::class, 'searchflight'])->name('searchflightadmin');
     #them
     Route::get('/add', [AdminController::class, 'flight_add'])->name('flight_add');
     Route::post('/addprocess', [AdminController::class, 'flight_addprocess'])->name('flight_addprocess');

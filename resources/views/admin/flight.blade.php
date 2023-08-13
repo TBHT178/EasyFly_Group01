@@ -64,7 +64,7 @@
             }
             $.ajax({
                 type: 'POST',
-                url: "{{ route('searchflight') }}",
+                url: "{{ route('searchflightadmin') }}",
 
                 data: {
                     'search': value,
@@ -78,6 +78,36 @@
             });
         });
     </script>
+    {{-- <script type="text/javascript">
+        $('#search-flight').on('keyup', function() {
+            var searchQuest = $(this).val();
+            // console.log(searchQuest);
+            $.ajax({
+                method: 'POST',
+                url: '{{ route('searchflightadmin') }}',
+                dataType: 'json',
+                data: {
+                    searchQuest: searchQuest,
+                    '_token': '{{ csrf_token() }}'
+                },
+                success: function(res) {
+                    console.log(res)
+                    var tableRow = '';
+                    $('#flight-row').html('');
+                    $.each(res, function(index, value) {
+                        tableRow = '<tr><td>' +
+                            value.flight_id + '</td><td>' +
+                            value.planecode + '</td><td>' +
+                            value.FromPlace + '</td><td>' +
+                            value.country +
+                            '</td><td><a href="{{ route('sb_update', ['code' => $flight->flight_id]) }}"><button class="btn btn-primary">Update</button></a>| <a onclick="confirmation(event)" href="{{ route('sb_delete', ['code' => $flight->flight_id]) }}"><button class="btn btn-danger">Delete</button></a></td></tr>'
+
+                        $('#flight-row').append(tableRow);
+                    });
+                }
+            });
+        });
+    </script> --}}
     <script>
         function confirmation(ev) {
             ev.preventDefault();

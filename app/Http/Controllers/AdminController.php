@@ -94,7 +94,7 @@ class AdminController extends Controller
     public function searchflight(Request $request)
     {
         $output = '';
-        $search = $request->input('search');
+         $search = $request->input('search');
         $flights = DB::table('flight')->where('flight_id', 'like', '%' . $search . '%')
             ->orWhere('planecode', 'like', '%' . $search . '%')
             ->orWhere('FromPlace', 'like', '%' . $search . '%')
@@ -117,6 +117,15 @@ class AdminController extends Controller
             </tr>';
         }
         return response($output);
+        // $flights = DB::table('flight')->where('flight_id', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('planecode', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('FromPlace', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('ToPlace', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('departure', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('arrival', 'like', '%' .  $request->get('searchQuest1') . '%')
+        //     ->orWhere('avail_seat', 'like', '%' .  $request->get('searchQuest1') . '%')->get();
+
+        // return json_decode($flights);
     }
 
     public function flight_add()
