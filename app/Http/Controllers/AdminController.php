@@ -81,7 +81,7 @@ class AdminController extends Controller
     public function sb_delete($code)
     {
         $rs = DB::table('airport')->where('airport_code', $code)->delete();
-        return redirect()->route('sanbay');
+        return redirect()->route('sanbay')->with('message', 'Delete Airport Successful!');
     }
 
     //////////////////////////////// FLIGHT /////////////////////////////////////////////
@@ -138,7 +138,7 @@ class AdminController extends Controller
             'ToPlace' => 'required|different:FromPlace',
             'departure' => 'required|after_or_equal:' . $currentTime,
             'arrival' => ['required', 'after:' . $date],
-            'avail_seat' => ['required', 'numeric', 'min:1', 'max:' . $maxseat]
+            // 'avail_seat' => ['required', 'numeric', 'min:1', 'max:' . $maxseat]
         ], [
             'ToPlace.different' => 'Airports can not be the same',
             'planecode.required' => 'Please choose a plane'
@@ -151,7 +151,7 @@ class AdminController extends Controller
             'ToPlace' => $request->input('ToPlace'),
             'departure' => $request->input('departure'),
             'arrival' => $request->input('arrival'),
-            'avail_seat' => $request->input('avail_seat')
+            'avail_seat' => $maxseat
         ]);
         return redirect()->route('flight')->with('message', 'Add New Flight Successful!');
     }
@@ -194,7 +194,7 @@ class AdminController extends Controller
     public function flight_delete(Request $request, $code)
     {
         $rs = DB::table('flight')->where('flight_id', $code)->delete();
-        return redirect()->route('flight');
+        return redirect()->route('flight')->with('message', 'Delete Successful!');;
     }
 
     ////////////////////// FEEDBACK //////////////////////////////
@@ -280,7 +280,7 @@ class AdminController extends Controller
     public function feedback_delete($code)
     {
         $rs = DB::table('feedback')->where('FeedbackId', $code)->delete();
-        return redirect()->route('feedback');
+        return redirect()->route('feedback')->with('message', 'Delete feedback Successful!');;
     }
     //////////////////////////////// SeatClass /////////////////////////////////////////////
     public function seatclass()

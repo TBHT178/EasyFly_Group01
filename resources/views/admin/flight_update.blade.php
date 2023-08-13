@@ -3,9 +3,9 @@
 <div class="container">
     <h1 style="padding:20px 0px;text-align: center;">Update Flight</h1>
 
-    <form action="{{route('flight_updateprocess',['code'=> $flight->flight_id])}}" method="POST">
+    <form action="{{route('flight_updateprocess',['code'=> $flight->flight_id])}}" method="POST" style="padding-bottom: 50px;">
         @csrf
-        <table class="table .table-responsive">
+        {{-- <table class="table .table-responsive">
             <thead class="thead-light">
             <tr>
                 <th>Flight ID</th>
@@ -26,11 +26,11 @@
                 <td>{{  date('d-m-Y  h : i A' , strtotime($flight->arrival)) }}</td>
                 <td>{{  $flight->avail_seat }}</td>
             </tr>
-        </table>
+        </table> --}}
         <div class="form-group">
             <label>Plane code</label>
             <select name="planecode" class="form-control">
-                <option value="">Choose Plane</option>
+                <option value="{{$flight->planecode}}">{{$flight->planecode}}</option>
                 @foreach ($planes as $key => $value)
                 <option value="{{ $value->PlaneCode }}"  @selected(old('planecode') == $value->PlaneCode)> {{ $value->PlaneCode }} - {{ $value->PlaneName }}</option>
                 @endforeach
@@ -44,7 +44,7 @@
         <div class="form-group">
             <label>From Place</label>
             <select name="FromPlace" class="form-control" >
-                <option value="">Choose airport</option>
+                <option value="{{$flight->FromPlace}}">{{$flight->FromPlace}}</option>
                 @foreach ($airports as $key => $value)
                 <option value="{{ $value->airport_code }}" @selected(old('FromPlace') == $value->airport_code)>{{ $value->airport_code }} -  {{ $value->airport_name }}, {{ $value->city }}</option>
                 @endforeach
@@ -58,7 +58,7 @@
         <div class="form-group">
             <label>To Place</label>
             <select name="ToPlace" class="form-control">
-                <option value="">Choose airport</option>
+                <option value="{{$flight->ToPlace}}">{{$flight->ToPlace}}</option>
                 @foreach ($airports as $key => $value)
                 <option value="{{ $value->airport_code }}"  @selected(old('ToPlace') == $value->airport_code)>{{ $value->airport_code }} -  {{ $value->airport_name }}, {{ $value->city }}</option>
                 @endforeach
@@ -71,7 +71,7 @@
         </div>
         <div class="form-group">
             <label>Departure</label>
-            <input type="datetime-local" class="form-control" name="departure" value="{{ old('departure')}}">
+            <input type="datetime-local" class="form-control" name="departure" value="<?php echo $flight->departure; ?>">
             @error('departure')
             <div style="color:red">
                 {{$message}}
@@ -80,7 +80,7 @@
         </div>
         <div class="form-group">
             <label>Arrival</label>
-            <input type="datetime-local" class="form-control" name="arrival" value="{{ old('arrival')}}" >
+            <input type="datetime-local" class="form-control" name="arrival" value="<?php echo $flight->arrival; ?>" >
             @error('arrival')
             <div style="color:red">
                 {{$message}}
@@ -89,14 +89,15 @@
         </div>
         <div class="form-group">
             <label>Available Seat</label>
-            <input class="form-control" name="avail_seat" value="{{ old('avail_seat')}}">
+            <input class="form-control" name="avail_seat" value="{{$flight->avail_seat}}">
         </div>
         @error('avail_seat')
         <div style="color:red">
             {{$message}}
         </div>
         @enderror
-        <button style="float:right;" type="submit" class="btn btn-primary">Update Flight</button>
+        <button  onclick="return confirm('Are you sure to update this ?')" style="float:right;" type="submit" class="btn btn-primary">Update Flight</button>
     </form>
 </div>
+
 @endsection

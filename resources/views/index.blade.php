@@ -128,8 +128,8 @@
                                                                 <label for="shortBy">Seat Class</label>
                                                                 <select id="class" name="class" class="form-select"
                                                                     aria-label="Default select example">
-                                                                    <option value="1" selected>Economy</option>
-                                                                    <option value="2">Business</option>
+                                                                    <option value="Economy" selected>Economy</option>
+                                                                    <option value="Business">Business</option>
                                                                 </select>
                                                             </div>
                                                         </li>

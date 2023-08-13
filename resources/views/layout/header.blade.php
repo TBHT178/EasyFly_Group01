@@ -86,11 +86,11 @@
                                                     <li><a href="booking-details.html">Booking Details</a></li>
                                                 </ul> -->
                                             </li>
-                                            <li class="menu-item-has-children"><a href="#">Blog</a>
-                                                <ul class="submenu ">
+                                            <li class="menu-item-has-children {{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }} {{ Route::currentRouteNamed('blog') ? 'active' : ' ' }}"><a href={{route('blog')}}>Blog</a>
+                                                {{-- <ul class="submenu ">
                                                     <li> <a href="{{route('blog')}}">Our Blog</a></li>
                                                     <li class="{{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }}"><a href="{{route('blog-details')}}">Blog Details</a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </li>
                                             <li class="{{ Route::currentRouteNamed('contact') ? 'active' : ' ' }}"><a href="{{route('contact')}}">Contact</a></li>
                                         </ul>

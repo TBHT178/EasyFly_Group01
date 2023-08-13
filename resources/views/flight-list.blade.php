@@ -35,7 +35,7 @@
                     <aside class="booking-sidebar">
                         <div class="widget filters">
                             <h2 class="title">filters</h2>
-                            <div class="filters-wrap">
+                            {{-- <div class="filters-wrap">
                                 <h2 class="widget-title">Price Range</h2>
                                 <div class="price_filter">
                                     <div id="slider-range"></div>
@@ -45,7 +45,7 @@
                                         <input type="submit" class="btn" value="Filter">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="widget">
                             <h2 class="widget-title">Departure Time</h2>
@@ -150,8 +150,13 @@
                                 </ul>
                                 <div class="flight-price">
                                     <h4 class="title">$ {{$result->price}}</h4>
-                                    <form action="{{route('booking',['id'=>$result->flight_id])}}" method="POST">
+                                    {{-- <form action="{{route('booking',['id'=>$result->flight_id])}}" method="POST"> --}}
+                                    <form action="{{route('return')}}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="flightid1" value="{{$result->flight_id}}">
+                                        <input type="hidden" name="from" value="{{$result->ToPlace}}">
+                                        <input type="hidden" name="to" value="{{$result->FromPlace}}">
+                                        <input type="hidden" name="departure" value="{{$return}}">
                                         <input type="hidden" name="price" value="{{$result->price}}">
                                         <input type="hidden" name="class" value="{{$class}}">
                                         <input type="hidden" name="qty" value="{{$passenger}}">

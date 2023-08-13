@@ -7,7 +7,7 @@
             </div>
         @endif
         <h1 style="padding:20px 0px;text-align: center;">Add New Flight</h1>
-        <form action="{{ route('flight_addprocess') }}" method="POST">
+        <form action="{{ route('flight_addprocess') }}" method="POST" style="padding-bottom: 50px;">
             @csrf
             <div class="form-group">
                 <label>Plane code</label>
@@ -69,15 +69,15 @@
                 </div>
                 @enderror
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label>Available Seat</label>
-                <input class="form-control" name="avail_seat" value="{{ old('avail_seat')}}">
+                <input class="form-control" name="avail_seat" value="{{ old('avail_seat')}}" readonly>
             </div>
             @error('avail_seat')
             <div style="color:red">
                 {{$message}}
             </div>
-            @enderror
+            @enderror --}}
             <button style="float:right;" type="submit" class="btn btn-primary">Add Flight</button>
         </form>
     </div>

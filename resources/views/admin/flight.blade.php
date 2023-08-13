@@ -13,7 +13,7 @@
         <div class="search">
             <input type="text" id="search-flight" name="search" class="mb-3 form-control" placeholder="Type here to search">
         </div>
-        <table class="table .table-responsive">
+        <table class="table .table-responsive" style="padding-bottom: 50px">
             <thead class="thead-light">
                 <tr>
                     <th>Flight ID</th>
@@ -64,7 +64,7 @@
             }
             $.ajax({
                 type: 'POST',
-                url: '{{ route('searchflight') }}',
+                url: "{{ route('searchflight') }}",
 
                 data: {
                     'search': value,

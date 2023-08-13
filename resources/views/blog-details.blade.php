@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
@@ -134,10 +134,12 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --}}
     <!-- header-area-end -->
 
+    @extends('layout.main')
 
+    @section('content')
     <!-- main-area -->
     <main>
 
@@ -358,8 +360,8 @@
 
     </main>
     <!-- main-area-end -->
-
-    <!-- footer-area -->
+@endsection
+    {{-- <!-- footer-area -->
     <footer>
         <div class="footer-area footer-bg">
             <div class="footer-top">
@@ -472,4 +474,4 @@
     <script src="assets/js/main.js"></script>
 </body>
 
-</html>
+</html> --}}

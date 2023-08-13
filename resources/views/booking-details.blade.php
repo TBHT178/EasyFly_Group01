@@ -67,7 +67,8 @@
 
         <!-- booking-details-area -->
         <section class="booking-details-area">
-            <form action="">
+            <form action="{{route('processBooking')}}" method="POST">
+                @csrf
                  <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-73">
@@ -76,7 +77,7 @@
                             <h2 class="title">Contact Details (for E-ticket/Voucher)</h2>
                         </div>
                         <div class="booking-details-wrap">
-                            <form action="#">
+                            {{-- <form action="#"> --}}
                                 <!-- <div class="form-grp select-form">
                                             <div class="icon">
                                                 <i class="flaticon-add-user"></i>
@@ -117,8 +118,10 @@
                                 <div class="gender-select">
                                     <h2 class="title">Select Your Gender*</h2>
                                     <ul>
-                                        <li class="active"><i class="flaticon-little-kid"></i> Male</li>
-                                        <li><i class="flaticon-little-girl"></i> Female</li>
+                                        {{-- <li class="active"><i class="flaticon-little-kid"></i> Male</li>
+                                        <li><i class="flaticon-little-girl"></i> Female</li> --}}
+                                        <input type="radio" class="form-check-input" id="radio1" name="gender" value="1" checked>Male
+                                        <input type="radio" class="form-check-input" id="radio2" name="gender" value="0">Female
                                     </ul>
                                 </div>
                                 <div class="row">
@@ -231,7 +234,7 @@
                             </div>
                             <div class="booking-details-wrap">
                                 <p>Make sure that the passenger's name is exactly as written in the government issued ID/Passport/Driving License. </p>
-                                <form action="#">
+                                {{-- <form action="#"> --}}
                                     <!-- <div class="form-grp select-form">
                                             <div class="icon">
                                                 <i class="flaticon-add-user"></i>
@@ -254,7 +257,7 @@
                                                     <i class="flaticon-user-1"></i>
                                                 </div>
                                                 <div class="form">
-                                                    <input type="text" placeholder="First Name *">
+                                                    <input type="text" placeholder="First Name *" name="pass_firstname[<?php echo $i; ?>]">
                                                 </div>
                                             </div>
                                         </li>
@@ -265,15 +268,17 @@
                                             </li> -->
                                         <li>
                                             <div class="form-grp">
-                                                <input type="text" placeholder="Last Name *">
+                                                <input type="text" placeholder="Last Name *" name="pass_lastname[<?php echo $i; ?>]">
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="gender-select">
                                         <h2 class="title">Select Your Gender*</h2>
                                         <ul>
-                                            <li class="active"><i class="flaticon-little-kid"></i> Male</li>
-                                            <li><i class="flaticon-little-girl"></i> Female</li>
+                                            {{-- <li class="active"><i class="flaticon-little-kid"><input type="radio" id="css" name="fav_language" value="CSS"></i> Male</li>
+                                            <li><i class="flaticon-little-girl"></i> Female</li> --}}
+                                            <input type="radio" class="form-check-input" id="radio1" name="pass_gender[<?php echo $i; ?>]" value="1" checked>Male
+                                            <input type="radio" class="form-check-input" id="radio2" name="pass_gender[<?php echo $i; ?>]" value="0">Female
                                         </ul>
                                     </div>
                                     <div class="row">
@@ -304,7 +309,7 @@
                                                 </div>
                                                 <div class="form">
                                                     <label for="shortBy">Date of Birth*</label>
-                                                    <input type="text" class="date" placeholder="Select Date">
+                                                    <input type="date"  placeholder="Select Date" name="birthday[<?php echo $i; ?>]">
                                                 </div>
                                             </div>
                                         </div>
@@ -335,7 +340,7 @@
                                                     <i class="flaticon-five-stars"></i>
                                                 </div>
                                                 <div class="form">
-                                                    <input type="text" placeholder="Passport number *">
+                                                    <input type="text" placeholder="Passport number *" name="passport[<?php echo $i; ?>]">
                                                 </div>
                                             </div>
                                         </div>
@@ -376,24 +381,99 @@
                         <aside class="booking-sidebar">
                             <h2 class="main-title">Booking Info</h2>
                             <div class="widget">
+                                <h2 class="widget-title">Departure Ticket Infomarion</h2>
                                 <ul class="flight-info">
                                     <li><img src="{{ asset('assets/img/icon/sidebar_flight_icon.jpg') }}" alt="">
-                                        <p>{{ date('h : i A', strtotime($rs->departure)) }}
-                                            <span>{{ $rs->FromPlace }}</span></p>
+                                        <p>{{ date('h : i A', strtotime($depart->departure)) }}
+                                            <span>{{ $depart->FromPlace }}</span></p>
                                     </li>
                                     <li>
-                                        <p>{{ date('h : i A', strtotime($rs->arrival)) }} <span>{{ $rs->ToPlace }}</span>
+                                        <p>{{ date('h : i A', strtotime($depart->arrival)) }} <span>{{ $depart->ToPlace }}</span>
                                         </p>
                                     </li>
                                 </ul>
                             </div>
                             <div class="widget">
+                                <h2 class="widget-title">Your price summary</h2>
+                                <div class="price-summary-top">
+                                    <ul>
+                                        <li>Details</li>
+                                        <li>Amount</li>
+                                    </ul>
+                                </div>
+                                <div class="price-summary-detail">
+                                    <ul>
+                                        <li>Adult x {{ $qty }} <span>${{ $qty * $price1 }}</span></li>
+                                        <li>Tax x {{ $qty }} <span>${{ $qty * $price1 * 0.1 }}</span></li>
+                                        <li>Total Airfare: <span>${{ $qty * $price1 + $qty * $price1 * 0.1 }}</span></li>
+                                        {{-- <li>Discount<span>- $110</span></li> --}}
+                                        {{-- <li>Total Payable<span>${{ $qty * $price1 + $qty * $price1 * 0.1 }}</span></li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h2 class="widget-title">Arrival Ticket Infomarion </h2>
+                                <ul class="flight-info">
+                                    <li><img src="{{ asset('assets/img/icon/sidebar_flight_icon.jpg') }}" alt="">
+                                        <p>{{ date('h : i A', strtotime($arri->departure)) }}
+                                            <span>{{ $arri->FromPlace }}</span></p>
+                                    </li>
+                                    <li>
+                                        <p>{{ date('h : i A', strtotime($arri->arrival)) }} <span>{{ $arri->ToPlace }}</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            {{-- <div class="widget">
                                 <h2 class="widget-title">Select Discount Option</h2>
                                 <form action="#" class="discount-form">
                                     <i class="flaticon-coupon"></i>
                                     <input type="text" placeholder="Enter Code">
                                     <button type="submit"><i class="flaticon-tick-1"></i></button>
                                 </form>
+                            </div> --}}
+                            {{-- <div class="widget">
+                                <h2 class="widget-title">Your Preferred Bank</h2>
+                                <ul class="preferred-bank-wrap">
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo01.png') }}"
+                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo02.png') }}"
+                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo03.png') }}"
+                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo04.png') }}"
+                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo05.png') }}"
+                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo06.png') }}"
+                                                alt=""></a></li>
+                                </ul>
+                            </div> --}}
+                            <div class="widget">
+                                <h2 class="widget-title">Your price summary</h2>
+                                <div class="price-summary-top">
+                                    <ul>
+                                        <li>Details</li>
+                                        <li>Amount</li>
+                                    </ul>
+                                </div>
+                                <div class="price-summary-detail">
+                                    <ul>
+                                        <li>Adult x {{ $qty }} <span>${{ $qty * $price2 }}</span></li>
+                                        <li>Tax x {{ $qty }} <span>${{ $qty * $price2 * 0.1 }}</span></li>
+                                        <li>Total Airfare: <span>${{ $qty * $price2 + $qty * $price2 * 0.1 }}</span></li>
+                                        {{-- <li>Discount<span>- $110</span></li> --}}
+                                        <li>Total Payable<span>${{ ($qty * $price2 + $qty * $price2 * 0.1) + ($qty * $price1 + $qty * $price1 * 0.1)}} </span></li>
+                                    </ul>
+                                    <input type="hidden" name="quantity" value="{{$qty}}">
+                                    <input type="hidden" name="totalprice" value="{{($qty * $price2 + $qty * $price2 * 0.1) + ($qty * $price1 + $qty * $price1 * 0.1)}}">
+                                    <input type="hidden" name="class" value="{{$class}}">
+                                    <input type="hidden" name="price1" value="{{$price1}}">
+                                    <input type="hidden" name="price2" value="{{$price2}}">
+                                    <input type="hidden" name="flightid1" value="{{$depart->flight_id}}">
+                                    <input type="hidden" name="flightid2" value="{{$arri->flight_id}}">
+                                    <button type="submit" style="width:100%" class="btn">Pay now</button>
+                                </div>
                             </div>
                             <div class="widget">
                                 <h2 class="widget-title">Your Preferred Bank</h2>
@@ -411,25 +491,6 @@
                                     <li><a href="#"><img src="{{ asset('assets/img/images/bank_logo06.png') }}"
                                                 alt=""></a></li>
                                 </ul>
-                            </div>
-                            <div class="widget">
-                                <h2 class="widget-title">Your price summary</h2>
-                                <div class="price-summary-top">
-                                    <ul>
-                                        <li>Details</li>
-                                        <li>Amount</li>
-                                    </ul>
-                                </div>
-                                <div class="price-summary-detail">
-                                    <ul>
-                                        <li>Adult x {{ $qty }} <span>${{ $qty * $price }}</span></li>
-                                        <li>Tax x {{ $qty }} <span>${{ $qty * $price * 0.1 }}</span></li>
-                                        <li>Total Airfare: <span>${{ $qty * $price + $qty * $price * 0.1 }}</span></li>
-                                        {{-- <li>Discount<span>- $110</span></li> --}}
-                                        <li>Total Payable<span>${{ $qty * $price + $qty * $price * 0.1 }}</span></li>
-                                    </ul>
-                                    <a href="#" class="btn">Pay now</a>
-                                </div>
                             </div>
                         </aside>
                     </div>

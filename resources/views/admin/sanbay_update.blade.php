@@ -21,7 +21,8 @@
             <label>Country</label>
             <input  class="form-control" name="country" value="{{$rs->country}}">
         </div>
-        <button style="float:right;" type="submit" class="btn btn-primary">Update Airport</button>
+        <button  onclick="return confirm('Are you sure to update this airport?')" style="float:right;" type="submit" class="btn btn-primary">Update Airport</button>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 @endsection
