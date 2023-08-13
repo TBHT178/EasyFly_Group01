@@ -87,57 +87,35 @@
                                                     <li><a href="booking-list.html">Booking List</a></li>
                                                     <li><a href="booking-details.html">Booking Details</a></li>
                                                 </ul> -->
-                                            </li>
-                                            <li class="menu-item-has-children {{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }} {{ Route::currentRouteNamed('blog') ? 'active' : ' ' }}"><a href={{route('blog')}}>Blog</a>
-                                                {{-- <ul class="submenu ">
-                                                    <li> <a href="{{route('blog')}}">Our Blog</a></li>
-                                                    <li class="{{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }}"><a href="{{route('blog-details')}}">Blog Details</a></li>
-                                                </ul> --}}
-                                            </li>
-                                            <li class="{{ Route::currentRouteNamed('contact') ? 'active' : ' ' }}"><a href="{{route('contact')}}">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="header-action d-none d-md-block">
-                                        <ul>
-                                            <!-- <li class="country"><a href="#">usd <img src="assets/img/icon/united-states.png" alt=""></a></li> -->
-                                            <!-- <li class="question"><a href="contact.html">?</a></li> -->
-                                            @guest
-                                            <li class="header-btn"><a href="{{route('register')}}" class="btn">Register</a></li>
-                                            <li class="header-btn sign-in"><a href="{{route('login')}}" class="btn">Sign In</a></li>
-                                            @else
-                                                @if (Auth::user()->role=='1')                                                  
-                                                    <li class="header-btn"><a href="{{route('dashboard')}}" class="btn">Dashboard</a></li>
-                                                @else
-                                                    <li class="header-btn"><a href="{{route('user')}}" class="btn">Dashboard</a></li>
-                                                @endif
-                                            <li class="header-btn sign-in"><a href="{{route('userlogout')}}" class="btn">Log out</a></li>
-                                            @endguest
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <!-- Mobile Menu  -->
-                            <div class="mobile-menu">
-                                <nav class="menu-box">
-                                    <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
-                                    <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/img/logo/easyfly.png')}}" alt="" title=""></a>
-                                    </div>
-                                    <div class="menu-outer">
-                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-                                    </div>
-                                    <div class="social-links">
-                                        <ul class="clearfix">
-                                            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-youtube"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="menu-backdrop"></div>
-                            <!-- End Mobile Menu -->
+                                        </li>
+                                        <li class="menu-item-has-children {{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }} {{ Route::currentRouteNamed('blog') ? 'active' : ' ' }}"><a href={{route('blog')}}>Blog</a>
+                                            {{-- <ul class="submenu ">
+                                                    <li> <a href="{{route('blog')}}">Our Blog</a>
+                                        </li>
+                                        <li class="{{ Route::currentRouteNamed('blog-details') ? 'active' : ' ' }}"><a href="{{route('blog-details')}}">Blog Details</a></li>
+                                    </ul> --}}
+                                    </li>
+                                    <li class="{{ Route::currentRouteNamed('contact') ? 'active' : ' ' }}"><a href="{{route('contact')}}">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="header-action d-none d-md-block">
+                                    <ul>
+                                        <!-- <li class="country"><a href="#">usd <img src="assets/img/icon/united-states.png" alt=""></a></li> -->
+                                        <!-- <li class="question"><a href="contact.html">?</a></li> -->
+                                        @guest
+                                        <li class="header-btn"><a href="{{route('register')}}" class="btn">Register</a></li>
+                                        <li class="header-btn sign-in"><a href="{{route('login')}}" class="btn">Sign In</a></li>
+                                        @else
+                                        @if (Auth::user()->role=='1')
+                                        <li class="header-btn"><a href="{{route('dashboard')}}" class="btn">{{ Auth::user()->name }}</a></li>
+                                        @else
+                                        <li class="header-btn"><a href="{{route('user')}}" class="btn">{{ Auth::user()->name }}</a></li>
+                                        @endif
+                                        <li class="header-btn sign-in"><a href="{{route('userlogout')}}" class="btn">Log out</a></li>
+                                        @endguest
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
                         <!-- Mobile Menu  -->
                         <div class="mobile-menu">
@@ -162,8 +140,31 @@
                         <div class="menu-backdrop"></div>
                         <!-- End Mobile Menu -->
                     </div>
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-menu">
+                        <nav class="menu-box">
+                            <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
+                            <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/img/logo/easyfly.png')}}" alt="" title=""></a>
+                            </div>
+                            <div class="menu-outer">
+                                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                            </div>
+                            <div class="social-links">
+                                <ul class="clearfix">
+                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="menu-backdrop"></div>
+                    <!-- End Mobile Menu -->
                 </div>
             </div>
+        </div>
         </div>
     </header>
     <!-- header-area-end -->
