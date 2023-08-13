@@ -23,7 +23,7 @@ Lê Thị Trang (Student1414233)
 
 =======================================
 
-Documentations : 
+Documentations : https://github.com/TBHT178/EasyFly_Group01/tree/tram/Documentations
 
 =======================================
 
