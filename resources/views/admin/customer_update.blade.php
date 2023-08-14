@@ -1,46 +1,40 @@
-{{-- Trong kh_update.blade.php --}}
 @extends('admin.layouts.app')
-
 @section('content')
-
 <div class="container">
+    <h1 style="padding:20px 0px;text-align: center;">Update information Customer</h1>
 
-    <h1 style="padding:20px 0px;text-align: center;">Cập nhật thông tin khách hàng</h1>
-
-    <form action="{{ route('kh_updateprocess', ['code' => $rs->customer_id]) }}" method="POST">
-
+    <form action="{{ route('customer_updateprocess', ['code' => $rs->customer_id]) }}" method="post" style="padding-bottom: 50px;">
         @csrf
-        <table class="table">
-            <tr>
-                <td>Mã khách hàng</td>
-                <td><input name="makhachhang" value="{{ $rs->customer_id }}" readonly></td>
-            </tr>
-            <tr>
-                <td>Họ</td>
-                <td><input name="ho" value="{{ $rs->lastname }}"></td>
-            </tr>
-            <tr>
-                <td>Tên</td>
-                <td><input name="ten" value="{{ $rs->firstname }}"></td>
-            </tr>
-            <tr>
-                <td>Giới tính</td>
-                <td><input name="gioitinh" value="{{ $rs->gender }}"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input name="email" value="{{ $rs->email }}"></td>
-            </tr>
-            <tr>
-                <td>Số điện thoại</td>
-                <td><input name="sodienthoai" value="{{ $rs->phone }}"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Cập nhật">
-                </td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label>Customer ID</label>
+            <input name="makhachhang" value="{{ $rs->customer_id }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Account ID</label>
+            <input name="account_id" value="{{ $rs->AccountId }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input name="firstname" value="{{ $rs->firstname }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="lastname" value="{{ $rs->lastname }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input name="gender" value="{{ $rs->gender }}" class="form-control">
+        </div>
+        <div class=" form-group">
+            <label>Email</label>
+            <input name="email" value="{{ $rs->email }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input name="phone" value="{{ $rs->phone }}" class="form-control">
+        </div>
+        <button onclick="return confirm('Are you sure to update this customer ?')" style="float:right;" type="submit" class="btn btn-primary">Update Customer</button>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 @endsection

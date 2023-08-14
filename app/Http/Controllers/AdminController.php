@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -324,31 +326,33 @@ class AdminController extends Controller
     // add
     public function seatclass_add()
     {
-        $flights = DB::table('seat_class')->get();
+        $flights = DB::table('flight')->get();
         return view('admin.seatclass_add', ['flights' => $flights]);
     }
+
     public function seatclass_addprocess(Request $request)
     {
-        $max = DB::table('flight')->latest('flight_id')->first();
-        $valid = $max->flight_id;
         $request->validate([
-            // Flith_id số max lấy cuối cùng trong bảng flight
-            'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid],
+            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $request->input('Flight_id')],
             'price_class_TG' => 'required',
             'num_class_PT' => 'required',
             'num_class_TG' => 'required',
             'price_class_PT' => 'required',
         ]);
 
-        DB::table('seat_class')->updateOrInsert([
+        DB::table('seat_class')->insert([
             'Flight_id' => $request->input('Flight_id'),
             'price_class_TG' => $request->input('price_class_TG'),
             'num_class_PT' => $request->input('num_class_PT'),
             'num_class_TG' => $request->input('num_class_TG'),
             'price_class_PT' => $request->input('price_class_PT'),
         ]);
-        return redirect()->route('seatclass')->with('message', 'Add New SeatClass Successful!');
+
+        return redirect()->route('seat_class')->with('message', 'Add New SeatClass Successful!');
     }
+
+
+
     // update
     public function seatclass_update($code)
     {
@@ -390,7 +394,7 @@ class AdminController extends Controller
         $customers = DB::table('customer')->paginate(7);
         return view('admin.customer', ['customers' => $customers]);
     }
-
+    // search
     public function searchcustomer(Request $request)
     {
         $output = '';
@@ -414,7 +418,6 @@ class AdminController extends Controller
         }
         return response($output);
     }
-    // add
     public function customer_add()
     {
         return view('admin.customer_add');
@@ -422,22 +425,25 @@ class AdminController extends Controller
     public function customer_addprocess(Request $request)
     {
         $request->validate([
-            'customer_id' => 'required',
-            'customer_name' => 'required',
-            'customer_email' => 'required',
-            'customer_phone' => 'required',
-            'customer_address' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'gender' => 'required',
+            'email' => 'required|email|unique:customer,email',
+            'phone' => 'required|unique:customer,phone',
+
+        ]);
+        DB::table('customer')->insert([
+            'AccountId' => $request->input('AccountId'),
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
+            'gender' => $request->input('gender'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
         ]);
 
-        DB::table('customer')->updateOrInsert([
-            'customer_id' => $request->input('customer_id'),
-            'customer_name' => $request->input('customer_name'),
-            'customer_email' => $request->input('customer_email'),
-            'customer_phone' => $request->input('customer_phone'),
-            'customer_address' => $request->input('customer_address'),
-        ]);
         return redirect()->route('customer')->with('message', 'Add New Customer Successful!');
     }
+
     // update
     public function customer_update($code)
     {
@@ -447,34 +453,32 @@ class AdminController extends Controller
     }
     public function customer_updateprocess(Request $request, $code)
     {
-        $request->validate([
-            'customer_id' => 'required',
-            'customer_name' => 'required',
-            'customer_email' => 'required',
-            'customer_phone' => 'required',
-            'customer_address' => 'required',
-        ]);
-        $customer_id =  $request->input('customer_id');
-        $customer_name = $request->input('customer_name');
-        $customer_email = $request->input('customer_email');
-        $customer_phone = $request->input('customer_phone');
-        $customer_address = $request->input('customer_address');
-        $rs = DB::table('customer')->where('customer_id', $code)
+        $AccountId =  $request->input('AccountId');
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $gender = $request->input('gender');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $rs = DB::table('customer')
+            ->where('customer_id', $code)
             ->update([
-                'customer_id' => $customer_id,
-                'customer_name' => $customer_name,
-                'customer_email' => $customer_email,
-                'customer_phone' => $customer_phone,
-                'customer_address' => $customer_address
+                'AccountId' => $AccountId,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'gender' => $gender,
+                'email' => $email,
+                'phone' => $phone,
             ]);
         return redirect()->route('customer')->with('message', 'Update Customer Successful!');
     }
+
     // delete
     public function customer_delete($code)
     {
         $rs = DB::table('customer')->where('customer_id', $code)->delete();
         return redirect()->route('customer');
     }
+
 
 
     ////////////////////////////////Order/////////////////////////////////////////////
@@ -518,24 +522,30 @@ class AdminController extends Controller
     public function order_addprocess(Request $request)
     {
         $request->validate([
-            'order_id' => 'required',
             'customer_id' => 'required',
-            'flight_id' => 'required',
-            'seat_class' => 'required',
-            'order_date' => 'required',
-            'order_total' => 'required',
+            'quantity' => 'required|numeric',
+            'total_price' => 'required|numeric',
+            'status' => 'required',
+            'paymentmethod' => 'required',
+        ]);
+        $customer_id = $request->input('customer_id');
+        $quantity = $request->input('quantity');
+        $total_price = $request->input('total_price');
+        $status = $request->input('status');
+        $paymentmethod = $request->input('paymentmethod');
+        $create_at = now();
+        DB::table('order')->insert([
+            'customer_id' => $customer_id,
+            'quantity' => $quantity,
+            'total_price' => $total_price,
+            'status' => $status,
+            'paymentmethod' => $paymentmethod,
+            'create_at' => $create_at,
         ]);
 
-        DB::table('order')->updateOrInsert([
-            'order_id' => $request->input('order_id'),
-            'customer_id' => $request->input('customer_id'),
-            'flight_id' => $request->input('flight_id'),
-            'seat_class' => $request->input('seat_class'),
-            'order_date' => $request->input('order_date'),
-            'order_total' => $request->input('order_total'),
-        ]);
-        return redirect()->route('order')->with('message', 'Add New Order Successful!');
+        return redirect()->route('order')->with('message', 'Order added successfully!');
     }
+
     // update
     public function order_update($code)
     {
@@ -545,37 +555,33 @@ class AdminController extends Controller
     }
     public function order_updateprocess(Request $request, $code)
     {
-        $request->validate([
-            'order_id' => 'required',
-            'customer_id' => 'required',
-            'flight_id' => 'required',
-            'seat_class' => 'required',
-            'order_date' => 'required',
-            'order_total' => 'required',
-        ]);
-        $order_id =  $request->input('order_id');
         $customer_id = $request->input('customer_id');
-        $flight_id = $request->input('flight_id');
-        $seat_class = $request->input('seat_class');
-        $order_date = $request->input('order_date');
-        $order_total = $request->input('order_total');
-        $rs = DB::table('order')->where('order_id', $code)
+        $quantity = $request->input('quantity');
+        $total_price = $request->input('total_price');
+        $status = $request->input('status');
+        $paymentmethod = $request->input('paymentmethod');
+        $create_at = now();
+        $rs = DB::table('order')
+            ->where('order_id', $code)
             ->update([
-                'order_id' => $order_id,
                 'customer_id' => $customer_id,
-                'flight_id' => $flight_id,
-                'seat_class' => $seat_class,
-                'order_date' => $order_date,
-                'order_total' => $order_total
+                'quantity' => $quantity,
+                'total_price' => $total_price,
+                'status' => $status,
+                'paymentmethod' => $paymentmethod,
+                'create_at' => $create_at,
             ]);
         return redirect()->route('order')->with('message', 'Update Order Successful!');
     }
+
     // delete
     public function order_delete($code)
     {
         $rs = DB::table('order')->where('order_id', $code)->delete();
         return redirect()->route('order');
     }
+
+
     ////////////////////////////////Ticket/////////////////////////////////////////////
     public function ticket()
     {
@@ -621,26 +627,34 @@ class AdminController extends Controller
     public function ticket_addprocess(Request $request)
     {
         $request->validate([
-            'ticket_id' => 'required',
-            'order_id' => 'required',
-            'customer_id' => 'required',
+            'ticket_id' => 'required|unique:ticket',
             'flight_id' => 'required',
-            'seat_class' => 'required',
-            'ticket_price' => 'required',
-            'ticket_status' => 'required',
+            'customer_id' => 'required',
+            'pass_firstname' => 'required',
+            'pass_lastname' => 'required',
+            'pass_gender' => 'required',
+            'pass_dob' => 'required|date',
+            'pass_cmnd' => 'required|unique:ticket',
+            'type' => 'required',
+            'price' => 'required|numeric',
         ]);
 
-        DB::table('ticket')->updateOrInsert([
+        DB::table('ticket')->insert([
             'ticket_id' => $request->input('ticket_id'),
-            'order_id' => $request->input('order_id'),
-            'customer_id' => $request->input('customer_id'),
             'flight_id' => $request->input('flight_id'),
-            'seat_class' => $request->input('seat_class'),
-            'ticket_price' => $request->input('ticket_price'),
-            'ticket_status' => $request->input('ticket_status'),
+            'customer_id' => $request->input('customer_id'),
+            'pass_firstname' => $request->input('pass_firstname'),
+            'pass_lastname' => $request->input('pass_lastname'),
+            'pass_gender' => $request->input('pass_gender'),
+            'pass_dob' => $request->input('pass_dob'),
+            'pass_cmnd' => $request->input('pass_cmnd'),
+            'type' => $request->input('type'),
+            'price' => $request->input('price'),
         ]);
+
         return redirect()->route('ticket')->with('message', 'Add New Ticket Successful!');
     }
+
     // update
     public function ticket_update($code)
     {
@@ -651,37 +665,35 @@ class AdminController extends Controller
 
     public function ticket_updateprocess(Request $request, $code)
     {
-        $request->validate([
-            'ticket_id' => 'required',
-            'order_id' => 'required',
-            'customer_id' => 'required',
-            'flight_id' => 'required',
-            'seat_class' => 'required',
-            'ticket_price' => 'required',
-            'ticket_status' => 'required',
-        ]);
-        $ticket_id =  $request->input('ticket_id');
-        $order_id = $request->input('order_id');
-        $customer_id = $request->input('customer_id');
-        $flight_id = $request->input('flight_id');
-        $seat_class = $request->input('seat_class');
-        $ticket_price = $request->input('ticket_price');
-        $ticket_status = $request->input('ticket_status');
-        $rs = DB::table('ticket')->where('ticket_id', $code)
+
+
+
+        $pass_firstname = $request->input('pass_firstname');
+        $pass_lastname = $request->input('pass_lastname');
+        $pass_gender = $request->input('pass_gender');
+        $pass_dob = $request->input('pass_dob');
+        $pass_cmnd = $request->input('pass_cmnd');
+        $type = $request->input('type');
+
+
+        $rs = DB::table('ticket')
+            ->where('ticket_id', $code)
             ->update([
-                'ticket_id' => $ticket_id,
-                'order_id' => $order_id,
-                'customer_id' => $customer_id,
-                'flight_id' => $flight_id,
-                'seat_class' => $seat_class,
-                'ticket_price' => $ticket_price,
-                'ticket_status' => $ticket_status
+
+
+                'pass_firstname' => $pass_firstname,
+                'pass_lastname' => $pass_lastname,
+                'pass_gender' => $pass_gender,
+                'pass_dob' => $pass_dob,
+                'pass_cmnd' => $pass_cmnd,
+                'type' => $type,
+
             ]);
+
         return redirect()->route('ticket')->with('message', 'Update Ticket Successful!');
     }
 
     // delete
-
     public function ticket_delete($code)
     {
         $rs = DB::table('ticket')->where('ticket_id', $code)->delete();

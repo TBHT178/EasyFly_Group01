@@ -24,7 +24,7 @@
                 <th>Function</th>
             </tr>
         </thead>
-        <tbody id="feedback-row">
+        <tbody id="seat_class-row">
             @forelse ($seatclasses as $seatclass)
             <tr>
                 <td>{{ $seatclass->Flight_id }}</td>
@@ -37,7 +37,9 @@
                 </td>
             </tr>
             @empty
-            <h3 style="text-align: center">No information</h3>
+            <tr>
+                <td colspan="6" style="text-align: center;">No information</td>
+            </tr>
             @endforelse
         </tbody>
         <tbody id="Content"></tbody>
@@ -71,14 +73,14 @@
         var url = e.target.getAttribute('href');
         swal({
                 title: 'Are you sure?',
-                text: 'Once deleted, you will not be able to recover this imaginary file!',
+                text: 'Once deleted, you will not be able to recover this record!',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location.href = urlToRedirect;
+                    window.location.href = url;
                 }
             });
     }

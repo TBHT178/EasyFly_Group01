@@ -1,38 +1,53 @@
 @extends('admin.layouts.app')
 @section('content')
-<!-- dat ve -->
 <div class="container">
+    @if (session()->has('message'))
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('message') }}
+    </div>
+    @endif
     <h1 style="padding:20px 0px;text-align: center;">Order Information</h1>
     <div style="padding-bottom: 20px; float:right;">
-        <a href="{{route('order_add')}}">Add Order</a>
+        <a href="{{ route('order_add') }}">Add New Order</a>
     </div>
-    <table class="table table-hover">
-        <tr>
-            <th>order_id</th>
-            <th>customer_id</th>
-            <th>quantity</th>
-            <th>total_price</th>
-            <th>status</th>
-            <th>create_at</th>
-            <th>paymentmethod</th>
-        </tr>
-        @forelse ($orders as $order)
-        <tr>
-            <td>{{$order->order_id}}</td>
-            <td>{{$order->customer_id}}</td>
-            <td>{{$order->quantity}}</td>
-            <td>{{$order->total_price}}</td>
-            <td>{{$order->status}}</td>
-            <td>{{$order->create_at}}</td>
-            <td>{{$order->paymentmethod}}</td>
-            <td>
-                <a href="{{route('order_update',['code'=> $order->order_id])}}"><button class="btn btn-primary">Update</button></a> | <a href="{{route('order_delete',['code'=>$order->order_id])}}"><button class="btn btn-danger">Delete</button></a>
-            </td>
-        </tr>
-        @empty
-        <h3 style="text-align: center">No information</h3>
-        @endforelse
+    <div class="search">
+        <input type="text" id="search-order" name="search" class="mb-3 form-control" placeholder="Type here to search">
+    </div>
+    <table class="table .table-responsive" style="padding-bottom: 50px">
+        <thead class="thead-light">
+            <tr>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>created at</th>
+                <th>Payment Method</th>
+                <th>Function</th>
+            </tr>
+        </thead>
+        <tbody id="order-row">
+            @forelse ($orders as $order)
+            <tr>
+                <td>{{ $order->order_id }}</td>
+                <td>{{ $order->customer_id }}</td>
+                <td>{{ $order->quantity }}</td>
+                <td>{{ $order->total_price }}</td>
+                <td>{{ $order->status }}</td>
+                <td>{{ $order->create_at }}</td>
+                <td>{{ $order->paymentmethod }}</td>
+                <td>
+                    <a href="{{ route('order_update', ['code' => $order->order_id]) }}"><button class="btn btn-primary">Update</button></a> |
+                    <a onclick="confirmation(event)" href="{{ route('order_delete', ['code' => $order->order_id]) }}"><button class="btn btn-danger">Delete</button></a>
+                </td>
+            </tr>
+            @empty
+            <h3 style="text-align: center">No information</h3>
+            @endforelse
+        </tbody>
+        <tbody id="order-data"></tbody>
     </table>
+    {{ $orders->links() }}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -41,7 +56,7 @@
         let value = $(this).val();
         if (value) {
             $('#order-row').hide('');
-            $('#order-row').show('');
+            $('#order-data').show('');
         }
         $.ajax({
             type: 'POST',
@@ -52,10 +67,10 @@
             },
             success: function(data) {
                 console.log(data);
-                $('#order-row').html(data);
+                $('#order-data').html(data);
             }
         });
-    })
+    });
 </script>
 <script>
     function confirmation(ev) {
@@ -63,7 +78,7 @@
         var urlToRedirect = ev.currentTarget.getAttribute('href');
         console.log(urlToRedirect);
         swal({
-                title: "Are you sure to Delete this Flight?",
+                title: "Are you sure to Delete this Order?",
                 text: "You will not be able to revert this!",
                 icon: "warning",
                 buttons: true,
