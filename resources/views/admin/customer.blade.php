@@ -22,6 +22,7 @@
             <th>gender</th>
             <th>email</th>
             <th>phone</th>
+            <th>Function</th>
         </tr>
         @forelse($customers as $customer)
         <tr>

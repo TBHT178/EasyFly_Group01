@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="submit" value="them order">
+                    <input type="submit" value="Add">
                 </td>
             </tr>
         </table>

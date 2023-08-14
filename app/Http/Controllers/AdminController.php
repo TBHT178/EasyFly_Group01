@@ -94,7 +94,7 @@ class AdminController extends Controller
     public function searchflight(Request $request)
     {
         $output = '';
-         $search = $request->input('search');
+        $search = $request->input('search');
         $flights = DB::table('flight')->where('flight_id', 'like', '%' . $search . '%')
             ->orWhere('planecode', 'like', '%' . $search . '%')
             ->orWhere('FromPlace', 'like', '%' . $search . '%')
@@ -609,5 +609,82 @@ class AdminController extends Controller
                 </tr>';
         }
         return response($output);
+    }
+
+    // add
+
+    public function ticket_add()
+    {
+        return view('admin.ticket_add');
+    }
+
+    public function ticket_addprocess(Request $request)
+    {
+        $request->validate([
+            'ticket_id' => 'required',
+            'order_id' => 'required',
+            'customer_id' => 'required',
+            'flight_id' => 'required',
+            'seat_class' => 'required',
+            'ticket_price' => 'required',
+            'ticket_status' => 'required',
+        ]);
+
+        DB::table('ticket')->updateOrInsert([
+            'ticket_id' => $request->input('ticket_id'),
+            'order_id' => $request->input('order_id'),
+            'customer_id' => $request->input('customer_id'),
+            'flight_id' => $request->input('flight_id'),
+            'seat_class' => $request->input('seat_class'),
+            'ticket_price' => $request->input('ticket_price'),
+            'ticket_status' => $request->input('ticket_status'),
+        ]);
+        return redirect()->route('ticket')->with('message', 'Add New Ticket Successful!');
+    }
+    // update
+    public function ticket_update($code)
+    {
+        $rs = DB::table('ticket')
+            ->where('ticket_id', $code)->first();
+        return view('admin.ticket_update', ['rs' => $rs]);
+    }
+
+    public function ticket_updateprocess(Request $request, $code)
+    {
+        $request->validate([
+            'ticket_id' => 'required',
+            'order_id' => 'required',
+            'customer_id' => 'required',
+            'flight_id' => 'required',
+            'seat_class' => 'required',
+            'ticket_price' => 'required',
+            'ticket_status' => 'required',
+        ]);
+        $ticket_id =  $request->input('ticket_id');
+        $order_id = $request->input('order_id');
+        $customer_id = $request->input('customer_id');
+        $flight_id = $request->input('flight_id');
+        $seat_class = $request->input('seat_class');
+        $ticket_price = $request->input('ticket_price');
+        $ticket_status = $request->input('ticket_status');
+        $rs = DB::table('ticket')->where('ticket_id', $code)
+            ->update([
+                'ticket_id' => $ticket_id,
+                'order_id' => $order_id,
+                'customer_id' => $customer_id,
+                'flight_id' => $flight_id,
+                'seat_class' => $seat_class,
+                'ticket_price' => $ticket_price,
+                'ticket_status' => $ticket_status
+            ]);
+        return redirect()->route('ticket')->with('message', 'Update Ticket Successful!');
+    }
+
+    // delete
+
+    public function ticket_delete($code)
+    {
+        $rs = DB::table('ticket')->where('ticket_id', $code)->delete();
+        return redirect()->route('ticket');
     }
 }
