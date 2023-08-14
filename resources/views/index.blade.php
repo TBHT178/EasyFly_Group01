@@ -1,205 +1,829 @@
 @extends('layout.main')
 
 @section('content')
-<section class="section section-lg section-main-bunner section-main-bunner-filter text-center">
-        <div class="main-bunner-img" style="background-image: url('images/banner.jpg'); background-size: cover;"></div>
-        <div class="main-bunner-inner">
-          <div class="container">
-            <div class="box-default">
-              <h1 class="box-default-title">Welcome to FlyEasy</h1>
-              <div class="box-default-decor"></div>
-              <p class="big box-default-text">Start your travel with us</p>
+    <!-- main-area -->
+    <main>
+
+        <!-- slider-area -->
+        <section class="slider-area">
+            <div class="slider-active">
+                <div class="single-slider slider-bg" data-background="assets/img/slider/slider_bg01.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-10">
+                                <div class="slider-content">
+                                    <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts?
+                                        It's EasyFly.</h2>
+                                    <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
+                                        instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
+                                    <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
+                                        data-delay=".6s">Sign in / Register</a>
+                                        @endguest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider slider-bg" data-background="assets/img/slider/slider_bg02.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-10">
+                                <div class="slider-content">
+                                    <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts?
+                                        It's EasyFly.</h2>
+                                    <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
+                                        instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
+                                    <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
+                                        data-delay=".6s">Sign in / Register</a>
+                                        @endguest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider slider-bg" data-background="assets/img/slider/slider_bg03.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-10">
+                                <div class="slider-content">
+                                    <h2 class="title" data-animation="fadeInUp" data-delay=".2s">A Lifetime of Discounts?
+                                        It's EasyFly.</h2>
+                                    <p data-animation="fadeInUp" data-delay=".4s">Get rewarded for your travels – unlock
+                                        instant savings of 10% or more with a free EasyFlyinfo.com account</p>
+                                        @guest
+                                    <a href="{{ route('login') }}" class="btn" data-animation="fadeInUp"
+                                        data-delay=".6s">Sign in / Register</a>
+                                        @endguest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <div class="bg-gray-1">
-        <section class="section-transform-top">
-          <div class="container">
-            <div class="box-booking">          
-              <form  class="rd-form rd-mailform " action="#">
-                <div class="form-group border-bottom d-flex align-items-center justify-content-between flex-wrap">
-                  <label class="option my-sm-0 my-2">
-                    <input  onchange="hdl_change(this)" type="radio" name="trip" value="oneway" checked id="opt_1"> One way<br>
-                      <span class="checkmark"></span>
-                  </label>
-                  <label class="option my-sm-0 my-2" onclick="hdl_change();">
-                    <input  onchange="hdl_change(this)" id="opt_2" type="radio" name="trip" value="round" > Round Trip<br>
-                      <span class="checkmark"></span>
-                  </label>                    
-              </div>
-                <div class="form-group d-sm-flex margin">
-                    <div class="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
-                        <input type="text" required placeholder="From" class="form-control">
-                        <div class="label" id="from"></div>
-                        <span class="fas fa-dot-circle text-muted"></span>
-                    </div>
-                    <div class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
-                        <input type="text" required placeholder="To" class="form-control">
-                        <div class="label" id="to"></div>
-                        <span class="fas fa-map-marker text-muted"></span>
-                    </div>
-                </div>
-                <div class="form-group d-sm-flex margin">
-                  <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
-                      <input type="date" required placeholder="Depart Date" class="form-control">
-                      <div class="label" id="depart"></div>
-                  </div>
-                  <div  id="date2" style="visibility:hidden" class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative" >
-                      <input type="date" required placeholder="Return Date" class="form-control">
-                      <div class="label" id="return"></div>
-                  </div>
-              </div>
-                <div class="form-group border-bottom d-flex align-items-center position-relative">
-                    <input type="text" required placeholder="Traveller(s)" class="form-control">
-                    <div class="label" id="psngr"></div>
-                    <span class="fas fa-users text-muted"></span>
-                </div>
-                <div class="form-group my-3">
-                    <div class="btn btn-primary rounded-0 d-flex justify-content-center text-center p-3">Search Flights
-                    </div>
-                </div>
-                </form>
-              </div>
-            </form>  
-            </div>
-          </div>
         </section>
-        <section class="section section-lg section-inset-1 bg-gray-1 pt-lg-0">
-          <div class="container">
-            <div class="row row-50 justify-content-xl-between align-items-lg-center">
-              <div class="col-lg-6 wow fadeInLeft">
-                <div class="box-image"><img class="box-image-static" src="images/home-3-1-483x327.jpg" alt="" width="483" height="327"/><img class="box-image-position" src="images/home-3-2-341x391.png" alt="" width="341" height="391"/>
+        <!-- slider-area-end -->
+
+        <!-- booking-area -->
+        <div class="booking-area booking-style-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="booking-wrap">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="bOOKing-tab" data-bs-toggle="tab"
+                                        data-bs-target="#bOOKing-tab-pane" type="button" role="tab"
+                                        aria-controls="bOOKing-tab-pane" aria-selected="true"><i
+                                            class="flaticon-flight"></i>air
+                                        BOOKing</button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="bOOKing-tab-pane" role="tabpanel"
+                                    aria-labelledby="bOOKing-tab" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tab-content-wrap">
+                                                <div class="content-top">
+                                                    <ul>
+                                                        <li class="active"><a href="#">Roundtrip</a></li>
+                                                        <li><a href="#">One-way</a></li>
+                                                        <!-- <li><a href="#">Multi-city</a></li> -->
+                                                    </ul>
+                                                </div>
+                                                <form action="{{ route('searchflight') }}" method="POST"
+                                                    class="booking-form">
+                                                    @csrf
+                                                    <ul>
+                                                        <li>
+                                                            <div class="form-grp select">
+                                                                <label for="from">From</label>
+                                                                <select id="from" name="from" class="form-select abc"
+                                                                    aria-label="Default select example">
+                                                                    @foreach ($airports as $airport)
+                                                                        <option value="{{ $airport->airport_code }}">
+                                                                            {{ $airport->airport_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="form-grp select">
+                                                                <label for="to">To</label>
+                                                                <select id="to" name="to" class="form-select abc"
+                                                                    aria-label="Default select example">
+                                                                    @foreach ($airports as $airport)
+                                                                        <option value="{{ $airport->airport_code }}">
+                                                                            {{ $airport->airport_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="form-grp select">
+                                                                <label for="shortBy">Seat Class</label>
+                                                                <select id="class" name="class" class="form-select"
+                                                                    aria-label="Default select example">
+                                                                    <option value="Economy" selected>Economy</option>
+                                                                    <option value="Business">Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="form-grp date">
+                                                                <ul>
+                                                                    <li>
+                                                                        <label for="shortBy">Depart</label>
+                                                                        <input type="date" name="depart" style="width: 97.1px"
+                                                                            value="<?php echo date('Y-m-d'); ?>" />
+
+                                                                    </li>
+                                                                    <li>
+                                                                        <label for="shortBy"  >Return</label>
+                                                                        <input type="date" style="width: 97.1px" name="return"
+                                                                            value="<?php echo date('Y-m-d'); ?>" />
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="form-grp economy">
+                                                                <label for="text">Passenger</label>
+                                                                <input type="number" id="text" value="1"
+                                                                    name="passenger">
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="content-bottom">
+                                                        <a href="#" class="promo-code">+ Add Promo code</a>
+                                                        <button type="submit" class="btn">Show Flights <i
+                                                                class="flaticon-flight-1"></i></button>
+                                                    </div>
+                                                </form>
+                                                @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul class="list-unstyled">
+                                                            @foreach ($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                                @if (session()->has('error'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ session()->get('error') }}
+                                                </div>
+                                            @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-6 col-xl-5 wow fadeInRight">
-                <h2>About Us</h2>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente accusamus dignissimos debitis, reprehenderit labore et? Expedita, porro cumque voluptas voluptatum tenetur rem? Sint, nam suscipit tempora consectetur nemo modi exercitationem.</p>
-              </div>
             </div>
-          </div>
+        </div>
+        <!-- booking-area-end -->
+
+        <!-- features-area -->
+        <section class="features-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-lg-6 col-sm-10">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <i class="flaticon-help"></i>
+                            </div>
+                            <div class="features-content">
+                                <h6 class="title">We are now available</h6>
+                                <p>Call +1 555 666 888 for contuct with us</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-sm-10">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <i class="flaticon-plane"></i>
+                            </div>
+                            <div class="features-content">
+                                <h6 class="title">International Flight</h6>
+                                <p>Call +1 555 666 888 for booking assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-sm-10">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <i class="flaticon-money-back-guarantee"></i>
+                            </div>
+                            <div class="features-content">
+                                <h6 class="title">Check Refund</h6>
+                                <p>Call +1 555 666 888 for check refund status</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-      </div>
-      <!-- Featured Offers-->
-      <section class="section section-lg bg-default">
-        <div class="container">
-          <div class="row justify-content-center text-center">
-            <div class="col-md-9 col-lg-7 wow-outer">
-              <div class="wow slideInDown">
-                <h2>Popular cities right now</h2>
-                <p class="text-opacity-80">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, neque esse repellat animi tenetur sit quos praesentium! Temporibus neque numquam id. Possimus molestias eaque amet reiciendis sint tempora itaque laudantium?</p>
-              </div>
-            </div>
-          </div>
-          <div class="row row-20 row-lg-30">
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="images/product-1-370x395.jpg" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">Explore</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Ho Chi Minh</a></h4>
+        <!-- features-area-end -->
 
-                  </div>
+        <!-- flight-offer-area -->
+        <section class="flight-offer-area">
+            <div class="container">
+                <div class="row align-items-center mb-35">
+                    <div class="col-md-8">
+                        <div class="section-title">
+                            <span class="sub-title">Offer Deals</span>
+                            <h2 class="title">Flight Offer Deals</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="best-price text-end">
+                            <a href="booking-list.html">Best Price Guarantee <i class="flaticon-check"></i></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="images/product-2-370x395.jpg" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">Explore</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Da Nang</a></h4>
-                  </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="flight-offer-item">
+                            <div class="flight-offer-thumb">
+                                <img src="assets/img/images/offer_img01.jpg" alt="">
+                            </div>
+                            <div class="flight-offer-content">
+                                <h2 class="title">Dhaka to Dubai</h2>
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <p>Economy from</p>
+                                <h4 class="price">$ 980</h4>
+                            </div>
+                            <div class="overlay-content">
+                                <h2 class="title">Dhaka to Dubai</h2>
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <p>Economy from</p>
+                                <h4 class="price">$ 980</h4>
+                                <div class="content-bottom">
+                                    <a href="booking-details.html" class="btn">Booking Now</a>
+                                    <a href="booking-list.html" class="discover">Discover</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-10">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="flight-offer-item offer-item-two">
+                                    <div class="flight-offer-thumb">
+                                        <img src="assets/img/images/offer_img02.jpg" alt="">
+                                    </div>
+                                    <div class="flight-offer-content">
+                                        <h2 class="title">New York to California</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 290</h4>
+                                    </div>
+                                    <div class="overlay-content">
+                                        <h2 class="title">New York to California</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 290</h4>
+                                        <div class="content-bottom">
+                                            <a href="booking-details.html" class="btn">Booking Now</a>
+                                            <a href="booking-list.html" class="discover">Discover</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="flight-offer-item offer-item-two">
+                                    <div class="flight-offer-thumb">
+                                        <img src="assets/img/images/offer_img03.jpg" alt="">
+                                    </div>
+                                    <div class="flight-offer-content">
+                                        <h2 class="title">Malaga to Finland</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 792</h4>
+                                    </div>
+                                    <div class="overlay-content">
+                                        <h2 class="title">Malaga to Finland</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 792</h4>
+                                        <div class="content-bottom">
+                                            <a href="booking-details.html" class="btn">Booking Now</a>
+                                            <a href="booking-list.html" class="discover">Discover</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="flight-offer-item offer-item-two">
+                                    <div class="flight-offer-thumb">
+                                        <img src="assets/img/images/offer_img04.jpg" alt="">
+                                    </div>
+                                    <div class="flight-offer-content">
+                                        <h2 class="title">Dubai to Maldives</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 980</h4>
+                                    </div>
+                                    <div class="overlay-content">
+                                        <h2 class="title">Dubai to Maldives</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 980</h4>
+                                        <div class="content-bottom">
+                                            <a href="booking-details.html" class="btn">Booking Now</a>
+                                            <a href="booking-list.html" class="discover">Discover</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="flight-offer-item offer-item-two">
+                                    <div class="flight-offer-thumb">
+                                        <img src="assets/img/images/offer_img05.jpg" alt="">
+                                    </div>
+                                    <div class="flight-offer-content">
+                                        <h2 class="title">Dubai to New York</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 350</h4>
+                                    </div>
+                                    <div class="overlay-content">
+                                        <h2 class="title">Dubai to New York</h2>
+                                        <span>09 Jun 2022 - 16 Jun 2022</span>
+                                        <p>Economy from</p>
+                                        <h4 class="price">$ 350</h4>
+                                        <div class="content-bottom">
+                                            <a href="booking-details.html" class="btn">Booking Now</a>
+                                            <a href="booking-list.html" class="discover">Discover</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-              <div class="wow fadeInUp">
-                <div class="product-featured">
-                  <div class="product-featured-figure"><img src="images/product-3-370x395.jpg" alt="" width="370" height="395"/>
-                    <div class="product-featured-button"><a class="button button-primary" href="#">Explore</a></div>
-                  </div>
-                  <div class="product-featured-caption">
-                    <h4><a class="product-featured-title" href="#">Hanoi</a></h4>
+        </section>
+        <!-- flight-offer-area-end -->
 
-                  </div>
+        <!-- destination-area -->
+        <section class="destination-area destination-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="section-title">
+                            <span class="sub-title">Offer Deals</span>
+                            <h2 class="title">Your Great Destination</h2>
+                        </div>
+                        <div class="destination-content">
+                            <p>Get rewarded for your travels – unlock instant savings of 10% or more with a free
+                                <span>EasyFlyinfo.com</span> account</p>
+                            <ul>
+                                <li>
+                                    <div class="counter-item">
+                                        <div class="counter-content">
+                                            <h2 class="count"><span class="odometer" data-count="5830"></span>+</h2>
+                                            <p>Happy Customers</p>
+                                        </div>
+                                        <div class="counter-icon">
+                                            <i class="flaticon-group"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="counter-item">
+                                        <div class="counter-content">
+                                            <h2 class="count"><span class="odometer" data-count="100"></span>%</h2>
+                                            <p>Client Setisfied</p>
+                                        </div>
+                                        <div class="counter-icon">
+                                            <i class="flaticon-globe"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="content-bottom">
+                                <p>Discover the latest offers & news and start planning</p>
+                                <a href="contact.html">contact us</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </section>
+        <!-- destination-area-end -->
+
+        <!-- fly-next-area -->
+        <section class="fly-next-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <span class="sub-title">Flynext Package</span>
+                            <h2 class="title">Your Great Destination</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="fly-next-nav">
+                            <button class="active" data-filter="*">Flights <i class="flaticon-flight"></i></button>
+                            <!-- <button class="" data-filter=".cat-one">Car Rentals <i class="flaticon-car-1"></i></button>
+                                    <button class="" data-filter=".cat-two">Taxis <i class="flaticon-taxi"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row fly-next-active justify-content-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img01.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Dubai (DXB)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Economy from</p>
+                                    <h4 class="price">$195</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one cat-two">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img02.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Switzerland (SWL)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Business Class</p>
+                                    <h4 class="price">$800</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img03.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Denmark (DEK)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Economy from</p>
+                                    <h4 class="price">$ 350</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img04.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Jakarta (DXB)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Business Class</p>
+                                    <h4 class="price">$ 220</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img05.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Dubai (DXB)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Economy from</p>
+                                    <h4 class="price">$195</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img06.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Dubai (DXB)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Business Class</p>
+                                    <h4 class="price">$175</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two cat-one">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img07.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Switzerland (SWL)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Economy from</p>
+                                    <h4 class="price">$195</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
+                        <div class="fly-next-item">
+                            <div class="fly-next-thumb">
+                                <a href="booking-details.html"><img src="assets/img/images/fly_img08.jpg"
+                                        alt=""></a>
+                            </div>
+                            <div class="fly-next-content">
+                                <span>09 Jun 2022 - 16 Jun 2022</span>
+                                <h4 class="title">Turkish (SWL)</h4>
+                                <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
+                                <h4 class="title">New York (USA)</h4>
+                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                        alt=""></a>
+                                <div class="content-bottom">
+                                    <p>Business Class</p>
+                                    <h4 class="price">$350</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- fly-next-area-end -->
+
+        <!-- brand-area -->
+        <div class="brand-area brand-bg">
+            <div class="container">
+                <div class="row brand-active">
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img01.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img02.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img03.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img04.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img05.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img06.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="brand-item">
+                            <img src="assets/img/brand/brand_img03.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
+        <!-- brand-area-end -->
 
-      <section class="section-lg bg-default bg-gray-1 ">
-        <div class="container wow-outer">
-          <h2 class="text-center wow slideInDown" style="margin-top: 10px;" >Recent News</h2>
-          <!-- Owl Carousel-->
-          <div class="owl-carousel wow fadeInUp" data-items="1" data-md-items="2" data-lg-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-loop="false" data-margin="30" data-mouse-drag="false">
-            <div class="post-corporate"><a class="badge" href="#">Jul 02, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Genuine Italian Pizza: Authenticity and Choice</a></h4>
-              <div class="post-corporate-text">
-                <p>As an Italian restaurant, we are very proud of our delicious authentic pizzas. Our three most popular choices are the Rustica, the Toscana and...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
+        <!-- service-area -->
+        <section class="service-area">
+            <div class="container">
+                <div class="row align-items-end mb-50">
+                    <div class="col-md-8">
+                        <div class="section-title">
+                            <span class="sub-title">Why Air EasyFly</span>
+                            <h2 class="title">Our Great Flight Options</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-nav"></div>
+                    </div>
+                </div>
+                <div class="row service-active">
+                    <div class="col-lg-4">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <img src="assets/img/icon/service_icon01.png" alt="">
+                            </div>
+                            <div class="service-content">
+                                <span>Service 01</span>
+                                <h2 class="title">Pre-Book Your Baggage</h2>
+                                <div class="service-list">
+                                    <ul>
+                                        <li>Pre-book your baggage <i class="flaticon-check-mark"></i></li>
+                                        <li>Allowance now and save up <i class="flaticon-check-mark"></i></li>
+                                        <li>90% of baggage charges <i class="flaticon-check-mark"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <img src="assets/img/icon/service_icon02.png" alt="">
+                            </div>
+                            <div class="service-content">
+                                <span>Service 02</span>
+                                <h2 class="title">Reserve preferred seat!</h2>
+                                <div class="service-list">
+                                    <ul>
+                                        <li>What will it be, window or aisle? <i class="flaticon-check-mark"></i></li>
+                                        <li>Select your preferred seat prior <i class="flaticon-check-mark"></i></li>
+                                        <li>Reserved for you. <i class="flaticon-check-mark"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <img src="assets/img/icon/service_icon03.png" alt="">
+                            </div>
+                            <div class="service-content">
+                                <span>Service 03</span>
+                                <h2 class="title">Enjoy stress-free travel</h2>
+                                <div class="service-list">
+                                    <ul>
+                                        <li>Travel stress-free by getting<i class="flaticon-check-mark"></i></li>
+                                        <li>Covered for flight modification <i class="flaticon-check-mark"></i></li>
+                                        <li>Cancellation, accident & medical <i class="flaticon-check-mark"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <img src="assets/img/icon/service_icon02.png" alt="">
+                            </div>
+                            <div class="service-content">
+                                <span>Service 02</span>
+                                <h2 class="title">Reserve preferred seat!</h2>
+                                <div class="service-list">
+                                    <ul>
+                                        <li>What will it be, window or aisle? <i class="flaticon-check-mark"></i></li>
+                                        <li>Select your preferred seat prior <i class="flaticon-check-mark"></i></li>
+                                        <li>Reserved for you. <i class="flaticon-check-mark"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="post-corporate"><a class="badge" href="#">Jul 12, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Italian vs. American Spaghetti: Top 5 Differences</a></h4>
-              <div class="post-corporate-text">
-                <p>Commonly, when we hear there is spaghetti for dinner we will be expecting a red tomato sauce with meat and seasonings poured over long...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
+        </section>
+        <!-- service-area-end -->
+
+        <!-- blog-area -->
+        <section class="blog-area blog-bg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <span class="sub-title">our News Feeds</span>
+                            <h2 class="title">Latest News Update</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-53">
+                        <div class="blog-item">
+                            <div class="blog-thumb">
+                                <a href="blog-details.html"><img src="assets/img/blog/blog_img01.jpg" alt=""></a>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="fa-regular fa-user"></i> <a href="#">Emely Watson</a></li>
+                                        <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
+                                    </ul>
+                                </div>
+                                <h2 class="title"><a href="blog-details.html">Depending on your departure point and
+                                        destination flights</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-47">
+                        <div class="blog-item small-item">
+                            <div class="blog-thumb">
+                                <a href="blog-details.html"><img src="assets/img/blog/blog_img02.jpg" alt=""></a>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="fa-regular fa-user"></i> <a href="#">Emely Watson</a></li>
+                                        <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
+                                    </ul>
+                                </div>
+                                <h2 class="title"><a href="blog-details.html">Happy International Country Flight
+                                        Attendant Day</a></h2>
+                            </div>
+                        </div>
+                        <div class="blog-item small-item">
+                            <div class="blog-thumb">
+                                <a href="blog-details.html"><img src="assets/img/blog/blog_img03.jpg" alt=""></a>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="fa-regular fa-user"></i> <a href="#">Emely Watson</a></li>
+                                        <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
+                                    </ul>
+                                </div>
+                                <h2 class="title"><a href="blog-details.html">The US is a Large Country and Climate
+                                        Varies by Region</a></h2>
+                            </div>
+                        </div>
+                        <div class="blog-item small-item">
+                            <div class="blog-thumb">
+                                <a href="blog-details.html"><img src="assets/img/blog/blog_img04.jpg" alt=""></a>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="fa-regular fa-user"></i> <a href="#">Emely Watson</a></li>
+                                        <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
+                                    </ul>
+                                </div>
+                                <h2 class="title"><a href="blog-details.html">But There are Dozen of Low-cost Airlines
+                                        Including</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="post-corporate"><a class="badge" href="#">aug 02, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">The Delicious History of Lasagna and Its Origins</a></h4>
-              <div class="post-corporate-text">
-                <p>Lasagna, could there be a more perfect dish? It’s comfort food on steroids. Layers of cheese generously piled on top of decadent amounts...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Aug 15, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Making Gelato Like a True Italian: Tips From Our Chef</a></h4>
-              <div class="post-corporate-text">
-                <p>Most would agree that gelato is the most delicious frozen dessert; the perfect ending to any meal. With origins in Sicily, gelato has been made famous...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Sep 15, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Italian Ingredients You Can Easily Grow at Home</a></h4>
-              <div class="post-corporate-text">
-                <p>Imagine preparing an Italian dinner but having to stop cooking because you forget an ingredient and must run to the store. How nice would it be to go...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Sep 28, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Our Brief Guide to Pairing Wine and Pasta the Right Way</a></h4>
-              <div class="post-corporate-text">
-                <p>To Italians, pasta is the food of the gods, and there is nothing better to go with a good pasta than a perfect wine. To the uninitiated, finding the right...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Oct 05, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Top 10 Famous Spring Dishes in Italian Restaurants</a></h4>
-              <div class="post-corporate-text">
-                <p>Spring is the time for growth and rebirth. One can see this throughout the countrysides of Italy with blooming flowers and budding trees. Springtime is...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Oct 17, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">What Makes Some Seasonings Truly Italian?</a></h4>
-              <div class="post-corporate-text">
-                <p>When thinking of Italian cuisine, dishes like pasta enveloped in hearty sauces come to mind. Certain flavors seem to be found across the different...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-            <div class="post-corporate"><a class="badge" href="#">Nov 10, 2019</a>
-              <h4 class="post-corporate-title"><a href="#">Types of Italian Sausage and Why They Are Different</a></h4>
-              <div class="post-corporate-text">
-                <p>There are many types of Italian sausage. The main difference in Italian sausage when compared to other sausages is the seasoning. The particular...</p>
-              </div><a class="post-corporate-link" href="#">Read more<span class="icon linearicons-arrow-right"></span></a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <script>
-    function hdl_change(e) {
-        document.getElementById('date2').style.visibility = 
-            e.checked && e.id == 'opt_2' ? 'visible' : 'hidden';
-    }
-</script>
+        </section>
+        <!-- blog-area-end -->
+
+    </main>
 @endsection
