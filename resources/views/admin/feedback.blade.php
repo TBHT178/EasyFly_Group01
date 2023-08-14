@@ -8,7 +8,7 @@
         @endif
         <h1 style="padding:20px 0px;text-align: center;">Feedback's Information</h1>
         <div style="padding-bottom: 20px; float:right;">
-            <a href="{{ route('feedback_add') }}">Add New Feedback</a>
+            {{-- <a href="{{ route('feedback_add') }}">Add New Feedback</a> --}}
         </div>
         <div class="search">
             <input type="text" id="search" name="search" class="mb-3 form-control" placeholder="Type here to search">

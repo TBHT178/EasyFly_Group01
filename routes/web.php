@@ -64,7 +64,7 @@ Route::prefix('/admin/flight')->middleware('isAdmin')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'flight_delete'])->name('flight_delete');
 });
 
-Route::prefix('/admin/feedback')->group(function () {
+Route::prefix('/admin/feedback')->middleware('isAdmin')->group(function () {
     #flight
     Route::get('/', [AdminController::class, 'feedback'])->name('feedback');
     Route::post('/search', [AdminController::class, 'searchfeedback'])->name('searchfeedback');
@@ -78,7 +78,7 @@ Route::prefix('/admin/feedback')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'feedback_delete'])->name('feedback_delete');
 });
 // seat_class
-Route::prefix('/admin/seatclass')->group(function () {
+Route::prefix('/admin/seatclass')->middleware('isAdmin')->group(function () {
     #seatclass
     Route::get('/', [AdminController::class, 'seatclass'])->name('seatclass');
     Route::post('/search', [AdminController::class, 'searchseatclass'])->name('searchseatclass');
@@ -92,7 +92,7 @@ Route::prefix('/admin/seatclass')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'seatclass_delete'])->name('seatclass_delete');
 });
 // customer
-Route::prefix('/admin/customer')->group(function () {
+Route::prefix('/admin/customer')->middleware('isAdmin')->group(function () {
     #customer
     Route::get('/', [AdminController::class, 'customer'])->name('customer');
     Route::post('/search', [AdminController::class, 'searchcustomer'])->name('searchcustomer');
@@ -108,7 +108,7 @@ Route::prefix('/admin/customer')->group(function () {
     Route::post('/search', [AdminController::class, 'searchcustomer'])->name('searchcustomer');
 });
 // order(booking)
-Route::prefix('/admin/order')->group(function () {
+Route::prefix('/admin/order')->middleware('isAdmin')->group(function () {
     #order
     Route::get('/', [AdminController::class, 'order'])->name('order');
     Route::post('/search', [AdminController::class, 'searchOrder'])->name('searchOrder');
@@ -122,7 +122,7 @@ Route::prefix('/admin/order')->group(function () {
     Route::get('/delete/{code}', [AdminController::class, 'order_delete'])->name('order_delete');
 });
 // ticket
-Route::prefix('/admin/ticket')->group(function () {
+Route::prefix('/admin/ticket')->middleware('isAdmin')->group(function () {
     #ticket
     Route::get('/', [AdminController::class, 'ticket'])->name('ticket');
     Route::post('/search', [AdminController::class, 'searchticket'])->name('searchticket');
@@ -145,7 +145,7 @@ Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->nam
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
 
 ///////////////////////////////// USER ////////////////////////////////////////////
-Route::prefix('/user')->group(function () {
+Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('user')->middleware('auth');
 
     Route::get('/changepassword',[UserController::class, 'changepw'])->name('changepw');

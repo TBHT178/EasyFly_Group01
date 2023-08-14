@@ -133,6 +133,7 @@
                     </aside>
                 </div>
                 <div class="col-73">
+                    <h3 class=" title" style="text-align: center; padding-bottom:20px; color:#ffa903;">CHOOSE DEPARTURE TICKET</h3>
                     @forelse ($results as $result)
                     <div class="booking-list-item">
                         <div class="booking-list-item-inner">

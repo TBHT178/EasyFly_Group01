@@ -10,7 +10,7 @@
         <form action="{{ route('flight_addprocess') }}" method="POST" style="padding-bottom: 50px;">
             @csrf
             <div class="form-group">
-                <label>Plane code</label>
+                <label>Plane code <span style="color:red;">(*)</span></label>
                 <select name="planecode" class="form-control">
                     <option value="">Choose Plane</option>
                     @foreach ($planes as $key => $value)
@@ -24,7 +24,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>From Place</label>
+                <label>From Place <span style="color:red;">(*)</span></label>
                 <select name="FromPlace" class="form-control" >
                     <option value="">Choose airport</option>
                     @foreach ($airports as $key => $value)
@@ -38,7 +38,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>To Place</label>
+                <label>To Place <span style="color:red;">(*)</span></label>
                 <select name="ToPlace" class="form-control">
                     <option value="">Choose airport</option>
                     @foreach ($airports as $key => $value)
@@ -52,7 +52,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>Departure</label>
+                <label>Departure <span style="color:red;">(*)</span></label>
                 <input type="datetime-local" class="form-control" name="departure" value="{{ old('departure')}}">
                 @error('departure')
                 <div style="color:red">
@@ -61,7 +61,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>Arrival</label>
+                <label>Arrival <span style="color:red;">(*)</span></label>
                 <input type="datetime-local" class="form-control" name="arrival" value="{{ old('arrival')}}" >
                 @error('arrival')
                 <div style="color:red">
@@ -78,6 +78,7 @@
                 {{$message}}
             </div>
             @enderror --}}
+            <p style="color:red;">All <span >(*)</span> are required fields</p>
             <button style="float:right;" type="submit" class="btn btn-primary">Add Flight</button>
         </form>
     </div>
