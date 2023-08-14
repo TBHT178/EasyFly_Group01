@@ -5,7 +5,7 @@
     <form action="{{route('sb_addprocess')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label>Airport Code</label>
+            <label>Airport Code <span style="color:red;">(*)</span></label>
             <input name="airport_code" value="{{ old('airport_code') }}"  class="form-control" >
             @error('airport_code')
             <div style="color:red">
@@ -14,7 +14,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Airport Name</label>
+            <label>Airport Name <span style="color:red;">(*)</span></label>
             <input input name="airport_name" value="{{ old('airport_name') }}" class="form-control">
             @error('airport_name')
             <div style="color:red">
@@ -23,7 +23,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>City</label>
+            <label>City <span style="color:red;">(*)</span></label>
             <input class="form-control" name="city" value="{{ old('city') }}">
             @error('city')
             <div style="color:red">
@@ -32,7 +32,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Country</label>
+            <label>Country <span style="color:red;">(*)</span></label>
             <input  class="form-control" name="country" value="{{ old('country') }}">
             @error('country')
             <div style="color:red">
@@ -40,6 +40,7 @@
             </div>
             @enderror
         </div>
+        <p style="color:red;">All <span >(*)</span> are required fields</p>
         <button style="float:right;" type="submit" class="btn btn-primary">Add Airport</button>
     </form>
 </div>
