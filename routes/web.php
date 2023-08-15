@@ -144,6 +144,10 @@ Route::post('/return',[FlightController::class,'return'])->name('return');
 Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->name('order_details');   
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
 
+Route::get('/checkout', [FlightController::class, 'checkout'])->name('checkout');
+Route::post('/session', [FlightController::class, 'session'])->name('session');
+Route::get('/success', [FlightController::class, 'success'])->name('success');
+
 ///////////////////////////////// USER ////////////////////////////////////////////
 Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('user')->middleware('auth');
