@@ -245,6 +245,7 @@ class FlightController extends Controller
                     'pass_cmnd' => $request->passport[$i],
                 ]);
             }
+
             return view('confirmation', [
                 'quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'email' => $email,
                 'firstname' => $firstname,
@@ -267,4 +268,37 @@ class FlightController extends Controller
         // ]);
         // return redirect()->route('confirmation', ['id' => $bookingId]);
     }
+
+
+    // public function order_addprocess(Request $request)
+    // {
+    //     $request->validate([
+    //         'customer_id' => 'required',
+    //         'quantity' => 'required|numeric',
+    //         'total_price' => 'required|numeric',
+    //         'status' => 'required',
+    //         'paymentmethod' => 'required',
+    //         'firstname' => 'required',
+    //         'lastname' => 'required',
+    //         'gender' => 'required', 
+    //         'phone' => 'required', 
+    //         'birthday' => 'required', 
+    //         'email' => 'required|email', 
+
+    //         'pass_firstname.*' => 'required',
+    //         'pass_lastname.*' => 'required',
+    //         'pass_gender.*' => 'required',
+    //         'birthday.*' => 'required',
+    //         'passport.*' => 'required',
+    //     ]);
+    //     DB:table('customer')->insert([
+
+    //     ])
+
+
+
+
+
+    //     return redirect()->route('order')->with('message', 'Order added successfully!');
+    // }
 }
