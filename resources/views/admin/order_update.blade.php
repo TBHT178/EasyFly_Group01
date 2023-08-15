@@ -22,14 +22,12 @@
 
         <div class="form-group">
             <label for="status">Status</label>
-            <select class="form-control" id="status" name="status">
-                <option value="Pending" @if($rs->status == 'Pending') selected @endif>Pending</option>
-                <option value="Completed" @if($rs->status == 'Completed') selected @endif>Completed</option>
-                <option value="Cancelled" @if($rs->status == 'Cancelled') selected @endif>Cancelled</option>
-            </select>
+            <input type="text" class="form-control" id="status" name="status" value="{{ $rs->status }}">
         </div>
-
-
+        <div class="form-group">
+            <label for="create_at">Create at</label>
+            <input type="text" class="form-control" id="create_at" name="create_at" value="{{ $rs->create_at }}">
+        </div>
         <div class="form-group">
             <label for="paymentmethod">Payment Method</label>
             <input type="text" class="form-control" id="paymentmethod" name="paymentmethod" value="{{ $rs->paymentmethod }}">

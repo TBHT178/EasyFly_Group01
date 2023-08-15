@@ -323,33 +323,46 @@ class AdminController extends Controller
         }
         return response($output);
     }
-    // add
     public function seatclass_add()
     {
         $flights = DB::table('flight')->get();
+
+        // You can add your validation logic here for each flight
+        foreach ($flights as $flight) {
+            $totalSeats = $flight->economy_seats + $flight->business_seats; // Assuming you have separate columns for economy and business seats
+
+            if ($totalSeats > $flight->avail_seat) {
+                // Handle the error, such as redirecting back with an error message
+                return redirect()->back()->with('error', 'Total seats exceed available seats for flight ' . $flight->flight_id);
+            }
+        }
+
         return view('admin.seatclass_add', ['flights' => $flights]);
     }
 
     public function seatclass_addprocess(Request $request)
     {
+        $max = DB::table('flight')->latest('flight_id')->first();
+        $valid = $max->flight_id;
         $request->validate([
-            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $request->input('Flight_id')],
+            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $valid, 'unique:seat_class,Flight_id'],
+
             'price_class_TG' => 'required',
             'num_class_PT' => 'required',
             'num_class_TG' => 'required',
-            'price_class_PT' => 'required',
+            'price_class_PT' => 'required'
         ]);
 
-        DB::table('seat_class')->insert([
+        DB::table('seat_class')->updateOrInsert([
             'Flight_id' => $request->input('Flight_id'),
             'price_class_TG' => $request->input('price_class_TG'),
             'num_class_PT' => $request->input('num_class_PT'),
             'num_class_TG' => $request->input('num_class_TG'),
-            'price_class_PT' => $request->input('price_class_PT'),
+            'price_class_PT' => $request->input('price_class_PT')
         ]);
-
-        return redirect()->route('seat_class')->with('message', 'Add New SeatClass Successful!');
+        return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
     }
+
 
 
 
@@ -365,6 +378,7 @@ class AdminController extends Controller
         $max = DB::table('flight')->latest('flight_id')->first();
         $valid = $max->flight_id;
         $request->validate([
+            // bắt x
             'Flight_id' =>  ['required', 'numeric', 'min:1', 'max:' . $valid]
         ]);
         $Flight_id =  $request->input('Flight_id');
@@ -386,7 +400,7 @@ class AdminController extends Controller
     public function seatclass_delete($code)
     {
         $rs = DB::table('seat_class')->where('Flight_id', $code)->delete();
-        return redirect()->route('seatclass');
+        return redirect()->route('seatclass')->with('message', 'Delete Seat Class Successful!');
     }
     ////////////////////////////////customer///////////////////////////////////////////// 
     public function customer()
@@ -425,6 +439,7 @@ class AdminController extends Controller
     public function customer_addprocess(Request $request)
     {
         $request->validate([
+            'AccountId' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
@@ -559,6 +574,7 @@ class AdminController extends Controller
         $quantity = $request->input('quantity');
         $total_price = $request->input('total_price');
         $status = $request->input('status');
+        $create_at = $request->input('create_at');
         $paymentmethod = $request->input('paymentmethod');
         $create_at = now();
         $rs = DB::table('order')
@@ -568,8 +584,8 @@ class AdminController extends Controller
                 'quantity' => $quantity,
                 'total_price' => $total_price,
                 'status' => $status,
-                'paymentmethod' => $paymentmethod,
                 'create_at' => $create_at,
+                'paymentmethod' => $paymentmethod,
             ]);
         return redirect()->route('order')->with('message', 'Update Order Successful!');
     }
@@ -698,5 +714,94 @@ class AdminController extends Controller
     {
         $rs = DB::table('ticket')->where('ticket_id', $code)->delete();
         return redirect()->route('ticket');
+    }
+
+    //////////////////////////////Account/////////////////////////////////////////////
+    //users
+    public function users()
+    {
+        $users = DB::table('users')->paginate(7);
+        return view('admin.users', ['users' => $users]);
+    }
+
+    public function searchUsers(Request $request)
+    {
+        $output = '';
+        $search = $request->input('search');
+        $users = DB::table('users')->where('id', 'like', '%' . $search . '%')
+            ->orWhere('name', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->orWhere('password', 'like', '%' . $search . '%')
+            ->orWhere('role', 'like', '%' . $search . '%')->get();
+
+        foreach ($users as $user) {
+            $output .=
+                '<tr>
+            <td>' . $user->id . '</td>
+            <td>' . $user->name . '</td>
+            <td>' . $user->email . '</td>
+            <td>' . $user->password . '</td>
+            <td>' . $user->role . '</td>
+            <td><a href="/admin/users/update/' . $user->id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/users/delete/' . $user->id . '"><button class="btn btn-danger">Delete</button></a></td>
+            </tr>';
+        }
+        return response($output);
+    }
+
+    // add
+    public function users_add()
+    {
+        return view('admin.users_add');
+    }
+
+    public function users_addprocess(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required',
+        ]);
+
+        DB::table('users')->insert([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            // 'password' => Hash::make( $request->input('password')),
+            'role' => $request->input('role'),
+        ]);
+
+        return redirect()->route('users')->with('message', 'Add New User Successful!');
+    }
+
+    // update
+    public function users_update($code)
+    {
+        $rs = DB::table('users')
+            ->where('id', $code)->first();
+        return view('admin.users_update', ['rs' => $rs]);
+    }
+
+    public function users_updateprocess(Request $request, $code)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $role = $request->input('role');
+
+        $rs = DB::table('users')
+            ->where('id', $code)
+            ->update([
+                'name' => $name,
+                'email' => $email,
+                'role' => $role,
+            ]);
+
+        return redirect()->route('users')->with('message', 'Update User Successful!');
+    }
+
+    // delete
+    public function users_delete($code)
+    {
+        $rs = DB::table('users')->where('id', $code)->delete();
+        return redirect()->route('users');
     }
 }

@@ -91,10 +91,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{route('users')}}" class="nav-link {{ Route::currentRouteNamed('users') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
-              Account
+              User
             </p>
           </a>
         </li>

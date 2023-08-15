@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class FlightController extends Controller
 {
     public function search(Request $request)
@@ -23,7 +25,7 @@ class FlightController extends Controller
         ]);
         if ($request->class == "Economy") {
             $depart = $request->depart;
-            $return=$request->return;
+            $return = $request->return;
             $result = DB::table('flight as fli')
                 ->join('airport as a', 'fli.FromPlace', '=', 'a.airport_code')
                 ->join('airport as b', 'fli.ToPlace', '=', 'b.airport_code')
@@ -37,10 +39,10 @@ class FlightController extends Controller
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
-            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenger, 'return'=>$return]);
+            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenger, 'return' => $return]);
         } else {
             $depart = $request->depart;
-            $return=$request->return;
+            $return = $request->return;
             $result = DB::table('flight as fli')
                 ->join('airport as a', 'fli.FromPlace', '=', 'a.airport_code')
                 ->join('airport as b', 'fli.ToPlace', '=', 'b.airport_code')
@@ -54,7 +56,7 @@ class FlightController extends Controller
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
-            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenger,'return'=>$return]);
+            return view('flight-list', ['results' => $result, 'class' => $class, 'passenger' => $passenger, 'return' => $return]);
         }
     }
 
@@ -68,17 +70,18 @@ class FlightController extends Controller
         $qty = $request->quantity;
         //  dd($qty);
         $depticket = DB::table('flight')
-        ->where('flight_id', $flightid1)->first();
+            ->where('flight_id', $flightid1)->first();
         $arrticket = DB::table('flight')
-        ->where('flight_id', $flightid2)->first();
-        return view('booking-details', ['depart' => $depticket, 'arri'=>$arrticket, 'price1' => $price1, 'price2' =>$price2, 'class' => $class, 'qty' => $qty]);
+            ->where('flight_id', $flightid2)->first();
+        return view('booking-details', ['depart' => $depticket, 'arri' => $arrticket, 'price1' => $price1, 'price2' => $price2, 'class' => $class, 'qty' => $qty]);
     }
 
-    public function return(Request $request){
+    public function return(Request $request)
+    {
         $from = $request->from;
         $to = $request->to;
         $depart = $request->departure;
-        $class= $request->class;
+        $class = $request->class;
         $passenger = $request->qty;
         $flightid1 = $request->flightid1;
         // dd($id1);
@@ -94,10 +97,10 @@ class FlightController extends Controller
                 ->where('num_class_PT', '>=', $passenger)
                 ->whereDate('departure', '=', $depart)
                 ->get();
-                //   dd($passenger);
-            $price1=$request->price;
-            
-            return view('flight-list-return', ['results' => $result, 'class' => $class, 'passenger' => $passenger,'flightid1'=>$flightid1,'price1'=>$price1]);
+            //   dd($passenger);
+            $price1 = $request->price;
+
+            return view('flight-list-return', ['results' => $result, 'class' => $class, 'passenger' => $passenger, 'flightid1' => $flightid1, 'price1' => $price1]);
         } else {
             $result = DB::table('flight as fli')
                 ->join('airport as a', 'fli.FromPlace', '=', 'a.airport_code')
@@ -110,11 +113,11 @@ class FlightController extends Controller
                 ->where('num_class_TG', '>=', $passenger)
                 ->whereDate('departure', '=', $depart)
                 ->get();
-            $price1=$request->price; 
-            
-            return view('flight-list-return', ['results' => $result, 'class' => $class, 'passenger' => $passenger,'flightid1'=>$flightid1,'price1'=>$price1]);
+            $price1 = $request->price;
+
+            return view('flight-list-return', ['results' => $result, 'class' => $class, 'passenger' => $passenger, 'flightid1' => $flightid1, 'price1' => $price1]);
         }
-    }    
+    }
 
 
     public function processBooking(Request $request)
@@ -126,14 +129,14 @@ class FlightController extends Controller
         $email = $request->input('email');
         $gender = $request->input('gender');
         $quantity = $request->quantity;
-        $totalquantity = $quantity*2;
-        $price1=$request->price1;
-        $price2=$request->price2;
-        $class=$request->class;
+        $totalquantity = $quantity * 2;
+        $price1 = $request->price1;
+        $price2 = $request->price2;
+        $class = $request->class;
         $flightid1 = $request->flightid1;
         $flightid2 = $request->flightid2;
         // dd($quantity,$price1,$price2,$class,$flightid1,$flightid2);
-        if(Auth::check()){
+        if (Auth::check()) {
             $customerId = DB::table('customer')->insertGetId([
                 'AccountId' => Auth::id(),
                 'firstname' => $firstname,
@@ -141,35 +144,35 @@ class FlightController extends Controller
                 'phone' => $phone,
                 'email' => $email,
                 'gender' => $gender
-            ]); 
+            ]);
             // dd($customerId);
-            for ($i = 1; $i <= $quantity; $i++){
+            for ($i = 1; $i <= $quantity; $i++) {
                 $depticket = DB::table('ticket')->insert([
-                    'flight_id'=> $flightid1,
-                    'Customer_id'=>$customerId,
-                    'type'=>$class,
-                    'price'=>$price1,
-                    'pass_firstname'=>$request->pass_firstname[$i],
-                    'pass_lastname'=>$request->pass_lastname[$i],
-                    'pass_gender'=>$request->pass_gender[$i],
-                    'pass_dob'=>Carbon::parse($request->birthday[$i])->format('Y-m-d'),
-                    'pass_cmnd'=>$request->passport[$i],
+                    'flight_id' => $flightid1,
+                    'Customer_id' => $customerId,
+                    'type' => $class,
+                    'price' => $price1,
+                    'pass_firstname' => $request->pass_firstname[$i],
+                    'pass_lastname' => $request->pass_lastname[$i],
+                    'pass_gender' => $request->pass_gender[$i],
+                    'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
+                    'pass_cmnd' => $request->passport[$i],
                 ]);
                 $arrticket = DB::table('ticket')->insert([
-                    'flight_id'=> $flightid2,
-                    'Customer_id'=>$customerId,
-                    'type'=>$class,
-                    'price'=>$price2,
-                    'pass_firstname'=>$request->pass_firstname[$i],
-                    'pass_lastname'=>$request->pass_lastname[$i],
-                    'pass_gender'=>$request->pass_gender[$i],
-                    'pass_dob'=>Carbon::parse($request->birthday[$i])->format('Y-m-d'),
-                    'pass_cmnd'=>$request->passport[$i],
+                    'flight_id' => $flightid2,
+                    'Customer_id' => $customerId,
+                    'type' => $class,
+                    'price' => $price2,
+                    'pass_firstname' => $request->pass_firstname[$i],
+                    'pass_lastname' => $request->pass_lastname[$i],
+                    'pass_gender' => $request->pass_gender[$i],
+                    'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
+                    'pass_cmnd' => $request->passport[$i],
                 ]);
             }
             //  dd($depticket);
-            return view('confirmation',['quantity'=>$totalquantity, 'customer_id'=>$customerId, 'total_price'=>$totalprice]);
-        } else{
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice]);
+        } else {
             $customerId = DB::table('customer')->insertGetId([
                 // 'AccountId' => Auth()->user()->id,
                 'firstname' => $firstname,
@@ -178,31 +181,31 @@ class FlightController extends Controller
                 'email' => $email,
                 'gender' => $gender
             ]);
-            for ($i = 1; $i <= $quantity; $i++){
+            for ($i = 1; $i <= $quantity; $i++) {
                 $depticket = DB::table('ticket')->insert([
-                    'flight_id'=> $flightid1,
-                    'Customer_id'=>$customerId,
-                    'type'=>$class,
-                    'price'=>$price1,
-                    'pass_firstname'=>$request->pass_firstname[$i],
-                    'pass_lastname'=>$request->pass_lastname[$i],
-                    'pass_gender'=>$request->pass_gender[$i],
-                    'pass_dob'=>Carbon::parse($request->birthday[$i])->format('Y-m-d'),
-                    'pass_cmnd'=>$request->passport[$i],
+                    'flight_id' => $flightid1,
+                    'Customer_id' => $customerId,
+                    'type' => $class,
+                    'price' => $price1,
+                    'pass_firstname' => $request->pass_firstname[$i],
+                    'pass_lastname' => $request->pass_lastname[$i],
+                    'pass_gender' => $request->pass_gender[$i],
+                    'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
+                    'pass_cmnd' => $request->passport[$i],
                 ]);
                 $arrticket = DB::table('ticket')->insert([
-                    'flight_id'=> $flightid2,
-                    'Customer_id'=>$customerId,
-                    'type'=>$class,
-                    'price'=>$price2,
-                    'pass_firstname'=>$request->pass_firstname[$i],
-                    'pass_lastname'=>$request->pass_lastname[$i],
-                    'pass_gender'=>$request->pass_gender[$i],
-                    'pass_dob'=>Carbon::parse($request->birthday[$i])->format('Y-m-d'),
-                    'pass_cmnd'=>$request->passport[$i],
+                    'flight_id' => $flightid2,
+                    'Customer_id' => $customerId,
+                    'type' => $class,
+                    'price' => $price2,
+                    'pass_firstname' => $request->pass_firstname[$i],
+                    'pass_lastname' => $request->pass_lastname[$i],
+                    'pass_gender' => $request->pass_gender[$i],
+                    'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
+                    'pass_cmnd' => $request->passport[$i],
                 ]);
             }
-            return view('confirmation',['quantity'=>$totalquantity, 'customer_id'=>$customerId, 'total_price'=>$totalprice]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice]);
         }
 
         // $flight_id = $request->input('flight_id');
@@ -220,4 +223,37 @@ class FlightController extends Controller
         // ]);
         // return redirect()->route('confirmation', ['id' => $bookingId]);
     }
+
+
+    // public function order_addprocess(Request $request)
+    // {
+    //     $request->validate([
+    //         'customer_id' => 'required',
+    //         'quantity' => 'required|numeric',
+    //         'total_price' => 'required|numeric',
+    //         'status' => 'required',
+    //         'paymentmethod' => 'required',
+    //         'firstname' => 'required',
+    //         'lastname' => 'required',
+    //         'gender' => 'required', 
+    //         'phone' => 'required', 
+    //         'birthday' => 'required', 
+    //         'email' => 'required|email', 
+
+    //         'pass_firstname.*' => 'required',
+    //         'pass_lastname.*' => 'required',
+    //         'pass_gender.*' => 'required',
+    //         'birthday.*' => 'required',
+    //         'passport.*' => 'required',
+    //     ]);
+    //     DB:table('customer')->insert([
+
+    //     ])
+
+
+
+
+
+    //     return redirect()->route('order')->with('message', 'Order added successfully!');
+    // }
 }

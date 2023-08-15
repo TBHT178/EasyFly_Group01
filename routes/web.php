@@ -135,25 +135,37 @@ Route::prefix('/admin/ticket')->middleware('isAdmin')->group(function () {
     #delete
     Route::get('/delete/{code}', [AdminController::class, 'ticket_delete'])->name('ticket_delete');
 });
+// users
+Route::prefix('/admin/users')->middleware('isAdmin')->group(function () {
+    #users
+    Route::get('/', [AdminController::class, 'users'])->name('users');
+    Route::post('/search', [AdminController::class, 'searchUsers'])->name('searchUsers');
+    #them
+    Route::get('/add', [AdminController::class, 'users_add'])->name('users_add');
+    Route::post('/addprocess', [AdminController::class, 'users_addprocess'])->name('users_addprocess');
+    #update
+    Route::get('/update/{code}', [AdminController::class, 'users_update'])->name('users_update');
+    Route::post('/updateprocess/{code}', [AdminController::class, 'users_updateprocess'])->name('users_updateprocess');
+    #delete
+    Route::get('/delete/{code}', [AdminController::class, 'users_delete'])->name('users_delete');
+});
 
 
 //////////////////////////////////FlightController//////////////////////////////////////////
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
-Route::post('/return',[FlightController::class,'return'])->name('return');
-Route::get('/orderdetails/{code}',[UserController::class, 'order_details'])->name('order_details');   
+Route::post('/return', [FlightController::class, 'return'])->name('return');
+Route::get('/orderdetails/{code}', [UserController::class, 'order_details'])->name('order_details');
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
 
 ///////////////////////////////// USER ////////////////////////////////////////////
 Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'dashboard'])->name('user')->middleware('auth');
 
-    Route::get('/changepassword',[UserController::class, 'changepw'])->name('changepw');
-    Route::post('/updatePassword',[UserController::class, 'updatePassword'])->name('updatePassword');
-    Route::get('/ticket',[UserController::class, 'user_ticket'])->name('user_ticket');
+    Route::get('/changepassword', [UserController::class, 'changepw'])->name('changepw');
+    Route::post('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword');
+    Route::get('/ticket', [UserController::class, 'user_ticket'])->name('user_ticket');
     Route::get('/information', [UserController::class, 'information'])->name('information');
     Route::post('/updateInformation', [UserController::class, 'updateInformation'])->name('updateInformation');
     Route::get('/cancel-flight/{ticketId}', [UserController::class, 'cancelFlight'])->name('cancel.flight');
-
 });
-
