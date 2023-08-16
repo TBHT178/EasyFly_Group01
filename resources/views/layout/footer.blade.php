@@ -97,6 +97,7 @@
 
 <!-- JS here -->
 <!-- MDB -->
+<script src="https://cdn.jsdelivr.net/npm/react-toastify@9.1.3/dist/react-toastify.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 <script src="{{asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>

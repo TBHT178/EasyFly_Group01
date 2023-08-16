@@ -90,6 +90,8 @@
                                     <input type="hidden" name="email" value="{{$rs->email}}">
                                     <input type="hidden" name="quantity" value="{{$quantity}}">
                                     <input type="hidden" name="totalprice" value="{{$total_price}}">
+                                    <input type="hidden" name="customerId" value="{{$customer_id}}">
+
                                 <button class="btn btn-success btn-lg btn-block" style="text-align: center; display:block;">Confirmation</button>
                             </form>
                         </div>

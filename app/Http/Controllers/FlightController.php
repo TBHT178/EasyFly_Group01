@@ -37,7 +37,7 @@ class FlightController extends Controller
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_PT', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
-                ->orderBy('d.price_class_PT')	
+                ->orderBy('d.price_class_PT')
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
@@ -114,7 +114,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_TG', '>=', $passenger)
-                ->whereDate('departure', '=', $depart) ->orderBy('d.price_class_TG')
+                ->whereDate('departure', '=', $depart)->orderBy('d.price_class_TG')
                 ->get();
             $price1 = $request->price;
 
@@ -127,18 +127,19 @@ class FlightController extends Controller
     public function session(Request $request)
     {
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
- 
+
         // $productname = $request->get('productname');
-        $email=$request->get('email');
+        $email = $request->get('email');
+        $customer_id = $request -> get('customerId');
         $totalprice = $request->get('totalprice');
         $rounded_totalprice = ceil($totalprice);
         $two0 = "00";
         $total = "$rounded_totalprice$two0";
         $quantity = $request->get('quantity');
-        // $totalquantity = $quantity * 2;
- 
+        
+
         $session = \Stripe\Checkout\Session::create([
-            'customer_email' =>$email,
+            'customer_email' => $email,
             'line_items'  => [
                 [
                     'price_data' => [
@@ -148,22 +149,32 @@ class FlightController extends Controller
                         ],
                         'unit_amount'  => $total,
                     ],
-                     'quantity'   => 1,
+                    'quantity'   => 1,
                 ],
-                 
+
             ],
-            
             'mode'        => 'payment',
             'success_url' => route('success'),
             'cancel_url'  => route('checkout'),
         ]);
- 
+
+        // $status = $session->payment_status;
+        $status = 'paid';
+        $paymentMethod = $session->payment_method_types[0];
+
+        DB::table('order')->insert([
+            'customer_id' => $customer_id,
+            'quantity' => $quantity,
+            'total_price' => $totalprice,
+            'status' => $status,
+            'paymentmethod' => $paymentMethod,
+        ]);
+
         return redirect()->away($session->url);
     }
- 
+
     public function success()
     {
-
         return view('thank');
     }
     public function processBooking(Request $request)
@@ -241,9 +252,9 @@ class FlightController extends Controller
                         ]);
                 }
             }
-            $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
+            $ticket = DB::table('ticket')->where('Customer_id', $customerId)->get();
             //  dd($depticket);
-            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'ticket'=>$ticket]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'ticket' => $ticket]);
         } else {
             $customerId = DB::table('customer')->insertGetId([
                 // 'AccountId' => Auth()->user()->id,
@@ -301,9 +312,9 @@ class FlightController extends Controller
                             'num_class_TG' => $rs2->num_class_TG - 1
                         ]);
                 }
-                $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
+                $ticket = DB::table('ticket')->where('Customer_id', $customerId)->get();
             }
-            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice,'ticket'=>$ticket]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'ticket' => $ticket]);
         }
 
         // $flight_id = $request->input('flight_id');

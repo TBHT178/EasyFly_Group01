@@ -11,6 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
     <!-- CSS here -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-toastify@9.1.3/dist/ReactToastify.min.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/default.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+
+    <script src="https://cdn.jsdelivr.net/npm/react-toastify@9.1.3/dist/react-toastify.min.js"></script>
 </head>
 
 <body>
