@@ -103,7 +103,7 @@ class AdminController extends Controller
             ->orWhere('ToPlace', 'like', '%' . $search . '%')
             ->orWhere('departure', 'like', '%' . $search . '%')
             ->orWhere('arrival', 'like', '%' . $search . '%')
-            ->orWhere('avail_seat', 'like', '%' . $search . '%')->get();
+            ->orWhere('avail_seat', 'like', '%' . $search . '%')->orderByDesc('flight_id')->get();
 
         foreach ($flights as $flight) {
             $output .=
@@ -112,8 +112,8 @@ class AdminController extends Controller
             <td>' . $flight->planecode . '</td>
             <td>' . $flight->FromPlace . '</td>
             <td>' . $flight->ToPlace . '</td>
-            <td>' . date('d-m-Y  h : i A', strtotime($flight->departure)) . '</td>
-            <td>' . date('d-m-Y  h : i A', strtotime($flight->arrival)) . '</td>
+            <td>' . $flight->departure . '</td>
+            <td>' . $flight->arrival . '</td>
             <td>' . $flight->avail_seat . '</td>
             <td><a href="/admin/flight/update/' . $flight->flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/flight/delete/' . $flight->flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
             </tr>';
@@ -211,7 +211,7 @@ class AdminController extends Controller
     ////////////////////// FEEDBACK //////////////////////////////
     public function feedback()
     {
-        $feedbacks = DB::table('feedback')->paginate(7);
+        $feedbacks = DB::table('feedback')->orderByDesc('FeedbackId')->paginate(7);
         return view('admin.feedback', ['feedbacks' => $feedbacks]);
     }
 
@@ -296,7 +296,7 @@ class AdminController extends Controller
     //////////////////////////////// SeatClass /////////////////////////////////////////////
     public function seatclass()
     {
-        $seatclasses = DB::table('seat_class')->paginate(7);
+        $seatclasses = DB::table('seat_class')->orderByDesc('flight_id')->paginate(7);
         return view('admin.seatclass', ['seatclasses' => $seatclasses]);
     }
 
@@ -407,7 +407,7 @@ class AdminController extends Controller
     ////////////////////////////////customer///////////////////////////////////////////// 
     public function customer()
     {
-        $customers = DB::table('customer')->paginate(7);
+        $customers = DB::table('customer')->orderByDesc('customer_id')->paginate(7);
         return view('admin.customer', ['customers' => $customers]);
     }
     // search
@@ -603,7 +603,7 @@ class AdminController extends Controller
     ////////////////////////////////Ticket/////////////////////////////////////////////
     public function ticket()
     {
-        $tickets = DB::table('ticket')->paginate(7);
+        $tickets = DB::table('ticket')->orderByDesc('ticket_id')->paginate(7);
         return view('admin.ticket', ['tickets' => $tickets]);
     }
 
@@ -722,7 +722,7 @@ class AdminController extends Controller
     //users
     public function users()
     {
-        $users = DB::table('users')->paginate(7);
+        $users = DB::table('users')->orderByDesc('id')->paginate(7);
         return view('admin.users', ['users' => $users]);
     }
 

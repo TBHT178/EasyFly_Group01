@@ -18,9 +18,10 @@ class FlightController extends Controller
             'to' => 'different:from',
             'depart' => 'after_or_equal:' . $currentTime,
             'return' => ['after_or_equal:' . $departure],
-            'passenger' => ['required', 'numeric', 'min:1']
+            'passenger' => ['required', 'numeric', 'min:1', 'max:4']
         ], [
             'to.different' => 'Airports can not be the same',
+            'passenger.max' => 'Please contact us if you want to order more than 4 tickets',
             'return.after_or_equal' => 'The return day must be a date after or equal to departure day'
         ]);
         if ($request->class == "Economy") {
@@ -36,6 +37,7 @@ class FlightController extends Controller
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_PT', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
+                ->orderBy('d.price_class_PT')	
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
@@ -53,6 +55,7 @@ class FlightController extends Controller
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_TG', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
+                ->orderBy('d.price_class_TG')
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
@@ -95,7 +98,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_PT', '>=', $passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart)->orderBy('d.price_class_PT')
                 ->get();
             //   dd($passenger);
             $price1 = $request->price;
@@ -111,7 +114,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_TG', '>=', $passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart) ->orderBy('d.price_class_TG')
                 ->get();
             $price1 = $request->price;
 
@@ -126,6 +129,7 @@ class FlightController extends Controller
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
  
         // $productname = $request->get('productname');
+        $email=$request->get('email');
         $totalprice = $request->get('totalprice');
         $rounded_totalprice = ceil($totalprice);
         $two0 = "00";
@@ -134,19 +138,21 @@ class FlightController extends Controller
         // $totalquantity = $quantity * 2;
  
         $session = \Stripe\Checkout\Session::create([
+            'customer_email' =>$email,
             'line_items'  => [
                 [
                     'price_data' => [
                         'currency'     => 'USD',
                         'product_data' => [
-                            "name" => "Your ticket booking",
+                            "name" => "Your Payout Amount",
                         ],
                         'unit_amount'  => $total,
                     ],
-                    'quantity'   => $quantity,
+                     'quantity'   => 1,
                 ],
                  
             ],
+            
             'mode'        => 'payment',
             'success_url' => route('success'),
             'cancel_url'  => route('checkout'),
@@ -175,7 +181,7 @@ class FlightController extends Controller
         $class = $request->class;
         $flightid1 = $request->flightid1;
         $flightid2 = $request->flightid2;
-        // dd($quantity,$price1,$price2,$class,$flightid1,$flightid2);
+        //  dd($quantity,$price1,$price2,$class,$flightid1,$flightid2);
         if (Auth::check()) {
             $customerId = DB::table('customer')->insertGetId([
                 'AccountId' => Auth::id(),
@@ -198,6 +204,7 @@ class FlightController extends Controller
                     'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
                     'pass_cmnd' => $request->passport[$i],
                 ]);
+
                 $arrticket = DB::table('ticket')->insert([
                     'flight_id' => $flightid2,
                     'Customer_id' => $customerId,
@@ -209,9 +216,34 @@ class FlightController extends Controller
                     'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
                     'pass_cmnd' => $request->passport[$i],
                 ]);
+
+                if ($class == "Economy") {
+                    $rs1 = DB::table('seat_class')->where('flight_id', $flightid1)->first();
+                    $rs2 = DB::table('seat_class')->where('flight_id', $flightid2)->first();
+                    DB::table('seat_class')->where('flight_id', $flightid1)
+                        ->update([
+                            'num_class_PT' => $rs1->num_class_PT - 1
+                        ]);
+                    DB::table('seat_class')->where('flight_id', $flightid2)
+                        ->update([
+                            'num_class_PT' => $rs2->num_class_PT - 1
+                        ]);
+                } else {
+                    $rs1 = DB::table('seat_class')->where('flight_id', $flightid1)->first();
+                    $rs2 = DB::table('seat_class')->where('flight_id', $flightid2)->first();
+                    DB::table('seat_class')->where('flight_id', $flightid1)
+                        ->update([
+                            'num_class_TG' => $rs1->num_class_TG - 1
+                        ]);
+                    DB::table('seat_class')->where('flight_id', $flightid2)
+                        ->update([
+                            'num_class_TG' => $rs2->num_class_TG - 1
+                        ]);
+                }
             }
+            $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
             //  dd($depticket);
-            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'ticket'=>$ticket]);
         } else {
             $customerId = DB::table('customer')->insertGetId([
                 // 'AccountId' => Auth()->user()->id,
@@ -233,6 +265,7 @@ class FlightController extends Controller
                     'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
                     'pass_cmnd' => $request->passport[$i],
                 ]);
+
                 $arrticket = DB::table('ticket')->insert([
                     'flight_id' => $flightid2,
                     'Customer_id' => $customerId,
@@ -244,13 +277,33 @@ class FlightController extends Controller
                     'pass_dob' => Carbon::parse($request->birthday[$i])->format('Y-m-d'),
                     'pass_cmnd' => $request->passport[$i],
                 ]);
-            }
 
-            return view('confirmation', [
-                'quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'email' => $email,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-            ]);
+                if ($class == "Economy") {
+                    $rs1 = DB::table('seat_class')->where('flight_id', $flightid1)->first();
+                    $rs2 = DB::table('seat_class')->where('flight_id', $flightid2)->first();
+                    DB::table('seat_class')->where('flight_id', $flightid1)
+                        ->update([
+                            'num_class_PT' => $rs1->num_class_PT - 1
+                        ]);
+                    DB::table('seat_class')->where('flight_id', $flightid2)
+                        ->update([
+                            'num_class_PT' => $rs2->num_class_PT - 1
+                        ]);
+                } else {
+                    $rs1 = DB::table('seat_class')->where('flight_id', $flightid1)->first();
+                    $rs2 = DB::table('seat_class')->where('flight_id', $flightid2)->first();
+                    DB::table('seat_class')->where('flight_id', $flightid1)
+                        ->update([
+                            'num_class_TG' => $rs1->num_class_TG - 1
+                        ]);
+                    DB::table('seat_class')->where('flight_id', $flightid2)
+                        ->update([
+                            'num_class_TG' => $rs2->num_class_TG - 1
+                        ]);
+                }
+                $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
+            }
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice,'ticket'=>$ticket]);
         }
 
         // $flight_id = $request->input('flight_id');

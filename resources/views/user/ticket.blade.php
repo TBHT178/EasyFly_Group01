@@ -12,7 +12,17 @@
 <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-<div class="container">
+<div class="container" style="padding-bottom: 50px;">
+    @if (session()->has('message'))
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('message') }}
+    </div>
+    @endif
+    @if (session()->has('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session()->get('error') }}
+    </div>
+    @endif
     <h1 style="padding:20px 0px;text-align: center;">My Ticket Information</h1>
     @forelse ($tickets as $result)
     <div class="booking-list-item">
@@ -67,7 +77,7 @@
         </div>
     </div>
     @empty
-    <h4 style="text-align: center;">No information about your flight, please wait for us to update</h4>
+    <h4 style="text-align: center;">No information about your ticket</h4>
     @endforelse
 </div>
 

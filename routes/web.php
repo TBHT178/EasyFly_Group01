@@ -155,7 +155,7 @@ Route::prefix('/admin/users')->middleware('isAdmin')->group(function () {
 Route::post('/search', [FlightController::class, 'search'])->name('searchflight');
 Route::post('/booking/{id}', [FlightController::class, 'booking'])->name('booking');
 Route::post('/return', [FlightController::class, 'return'])->name('return');
-Route::get('/orderdetails/{code}', [UserController::class, 'order_details'])->name('order_details');
+// Route::get('/orderdetails/{code}', [UserController::class, 'order_details'])->name('order_details');
 Route::post('/process-booking', [FlightController::class, 'processBooking'])->name('processBooking');
 
 Route::get('/checkout', [FlightController::class, 'checkout'])->name('checkout');

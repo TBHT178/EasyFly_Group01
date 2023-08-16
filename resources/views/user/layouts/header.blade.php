@@ -27,7 +27,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('logout') }}" role="button">
+      <a class="nav-link" href="{{ route('userlogout') }}" role="button">
         Logout
       </a>
     </li>
