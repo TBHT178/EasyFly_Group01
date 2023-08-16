@@ -326,17 +326,6 @@ class AdminController extends Controller
     public function seatclass_add()
     {
         $flights = DB::table('flight')->get();
-
-        // You can add your validation logic here for each flight
-        foreach ($flights as $flight) {
-            $totalSeats = $flight->economy_seats + $flight->business_seats; // Assuming you have separate columns for economy and business seats
-
-            if ($totalSeats > $flight->avail_seat) {
-                // Handle the error, such as redirecting back with an error message
-                return redirect()->back()->with('error', 'Total seats exceed available seats for flight ' . $flight->flight_id);
-            }
-        }
-
         return view('admin.seatclass_add', ['flights' => $flights]);
     }
 
@@ -345,23 +334,36 @@ class AdminController extends Controller
         $max = DB::table('flight')->latest('flight_id')->first();
         $valid = $max->flight_id;
         $request->validate([
-            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $valid, 'unique:seat_class,Flight_id'],
-
+            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $valid],
             'price_class_TG' => 'required',
             'num_class_PT' => 'required',
             'num_class_TG' => 'required',
             'price_class_PT' => 'required'
         ]);
 
-        DB::table('seat_class')->updateOrInsert([
+        // Get the flight information
+        $flight = DB::table('flight')->where('flight_id', $request->input('Flight_id'))->first();
+
+        // Calculate the total number of seats in seat_class
+        $totalSeats = $request->input('num_class_PT') + $request->input('num_class_TG');
+
+        // Check if the total number of seats in seat_class exceeds avail_seat of flight
+        if ($totalSeats > $flight->avail_seat) {
+            return redirect()->back()->withErrors(['num_class_PT' => 'Total seats in seat_class cannot exceed avail_seat of flight']);
+        }
+
+        // Insert or update seat_class
+        DB::table('seat_class')->insert([
             'Flight_id' => $request->input('Flight_id'),
             'price_class_TG' => $request->input('price_class_TG'),
             'num_class_PT' => $request->input('num_class_PT'),
             'num_class_TG' => $request->input('num_class_TG'),
             'price_class_PT' => $request->input('price_class_PT')
         ]);
+
         return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
     }
+
 
 
 
