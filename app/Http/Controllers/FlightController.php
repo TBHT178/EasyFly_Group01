@@ -37,6 +37,7 @@ class FlightController extends Controller
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_PT', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
+                ->orderBy('d.price_class_PT')	
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
@@ -54,6 +55,7 @@ class FlightController extends Controller
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_TG', '>=', $request->passenger)
                 ->whereDate('departure', '=', $depart)
+                ->orderBy('d.price_class_TG')
                 ->get();
             $class = $request->class;
             $passenger = $request->passenger;
@@ -96,7 +98,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_PT', '>=', $passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart)->orderBy('d.price_class_PT')
                 ->get();
             //   dd($passenger);
             $price1 = $request->price;
@@ -112,7 +114,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_TG', '>=', $passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart) ->orderBy('d.price_class_TG')
                 ->get();
             $price1 = $request->price;
 
@@ -140,11 +142,11 @@ class FlightController extends Controller
                     'price_data' => [
                         'currency'     => 'USD',
                         'product_data' => [
-                            "name" => "Your ticket booking",
+                            "name" => "Your Payout Amount",
                         ],
                         'unit_amount'  => $total,
                     ],
-                    'quantity'   => $quantity,
+                    // 'quantity'   => $quantity,
                 ],
                  
             ],
@@ -236,8 +238,9 @@ class FlightController extends Controller
                         ]);
                 }
             }
+            $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
             //  dd($depticket);
-            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice, 'ticket'=>$ticket]);
         } else {
             $customerId = DB::table('customer')->insertGetId([
                 // 'AccountId' => Auth()->user()->id,
@@ -295,9 +298,9 @@ class FlightController extends Controller
                             'num_class_TG' => $rs2->num_class_TG - 1
                         ]);
                 }
-                $rs2 = DB::table('seat_class')->where('flight_id', $flightid2)->first();
+                $ticket = DB::table('ticket')->where('Customer_id',$customerId)->get();
             }
-            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice]);
+            return view('confirmation', ['quantity' => $totalquantity, 'customer_id' => $customerId, 'total_price' => $totalprice,'ticket'=>$ticket]);
         }
 
         // $flight_id = $request->input('flight_id');

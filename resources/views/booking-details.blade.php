@@ -66,7 +66,7 @@
 
     <!-- booking-details-area -->
     <section class="booking-details-area">
-        <form action="{{route('session')}}" method="POST">
+        <form action="{{route('processBooking')}}" method="POST">
             @csrf
             <div class="container">
                 <div class="row justify-content-center">
