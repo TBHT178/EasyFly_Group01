@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -70,9 +70,18 @@ class UserController extends Controller
     // ticket cancel
     public function cancelFlight(Request $request, $ticketId)
     {
-        DB::table('ticket')->where('ticket_id', $ticketId)->delete();
-
-
-        return redirect()->back()->with('message', 'Flight canceled successfully.');
+        $valid = DB::table('flight as a') ->join('ticket as b','a.flight_id','=','b.flight_id')->where('b.ticket_id',$ticketId)->first();
+        $date = $valid->departure;
+        // $date2 = Carbon::now();
+        // $result = $date1->ls($date2);
+        // dd($result);
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $result = $now->lt($date);
+        if($result){
+            DB::table('ticket')->where('ticket_id', $ticketId)->delete();
+            return redirect()->back()->with('message', 'Ticket canceled successfully.');
+        }else{
+            return redirect()->back()->with('error', 'You can not cancel this ticket because the departure day of this ticket has passed!');
+        }
     }
 }

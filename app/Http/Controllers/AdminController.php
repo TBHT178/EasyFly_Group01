@@ -211,7 +211,7 @@ class AdminController extends Controller
     ////////////////////// FEEDBACK //////////////////////////////
     public function feedback()
     {
-        $feedbacks = DB::table('feedback')->paginate(7);
+        $feedbacks = DB::table('feedback')->orderByDesc('FeedbackId')->paginate(7);
         return view('admin.feedback', ['feedbacks' => $feedbacks]);
     }
 
@@ -296,7 +296,7 @@ class AdminController extends Controller
     //////////////////////////////// SeatClass /////////////////////////////////////////////
     public function seatclass()
     {
-        $seatclasses = DB::table('seat_class')->paginate(7);
+        $seatclasses = DB::table('seat_class')->orderByDesc('flight_id')->paginate(7);
         return view('admin.seatclass', ['seatclasses' => $seatclasses]);
     }
 
@@ -405,7 +405,7 @@ class AdminController extends Controller
     ////////////////////////////////customer///////////////////////////////////////////// 
     public function customer()
     {
-        $customers = DB::table('customer')->paginate(7);
+        $customers = DB::table('customer')->orderByDesc('customer_id')->paginate(7);
         return view('admin.customer', ['customers' => $customers]);
     }
     // search
@@ -601,7 +601,7 @@ class AdminController extends Controller
     ////////////////////////////////Ticket/////////////////////////////////////////////
     public function ticket()
     {
-        $tickets = DB::table('ticket')->paginate(7);
+        $tickets = DB::table('ticket')->orderByDesc('ticket_id')->paginate(7);
         return view('admin.ticket', ['tickets' => $tickets]);
     }
 
@@ -720,7 +720,7 @@ class AdminController extends Controller
     //users
     public function users()
     {
-        $users = DB::table('users')->paginate(7);
+        $users = DB::table('users')->orderByDesc('id')->paginate(7);
         return view('admin.users', ['users' => $users]);
     }
 

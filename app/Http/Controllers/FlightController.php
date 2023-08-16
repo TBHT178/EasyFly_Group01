@@ -129,6 +129,7 @@ class FlightController extends Controller
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
  
         // $productname = $request->get('productname');
+        $email=$request->get('email');
         $totalprice = $request->get('totalprice');
         $rounded_totalprice = ceil($totalprice);
         $two0 = "00";
@@ -137,6 +138,7 @@ class FlightController extends Controller
         // $totalquantity = $quantity * 2;
  
         $session = \Stripe\Checkout\Session::create([
+            'customer_email' =>$email,
             'line_items'  => [
                 [
                     'price_data' => [
@@ -146,10 +148,11 @@ class FlightController extends Controller
                         ],
                         'unit_amount'  => $total,
                     ],
-                    // 'quantity'   => $quantity,
+                     'quantity'   => 1,
                 ],
                  
             ],
+            
             'mode'        => 'payment',
             'success_url' => route('success'),
             'cancel_url'  => route('checkout'),

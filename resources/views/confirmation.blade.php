@@ -87,6 +87,7 @@
                                     <p>Price of Ticket: ${{$tk-> price}}</p>
                                 </div>
                                     @endforeach
+                                    <input type="hidden" name="email" value="{{$rs->email}}">
                                     <input type="hidden" name="quantity" value="{{$quantity}}">
                                     <input type="hidden" name="totalprice" value="{{$total_price}}">
                                 <button class="btn btn-success btn-lg btn-block" style="text-align: center; display:block;">Confirmation</button>
