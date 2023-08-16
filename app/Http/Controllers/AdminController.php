@@ -231,7 +231,9 @@ class AdminController extends Controller
                 <td>' . $feedback->customer_id . '</td>
                 <td>' . $feedback->Comment . '</td>
                 <td>' . date('d-m-Y ', strtotime($feedback->FeedbackDate)) . '</td>
-                <td><a href="/admin/feedback/update/' . $feedback->FeedbackId . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/feedback/delete/' . $feedback->FeedbackId . '"><button class="btn btn-danger">Delete</button></a></td>
+                <td>
+          
+                <a onclick="confirmation(event)" href="/admin/feedback/delete/' . $feedback->FeedbackId . '"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>';
         }
         return response($output);
