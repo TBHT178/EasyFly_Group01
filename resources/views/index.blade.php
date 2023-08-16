@@ -246,7 +246,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="best-price text-end">
-                            <a href="booking-list.html">Best Price Guarantee <i class="flaticon-check"></i></a>
+                            <a href="{{route('todayflights')}}">Best Price Guarantee <i class="flaticon-check"></i></a>
                         </div>
                     </div>
                 </div>
@@ -268,8 +268,8 @@
                                 <p>Economy from</p>
                                 <h4 class="price">$ 980</h4>
                                 <div class="content-bottom">
-                                    <a href="booking-details.html" class="btn">Booking Now</a>
-                                    <a href="booking-list.html" class="discover">Discover</a>
+                                    <a href="{{route('todayflights')}}" class="btn">Booking Now</a>
+                                    <a href="{{route('todayflights')}}" class="discover">Discover</a>
                                 </div>
                             </div>
                         </div>
@@ -293,8 +293,8 @@
                                         <p>Economy from</p>
                                         <h4 class="price">$ 290</h4>
                                         <div class="content-bottom">
-                                            <a href="booking-details.html" class="btn">Booking Now</a>
-                                            <a href="booking-list.html" class="discover">Discover</a>
+                                            <a href="{{route('todayflights')}}" class="btn">Booking Now</a>
+                                            <a href="{{route('todayflights')}}" class="discover">Discover</a>
                                         </div>
                                     </div>
                                 </div>
@@ -316,8 +316,8 @@
                                         <p>Economy from</p>
                                         <h4 class="price">$ 792</h4>
                                         <div class="content-bottom">
-                                            <a href="booking-details.html" class="btn">Booking Now</a>
-                                            <a href="booking-list.html" class="discover">Discover</a>
+                                            <a href="{{route('todayflights')}}" class="btn">Booking Now</a>
+                                            <a href="{{route('todayflights')}}" class="discover">Discover</a>
                                         </div>
                                     </div>
                                 </div>
@@ -339,8 +339,8 @@
                                         <p>Economy from</p>
                                         <h4 class="price">$ 980</h4>
                                         <div class="content-bottom">
-                                            <a href="booking-details.html" class="btn">Booking Now</a>
-                                            <a href="booking-list.html" class="discover">Discover</a>
+                                            <a href="{{route('todayflights')}}" class="btn">Booking Now</a>
+                                            <a href="{{route('todayflights')}}" class="discover">Discover</a>
                                         </div>
                                     </div>
                                 </div>
@@ -362,8 +362,8 @@
                                         <p>Economy from</p>
                                         <h4 class="price">$ 350</h4>
                                         <div class="content-bottom">
-                                            <a href="booking-details.html" class="btn">Booking Now</a>
-                                            <a href="booking-list.html" class="discover">Discover</a>
+                                            <a href="{{route('todayflights')}}" class="btn">Booking Now</a>
+                                            <a href="{{route('todayflights')}}" class="discover">Discover</a>
                                         </div>
                                     </div>
                                 </div>
@@ -446,7 +446,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img01.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img01.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -454,7 +454,7 @@
                                 <h4 class="title">Dubai (DXB)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Economy from</p>
@@ -466,7 +466,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one cat-two">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img02.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img02.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -474,7 +474,7 @@
                                 <h4 class="title">Switzerland (SWL)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Business Class</p>
@@ -486,7 +486,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img03.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img03.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -494,7 +494,7 @@
                                 <h4 class="title">Denmark (DEK)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Economy from</p>
@@ -506,7 +506,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img04.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img04.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -514,7 +514,7 @@
                                 <h4 class="title">Jakarta (DXB)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Business Class</p>
@@ -526,7 +526,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img05.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img05.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -534,7 +534,7 @@
                                 <h4 class="title">Dubai (DXB)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon03.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Economy from</p>
@@ -546,7 +546,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-one">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img06.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img06.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -554,7 +554,7 @@
                                 <h4 class="title">Dubai (DXB)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Business Class</p>
@@ -566,7 +566,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two cat-one">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img07.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img07.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -574,7 +574,7 @@
                                 <h4 class="title">Switzerland (SWL)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon01.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Economy from</p>
@@ -586,7 +586,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="fly-next-item">
                             <div class="fly-next-thumb">
-                                <a href="booking-details.html"><img src="assets/img/images/fly_img08.jpg"
+                                <a href="{{route('todayflights')}}"><img src="assets/img/images/fly_img08.jpg"
                                         alt=""></a>
                             </div>
                             <div class="fly-next-content">
@@ -594,7 +594,7 @@
                                 <h4 class="title">Turkish (SWL)</h4>
                                 <a href="#" class="exchange-btn"><i class="flaticon-exchange-1"></i></a>
                                 <h4 class="title">New York (USA)</h4>
-                                <a href="booking-details.html" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
+                                <a href="{{route('todayflights')}}" class="air-logo"><img src="assets/img/icon/fly_icon02.jpg"
                                         alt=""></a>
                                 <div class="content-bottom">
                                     <p>Business Class</p>
@@ -759,7 +759,7 @@
                     <div class="col-53">
                         <div class="blog-item">
                             <div class="blog-thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog_img01.jpg" alt=""></a>
+                                <a href="{{route('blog-details')}}"><img src="assets/img/blog/blog_img01.jpg" alt=""></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -768,7 +768,7 @@
                                         <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
                                     </ul>
                                 </div>
-                                <h2 class="title"><a href="blog-details.html">Depending on your departure point and
+                                <h2 class="title"><a href="{{route('blog-details')}}">Depending on your departure point and
                                         destination flights</a></h2>
                             </div>
                         </div>
@@ -776,7 +776,7 @@
                     <div class="col-47">
                         <div class="blog-item small-item">
                             <div class="blog-thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog_img02.jpg" alt=""></a>
+                                <a href="{{route('blog-details')}}"><img src="assets/img/blog/blog_img02.jpg" alt=""></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -785,13 +785,13 @@
                                         <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
                                     </ul>
                                 </div>
-                                <h2 class="title"><a href="blog-details.html">Happy International Country Flight
+                                <h2 class="title"><a href="{{route('blog-details')}}">Happy International Country Flight
                                         Attendant Day</a></h2>
                             </div>
                         </div>
                         <div class="blog-item small-item">
                             <div class="blog-thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog_img03.jpg" alt=""></a>
+                                <a href="{{route('blog-details')}}"><img src="assets/img/blog/blog_img03.jpg" alt=""></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -800,13 +800,13 @@
                                         <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
                                     </ul>
                                 </div>
-                                <h2 class="title"><a href="blog-details.html">The US is a Large Country and Climate
+                                <h2 class="title"><a href="{{route('blog-details')}}">The US is a Large Country and Climate
                                         Varies by Region</a></h2>
                             </div>
                         </div>
                         <div class="blog-item small-item">
                             <div class="blog-thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog_img04.jpg" alt=""></a>
+                                <a href="{{route('blog-details')}}"><img src="assets/img/blog/blog_img04.jpg" alt=""></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -815,7 +815,7 @@
                                         <li><i class="fa-solid fa-calendar-days"></i> February 19, 2022</li>
                                     </ul>
                                 </div>
-                                <h2 class="title"><a href="blog-details.html">But There are Dozen of Low-cost Airlines
+                                <h2 class="title"><a href="{{route('blog-details')}}">But There are Dozen of Low-cost Airlines
                                         Including</a></h2>
                             </div>
                         </div>

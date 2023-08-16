@@ -176,7 +176,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-grp">
                                         <div class="icon">
                                             <i class="flaticon-calendar"></i>
@@ -186,7 +186,7 @@
                                             <input type="text" class="date" placeholder="Select Date" name="birthday">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- <div class="col-md-6">
                                                 <div class="form-grp">
                                                     <div class="icon">
@@ -278,16 +278,16 @@
 
                     <div class="radio-buttons-con ">
                         <div class="radio-but">
-                            <input name="pass_gender[<?php echo $i; ?>]" id="radio1" class="radio-but__input" type="radio" value="1" checked>
-                            <label for="radio1" class="radio-but__label">
+                            <input name="pass_gender[<?php echo $i; ?>]" id="radio1.[<?php echo $i; ?>]" class="radio-but__input" type="radio" value="1" checked>
+                            <label for="radio1.[<?php echo $i; ?>]" class="radio-but__label">
                                 <span class="radio-but__custom"></span> 
 
                                 Male
                             </label>
                         </div>
                         <div class="radio-but">
-                            <input name="pass_gender[<?php echo $i; ?>]" id="radio2" class="radio-but__input" value="0" type="radio">
-                            <label for="radio2" class="radio-but__label">
+                            <input name="pass_gender[<?php echo $i; ?>]" id="radio2.[<?php echo $i; ?>]" class="radio-but__input" value="0" type="radio">
+                            <label for="radio2.[<?php echo $i; ?>]" class="radio-but__label">
                                 <span class="radio-but__custom"></span>
 
                                 Female
@@ -409,7 +409,7 @@
                         </ul>
                     </div>
                     <div class="widget">
-                        <h2 class="widget-title">Your price summary</h2>
+                        <h2 class="widget-title">Departure price summary</h2>
                         <div class="price-summary-top">
                             <ul>
                                 <li>Details</li>
@@ -419,8 +419,8 @@
                         <div class="price-summary-detail">
                             <ul>
                                 <li>Adult x {{ $qty }} <span>${{ $qty * $price1 }}</span></li>
-                                <li>Tax x {{ $qty }} <span>${{ $qty * $price1 * 0.1 }}</span></li>
-                                <li>Total Airfare: <span>${{ $qty * $price1 + $qty * $price1 * 0.1 }}</span></li>
+                                {{-- <li>Tax x {{ $qty }} <span>${{ $qty * $price1 * 0.1 }}</span></li> --}}
+                                {{-- <li>Total Airfare: <span>${{ $qty * $price1  }}</span></li> --}}
                                 {{-- <li>Discount<span>- $110</span></li> --}}
                                 {{-- <li>Total Payable<span>${{ $qty * $price1 + $qty * $price1 * 0.1 }}</span></li> --}}
                             </ul>
@@ -461,7 +461,7 @@
                     </ul>
             </div> --}}
             <div class="widget">
-                <h2 class="widget-title">Your price summary</h2>
+                <h2 class="widget-title">Arrival price summary</h2>
                 <div class="price-summary-top">
                     <ul>
                         <li>Details</li>
@@ -471,13 +471,13 @@
                 <div class="price-summary-detail">
                     <ul>
                         <li>Adult x {{ $qty }} <span>${{ $qty * $price2 }}</span></li>
-                        <li>Tax x {{ $qty }} <span>${{ $qty * $price2 * 0.1 }}</span></li>
-                        <li>Total Airfare: <span>${{ $qty * $price2 + $qty * $price2 * 0.1 }}</span></li>
+                        {{-- <li>Tax x {{ $qty }} <span>${{ $qty * $price2 * 0.1 }}</span></li> --}}
+                        {{-- <li>Total Airfare: <span>${{ $qty * $price2  }}</span></li> --}}
                         {{-- <li>Discount<span>- $110</span></li> --}}
-                        <li>Total Payable<span>${{ ($qty * $price2 + $qty * $price2 * 0.1) + ($qty * $price1 + $qty * $price1 * 0.1)}} </span></li>
+                        <li>Total Payable<span>${{ ($qty * $price2 ) + ($qty * $price1 )}} </span></li>
                     </ul>
                     <input type="hidden" name="quantity" value="{{$qty}}">
-                    <input type="hidden" name="totalprice" value="{{($qty * $price2 + $qty * $price2 * 0.1) + ($qty * $price1 + $qty * $price1 * 0.1)}}">
+                    <input type="hidden" name="totalprice" value="{{($qty * $price2 ) + ($qty * $price1 )}}">
                     <input type="hidden" name="class" value="{{$class}}">
                     <input type="hidden" name="price1" value="{{$price1}}">
                     <input type="hidden" name="price2" value="{{$price2}}">

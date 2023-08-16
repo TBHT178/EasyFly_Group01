@@ -101,7 +101,7 @@ class AdminController extends Controller
             ->orWhere('ToPlace', 'like', '%' . $search . '%')
             ->orWhere('departure', 'like', '%' . $search . '%')
             ->orWhere('arrival', 'like', '%' . $search . '%')
-            ->orWhere('avail_seat', 'like', '%' . $search . '%')->get();
+            ->orWhere('avail_seat', 'like', '%' . $search . '%')->orderByDesc('flight_id')->get();
 
         foreach ($flights as $flight) {
             $output .=
@@ -110,8 +110,8 @@ class AdminController extends Controller
             <td>' . $flight->planecode . '</td>
             <td>' . $flight->FromPlace . '</td>
             <td>' . $flight->ToPlace . '</td>
-            <td>' . date('d-m-Y  h : i A', strtotime($flight->departure)) . '</td>
-            <td>' . date('d-m-Y  h : i A', strtotime($flight->arrival)) . '</td>
+            <td>' . $flight->departure . '</td>
+            <td>' . $flight->arrival . '</td>
             <td>' . $flight->avail_seat . '</td>
             <td><a href="/admin/flight/update/' . $flight->flight_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/flight/delete/' . $flight->flight_id . '"><button class="btn btn-danger">Delete</button></a></td>
             </tr>';

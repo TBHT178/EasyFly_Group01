@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-<div class="container">
+<div class="container" style="padding-bottom: 50px;">
     <h1 style="padding:20px 0px;text-align: center;">My Ticket Information</h1>
     @forelse ($tickets as $result)
     <div class="booking-list-item">
@@ -67,7 +67,7 @@
         </div>
     </div>
     @empty
-    <h4 style="text-align: center;">No information about your flight, please wait for us to update</h4>
+    <h4 style="text-align: center;">No information about your ticket</h4>
     @endforelse
 </div>
 <script>
