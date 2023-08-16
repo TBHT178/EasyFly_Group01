@@ -121,6 +121,46 @@ class FlightController extends Controller
     }
 
 
+
+    public function session(Request $request)
+    {
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+ 
+        // $productname = $request->get('productname');
+        $totalprice = $request->get('totalprice');
+        $rounded_totalprice = ceil($totalprice);
+        $two0 = "00";
+        $total = "$rounded_totalprice$two0";
+        $quantity = $request->get('quantity');
+        // $totalquantity = $quantity * 2;
+ 
+        $session = \Stripe\Checkout\Session::create([
+            'line_items'  => [
+                [
+                    'price_data' => [
+                        'currency'     => 'USD',
+                        'product_data' => [
+                            "name" => "Your ticket booking",
+                        ],
+                        'unit_amount'  => $total,
+                    ],
+                    'quantity'   => $quantity,
+                ],
+                 
+            ],
+            'mode'        => 'payment',
+            'success_url' => route('success'),
+            'cancel_url'  => route('checkout'),
+        ]);
+ 
+        return redirect()->away($session->url);
+    }
+ 
+    public function success()
+    {
+
+        return view('thank');
+    }
     public function processBooking(Request $request)
     {
         $totalprice = $request->totalprice;
@@ -275,4 +315,37 @@ class FlightController extends Controller
         // ]);
         // return redirect()->route('confirmation', ['id' => $bookingId]);
     }
+
+
+    // public function order_addprocess(Request $request)
+    // {
+    //     $request->validate([
+    //         'customer_id' => 'required',
+    //         'quantity' => 'required|numeric',
+    //         'total_price' => 'required|numeric',
+    //         'status' => 'required',
+    //         'paymentmethod' => 'required',
+    //         'firstname' => 'required',
+    //         'lastname' => 'required',
+    //         'gender' => 'required', 
+    //         'phone' => 'required', 
+    //         'birthday' => 'required', 
+    //         'email' => 'required|email', 
+
+    //         'pass_firstname.*' => 'required',
+    //         'pass_lastname.*' => 'required',
+    //         'pass_gender.*' => 'required',
+    //         'birthday.*' => 'required',
+    //         'passport.*' => 'required',
+    //     ]);
+    //     DB:table('customer')->insert([
+
+    //     ])
+
+
+
+
+
+    //     return redirect()->route('order')->with('message', 'Order added successfully!');
+    // }
 }

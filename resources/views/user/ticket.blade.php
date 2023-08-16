@@ -32,7 +32,7 @@
                 </ul>
                 <div class="flight-price">
                     <h4 class="title">$ {{$result->price}}</h4>
-                    <a href="{{ route('cancel.flight', ['ticketId' => $result->ticket_id]) }}" class="btn cancel-flight-btn">Cancel <i class="flaticon-flight-1"></i></a>
+                    <a onclick="confirmation(event)" href="{{ route('cancel.flight', ['ticketId' => $result->ticket_id]) }}" class="btn btn-danger">Delete<i class="flaticon-flight-1"></i></a>
                 </div>
             </div>
             <div class="booking-list-bottom">
@@ -70,15 +70,7 @@
     <h4 style="text-align: center;">No information about your ticket</h4>
     @endforelse
 </div>
-<script>
-    $(document).ready(function() {
-        $('.cancel-flight-btn').click(function(e) {
-            e.preventDefault();
-            var ticketId = $(this).data('ticket-id');
-            if (confirm("Do you want to cancel this flight?")) {}
-        });
-    });
-</script>
+
 <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
@@ -91,4 +83,25 @@
 <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+        swal({
+                title: "Are you sure to Cancel this Ticket?",
+                text: "You will not be able to revert this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willCancel) => {
+                if (willCancel) {
+                    window.location.href = urlToRedirect;
+                }
+            });
+    }
+</script>
 @endsection

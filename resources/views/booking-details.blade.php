@@ -66,7 +66,7 @@
 
     <!-- booking-details-area -->
     <section class="booking-details-area">
-        <form action="{{route('processBooking')}}" method="POST">
+        <form action="{{route('session')}}" method="POST">
             @csrf
             <div class="container">
                 <div class="row justify-content-center">
@@ -77,21 +77,6 @@
                         </div>
                         <div class="booking-details-wrap">
                             {{-- <form action="#"> --}}
-                            <!-- <div class="form-grp select-form">
-                                            <div class="icon">
-                                                <i class="flaticon-add-user"></i>
-                                            </div>
-                                            <div class="form">
-                                                <label for="shortBy">Select Travellers from your Favourties List</label>
-                                                <select id="shortBy" name="select" class="form-select" aria-label="Default select example">
-                                                    <option value="">Select One..</option>
-                                                    <option>Select Two..</option>
-                                                    <option>Select Three..</option>
-                                                    <option>Select Four..</option>
-                                                    <option>Select Five..</option>
-                                                </select>
-                                            </div>
-                                        </div> -->
                             <ul>
                                 <li>
                                     <div class="form-grp">
@@ -116,16 +101,6 @@
                             </ul>
                             <div class="gender-select">
                                 <h2 class="title">Select Your Gender*</h2>
-                                <!-- <ul>
-                                    <input type="radio" class="form-check-input" id="radio1" name="gender" value="1" checked>Male
-                                    <input type="radio" class="form-check-input" id="radio2" name="gender" value="0">Female
-                                    <input type="radio" class="form-check-input" id="radio1" name="gender" value="1" checked>
-                                    <label for="radio1" class="radio-label">Male</label>
-
-                                    <input type="radio" class="form-check-input" id="radio2" name="gender" value="0">
-                                    <label for="radio2" class="radio-label">Female</label>
-
-                                </ul> -->
 
                                 <div class="radio-buttons-container">
                                     <div class="radio-button">
@@ -137,7 +112,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-button">
-                                        <input name="gender" id="radio11" class="radio-button__input" value="0" type="radio" >
+                                        <input name="gender" id="radio11" class="radio-button__input" value="0" type="radio">
                                         <label for="radio11" class="radio-button__label">
                                             <span class="radio-button__custom"></span>
 
@@ -147,25 +122,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <!-- <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <div class="icon">
-                                                        <i class="flaticon-globe-1"></i>
-                                                    </div>
-                                                    <div class="form">
-                                                        <label for="nationality">Nationality</label>
-                                                        <select id="nationality" name="select" class="form-select" aria-label="Default select example">
-                                                            <option value="">Bangladesh</option>
-                                                            <option>United States</option>
-                                                            <option>Dubai</option>
-                                                            <option>Saudi Arabia</option>
-                                                            <option>Australia</option>
-                                                            <option>South Africa</option>
-                                                            <option>Pakistan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                 <div class="col-md-6">
                                     <div class="form-grp">
                                         <div class="icon">
@@ -208,16 +164,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <div class="icon">
-                                                        <i class="flaticon-five-stars"></i>
-                                                    </div>
-                                                    <div class="form">
-                                                        <input type="text" placeholder="FlyerNumber :  98265">
-                                                    </div>
-                                                </div>
-                                            </div> -->
                             </div>
 
         </form>
@@ -231,21 +177,6 @@
             <div class="booking-details-wrap">
                 <p>Make sure that the passenger's name is exactly as written in the government issued ID/Passport/Driving License. </p>
                 {{-- <form action="#"> --}}
-                <!-- <div class="form-grp select-form">
-                                            <div class="icon">
-                                                <i class="flaticon-add-user"></i>
-                                            </div>
-                                            <div class="form">
-                                                <label for="shortBy">Select Travellers from your Favourties List</label>
-                                                <select id="shortBy" name="select" class="form-select" aria-label="Default select example">
-                                                    <option value="">Select One..</option>
-                                                    <option>Select Two..</option>
-                                                    <option>Select Three..</option>
-                                                    <option>Select Four..</option>
-                                                    <option>Select Five..</option>
-                                                </select>
-                                            </div>
-                                        </div> -->
                 <ul>
                     <li>
                         <div class="form-grp">
@@ -257,11 +188,6 @@
                             </div>
                         </div>
                     </li>
-                    <!-- <li>
-                                                <div class="form-grp">
-                                                    <input type="text" placeholder="Give Name">
-                                                </div>
-                                            </li> -->
                     <li>
                         <div class="form-grp">
                             <input type="text" placeholder="Last Name *" name="pass_lastname[<?php echo $i; ?>]">
@@ -270,12 +196,6 @@
                 </ul>
                 <div class="gender-select" style="margin-bottom: 40px;">
                     <h2 class="title">Select Your Gender*</h2>
-                    <!-- <ul>
-                        
-                        <input type="radio" class="form-check-input" id="radio1" name="pass_gender[<?php echo $i; ?>]" value="1" checked>Male
-                        <input type="radio" class="form-check-input" id="radio2" name="pass_gender[<?php echo $i; ?>]" value="0">Female
-                    </ul> -->
-
                     <div class="radio-buttons-con ">
                         <div class="radio-but">
                             <input name="pass_gender[<?php echo $i; ?>]" id="radio1.[<?php echo $i; ?>]" class="radio-but__input" type="radio" value="1" checked>
@@ -296,26 +216,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <div class="icon">
-                                                        <i class="flaticon-globe-1"></i>
-                                                    </div>
-                                                    <div class="form">
-                                                        <label for="nationality">Nationality</label>
-                                                        <select id="nationality" name="select" class="form-select" aria-label="Default select example">
-                                                            <option value="">Bangladesh</option>
-                                                            <option>United States</option>
-                                                            <option>Dubai</option>
-                                                            <option>Saudi Arabia</option>
-                                                            <option>Australia</option>
-                                                            <option>South Africa</option>
-                                                            <option>Pakistan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-
                     <div class="col-md-6">
                         <div class="form-grp">
                             <div class="icon">
@@ -327,27 +227,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <div class="icon">
-                                                        <i class="flaticon-home"></i>
-                                                    </div>
-                                                    <div class="form">
-                                                        <input type="text" placeholder="Post Code *">
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                    <!-- {{-- <div class="col-md-6">
-                                    <div class="form-grp">
-                                        <div class="icon">
-                                            <i class="flaticon-arroba"></i>
-                                        </div>
-                                        <div class="form">
-                                            <label for="email">Your Email</label>
-                                            <input type="email" id="email" placeholder="youinfo@gmail.com ">
-                                        </div>
-                                    </div>
-                                </div> --}} -->
                     <div class="col-md-6">
                         <div class="form-grp">
                             <div class="icon">
@@ -359,28 +238,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="optional-item">
-                                            <div class="form-grp">
-                                                <div class="form">
-                                                    <select id="optional" name="select" class="form-select" aria-label="Default select example">
-                                                        <option value="">Select meal type ( optional )</option>
-                                                        <option>Select meal type ( optional )</option>
-                                                        <option>Select meal type ( optional )</option>
-                                                        <option>Select meal type ( optional )</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-grp">
-                                                <div class="form">
-                                                    <select id="optionalTwo" name="select" class="form-select" aria-label="Default select example">
-                                                        <option value="">Request wheelchair ( optional )</option>
-                                                        <option>Request wheelchair ( optional )</option>
-                                                        <option>Select meal type ( optional )</option>
-                                                        <option>Select meal type ( optional )</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> -->
                 <div class="form-grp checkbox-grp">
                     {{-- <input type="checkbox" id="checkbox">
                                         <label for="checkbox">Add this person to passenger quick pick list</label> --}}
