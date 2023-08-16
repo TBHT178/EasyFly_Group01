@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @section('content')
 <div class="container">
     @if (session()->has('message'))
@@ -7,42 +6,28 @@
         {{ session()->get('message') }}
     </div>
     @endif
-
-    @if (session()->has('error'))
-    <div class="alert alert-danger" role="alert">
-        {{ session()->get('error') }}
-    </div>
-    @endif
-
     <h1 style="padding:20px 0px;text-align: center;">Add New Seat Class</h1>
-    <form action="{{ route('seatclass_addprocess') }}" method="post" style="padding-bottom: 50px;">
+    <form action="{{ route('seatclass_addprocess') }}" method="POST" style="padding-bottom: 50px;">
         @csrf
         <div class="form-group">
-            <label for="Flight_id">Flight ID <span style="color:red;">(*)</span></label>
-            <select name="Flight_id" class="form-control">
+            <label>Flight</label>
+            <select name="flight_id" class="form-control">
                 <option value="">Choose Flight</option>
-                @foreach ($seat_class as $flight)
-                <option value="{{ $flight->Flight_id }}">{{ $flight->Flight_id }}</option>
+                @foreach ($flights as $flight)
+                <option value="{{ $flight->flight_id }}" @if(old('flight_id')==$flight->flight_id) selected @endif>
+                    {{ $flight->FromPlace }} to {{ $flight->ToPlace }} - {{ $flight->departure }} to {{ $flight->arrival }}
+                </option>
                 @endforeach
             </select>
-            @error('Flight_id')
+            @error('flight_id')
             <div style="color:red">
                 {{ $message }}
             </div>
             @enderror
         </div>
         <div class="form-group">
-            <label for="price_class_TG">Price Class TG <span style="color:red;">(*)</span></label>
-            <input type="text" id="price_class_TG" class="form-control" name="price_class_TG" value="{{ old('price_class_TG') }}">
-            @error('price_class_TG')
-            <div style="color:red">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
-        <div class="form-group">
-            <label for="num_class_PT">Num Class PT <span style="color:red;">(*)</span></label>
-            <input type="number" id="num_class_PT" class="form-control" name="num_class_PT" value="{{ old('num_class_PT') }}" min="0">
+            <label>Number of Class PT</label>
+            <input type="number" class="form-control" name="num_class_PT" value="{{ old('num_class_PT') }}">
             @error('num_class_PT')
             <div style="color:red">
                 {{ $message }}
@@ -50,8 +35,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="num_class_TG">Num Class TG <span style="color:red;">(*)</span></label>
-            <input type="number" id="num_class_TG" class="form-control" name="num_class_TG" value="{{ old('num_class_TG') }}" min="0">
+            <label>Number of Class TG</label>
+            <input type="number" class="form-control" name="num_class_TG" value="{{ old('num_class_TG') }}">
             @error('num_class_TG')
             <div style="color:red">
                 {{ $message }}
@@ -59,15 +44,23 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="price_class_PT">Price Class PT <span style="color:red;">(*)</span></label>
-            <input type="text" id="price_class_PT" class="form-control" name="price_class_PT" value="{{ old('price_class_PT') }}">
+            <label>Price of Class PT</label>
+            <input type="number" step="0.01" class="form-control" name="price_class_PT" value="{{ old('price_class_PT') }}">
             @error('price_class_PT')
             <div style="color:red">
                 {{ $message }}
             </div>
             @enderror
         </div>
-        <p style="color:red;">All <span>(*)</span> are required fields</p>
+        <div class="form-group">
+            <label>Price of Class TG</label>
+            <input type="number" step="0.01" class="form-control" name="price_class_TG" value="{{ old('price_class_TG') }}">
+            @error('price_class_TG')
+            <div style="color:red">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
         <button style="float:right;" type="submit" class="btn btn-primary">Add Seat Class</button>
     </form>
 </div>

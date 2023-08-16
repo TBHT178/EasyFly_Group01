@@ -31,8 +31,9 @@
                         <td>{{ $feedback->Comment }}</td>
                         <td>{{ date('d-m-Y ', strtotime($feedback->FeedbackDate)) }}</td>
                         <td>
-                            <a href="{{ route('feedback_update', ['code' => $feedback->FeedbackId]) }}"><button
-                                    class="btn btn-primary">Update</button></a> | <a
+                            {{-- <a href="{{ route('feedback_update', ['code' => $feedback->FeedbackId]) }}"><button
+                                    class="btn btn-primary">Update</button></a> | --}}
+                                     <a
                                 href="{{ route('feedback_delete', ['code' => $feedback->FeedbackId]) }}"
                                 onclick="confirmation(event)"><button class="btn btn-danger">Delete</button></a>
                         </td>

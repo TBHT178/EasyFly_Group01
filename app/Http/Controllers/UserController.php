@@ -78,8 +78,23 @@ class UserController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh');
         $result = $now->lt($date);
         if($result){
-            DB::table('ticket')->where('ticket_id', $ticketId)->delete();
+            $type = DB::table('ticket')->where('ticket_id', $ticketId)->first();
+            $rs=DB::table('seat_class')->where('flight_id',  $type->flight_id)->first();
+            if($type->type == "Economy"){
+                DB::table('seat_class')->where('flight_id',  $type->flight_id) ->update([
+                    'num_class_PT' => $rs->num_class_PT + 1
+                    
+                ]);
+                DB::table('ticket')->where('ticket_id', $ticketId)->delete();
+                return redirect()->back()->with('message', 'Ticket canceled successfully.');
+            }if($type->type == "Business"){
+                DB::table('seat_class')->where('flight_id',  $type->flight_id) ->update([
+                    'num_class_TG' => $rs->num_class_TG + 1
+                ]);
+                DB::table('ticket')->where('ticket_id', $ticketId)->delete();
             return redirect()->back()->with('message', 'Ticket canceled successfully.');
+            }
+            
         }else{
             return redirect()->back()->with('error', 'You can not cancel this ticket because the departure day of this ticket has passed!');
         }

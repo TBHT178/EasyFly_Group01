@@ -75,7 +75,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('ticket')}}" class="nav-link">
+          <a href="{{route('ticket')}}" class="nav-link {{ Route::currentRouteNamed('ticket') ? 'active' : ' ' }}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Ticket

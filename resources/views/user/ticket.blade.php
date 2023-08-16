@@ -42,7 +42,7 @@
                 </ul>
                 <div class="flight-price">
                     <h4 class="title">$ {{$result->price}}</h4>
-                    <a onclick="confirmation(event)" href="{{ route('cancel.flight', ['ticketId' => $result->ticket_id]) }}" class="btn btn-danger">Delete<i class="flaticon-flight-1"></i></a>
+                    <a onclick="confirmation(event)" href="{{ route('cancel.flight', ['ticketId' => $result->ticket_id]) }}" class="btn btn-danger">Cancel<i class="flaticon-flight-1"></i></a>
                 </div>
             </div>
             <div class="booking-list-bottom">

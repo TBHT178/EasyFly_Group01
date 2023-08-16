@@ -55,8 +55,8 @@
     $('#search-order').on('keyup', function() {
         let value = $(this).val();
         if (value) {
-            $('#order-row').hide('');
-            $('#order-data').show('');
+            $('#order-row').hide();
+            $('#order-data').show();
         }
         $.ajax({
             type: 'POST',
@@ -72,6 +72,45 @@
         });
     });
 </script>
+{{-- <script type="text/javascript">
+    $('#search-order').on('keyup', function() {
+        var searchValue = $(this).val();
+        $.ajax({
+            method: 'POST',
+            url: '{{ route('searchOrder') }}',
+dataType: 'json',
+data: {
+search: searchValue,
+'_token': '{{ csrf_token() }}'
+},
+success: function(data) {
+console.log(data);
+var tableRows = '';
+$('#order-data').html('');
+$.each(data, function(index, order) {
+tableRows += '<tr>
+    <td>' +
+        order.order_id + '</td>
+    <td>' +
+        order.customer_id + '</td>
+    <td>' +
+        order.quantity + '</td>
+    <td>' +
+        order.total_price + '</td>
+    <td>' +
+        order.status + '</td>
+    <td>' +
+        order.paymentmethod + '</td>
+    <td>' +
+        order.create_at + '</td>
+    <td><a href="/admin/order/update/' + order.order_id + '"><button class="btn btn-primary">Update</button></a> | <a onclick="confirmation(event)" href="/admin/order/delete/' + order.order_id + '"><button class="btn btn-danger">Delete</button></a></td>
+</tr>';
+});
+$('#order-data').html(tableRows);
+}
+});
+});
+</script> --}}
 <script>
     function confirmation(ev) {
         ev.preventDefault();
