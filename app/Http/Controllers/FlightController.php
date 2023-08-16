@@ -14,6 +14,7 @@ class FlightController extends Controller
     {
         $departure = $request->input('depart');
         $currentTime = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $realtime=Carbon::now('Asia/Ho_Chi_Minh');
         $request->validate([
             'to' => 'different:from',
             'depart' => 'after_or_equal:' . $currentTime,
@@ -36,7 +37,8 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $request->from)
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_PT', '>=', $request->passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart) 
+                ->where('departure','>=',$realtime)
                 ->orderBy('d.price_class_PT')	
                 ->get();
             $class = $request->class;
@@ -54,7 +56,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $request->from)
                 ->where('ToPlace', '=', $request->to)
                 ->where('num_class_TG', '>=', $request->passenger)
-                ->whereDate('departure', '=', $depart)
+                ->whereDate('departure', '=', $depart)->where('departure','>=',$realtime)
                 ->orderBy('d.price_class_TG')
                 ->get();
             $class = $request->class;
@@ -81,6 +83,7 @@ class FlightController extends Controller
 
     public function return(Request $request)
     {
+        $realtime=Carbon::now('Asia/Ho_Chi_Minh');
         $from = $request->from;
         $to = $request->to;
         $depart = $request->departure;
@@ -98,7 +101,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_PT', '>=', $passenger)
-                ->whereDate('departure', '=', $depart)->orderBy('d.price_class_PT')
+                ->whereDate('departure', '=', $depart)->where('departure','>=',$realtime)->orderBy('d.price_class_PT')
                 ->get();
             //   dd($passenger);
             $price1 = $request->price;
@@ -114,7 +117,7 @@ class FlightController extends Controller
                 ->where('FromPlace', '=', $from)
                 ->where('ToPlace', '=', $to)
                 ->where('num_class_TG', '>=', $passenger)
-                ->whereDate('departure', '=', $depart) ->orderBy('d.price_class_TG')
+                ->whereDate('departure', '=', $depart)->where('departure','>=',$realtime) ->orderBy('d.price_class_TG')
                 ->get();
             $price1 = $request->price;
 
