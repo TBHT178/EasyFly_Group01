@@ -125,7 +125,7 @@ Route::prefix('/admin/order')->middleware('isAdmin')->group(function () {
 Route::prefix('/admin/ticket')->middleware('isAdmin')->group(function () {
     #ticket
     Route::get('/', [AdminController::class, 'ticket'])->name('ticket');
-    Route::post('/search', [AdminController::class, 'searchticket'])->name('searchticket');
+    Route::post('/search', [AdminController::class, 'searchTicket'])->name('searchTicket');
     #them
     Route::get('/add', [AdminController::class, 'ticket_add'])->name('ticket_add');
     Route::post('/addprocess', [AdminController::class, 'ticket_addprocess'])->name('ticket_addprocess');

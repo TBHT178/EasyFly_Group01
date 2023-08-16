@@ -41,7 +41,8 @@
                 <td>{{ $ticket->pass_cmnd }}</td>
                 <td>{{ $ticket->type }}</td>
                 <td>
-                    <a href="{{ route('ticket_update', ['code' => $ticket->ticket_id]) }}"><button class="btn btn-primary">Update</button></a> | <a onclick="confirmation(event)" href="{{ route('ticket_delete', ['code' => $ticket->ticket_id]) }}"><button class="btn btn-danger">Delete</button></a>
+                    <a href="{{ route('ticket_update', ['code' => $ticket->ticket_id]) }}"><button class="btn btn-primary">Update</button>
+                    </a> | <a onclick="confirmation(event)" href="{{ route('ticket_delete', ['code' => $ticket->ticket_id]) }}"><button class="btn btn-danger">Delete</button></a>
                 </td>
             </tr>
             @empty
@@ -52,6 +53,7 @@
             </tr>
             @endforelse
         </tbody>
+        <tbody id="ticket-data"> </tbody>
     </table>
     {{ $tickets->links() }}
 </div>
@@ -66,7 +68,7 @@
         }
         $.ajax({
             type: 'POST',
-            url: "{{ route('searchticket') }}",
+            url: "{{ route('searchTicket') }}",
             data: {
                 'search': value,
                 '_token': '{{ csrf_token() }}'
@@ -77,6 +79,7 @@
             }
         });
     });
+
 
     function confirmation(ev) {
         ev.preventDefault();

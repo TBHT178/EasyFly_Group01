@@ -416,24 +416,33 @@ class AdminController extends Controller
         $output = '';
         $search = $request->input('search');
         $customers = DB::table('customer')->where('customer_id', 'like', '%' . $search . '%')
-            ->orWhere('customer_name', 'like', '%' . $search . '%')
-            ->orWhere('customer_email', 'like', '%' . $search . '%')
-            ->orWhere('customer_phone', 'like', '%' . $search . '%')
-            ->orWhere('customer_address', 'like', '%' . $search . '%')->get();
+            ->orWhere('AccountId', 'like', '%' . $search . '%')
+            ->orWhere('firstname', 'like', '%' . $search . '%')
+            ->orWhere('lastname', 'like', '%' . $search . '%')
+            ->orWhere('gender', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->orWhere('phone', 'like', '%' . $search . '%')->orderBy('customer_id', 'desc')->get();
 
         foreach ($customers as $customer) {
             $output .=
                 '<tr>
-                <td>' . $customer->customer_id . '</td>
-                <td>' . $customer->customer_name . '</td>
-                <td>' . $customer->customer_email . '</td>
-                <td>' . $customer->customer_phone . '</td>
-                <td>' . $customer->customer_address . '</td>
-                <td><a href="/admin/customer/update/' . $customer->customer_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/customer/delete/' . $customer->customer_id . '"><button class="btn btn-danger">Delete</button></a></td>
-                </tr>';
+                    <td>' . $customer->customer_id . '</td>
+                    <td>' . $customer->AccountId . '</td>
+                    <td>' . $customer->firstname . '</td>
+                    <td>' . $customer->lastname . '</td>
+                    <td>' . $customer->gender . '</td>
+                    <td>' . $customer->email . '</td>
+                    <td>' . $customer->phone . '</td>
+                    <td>
+                    <a href="/admin/customer/update/' . $customer->customer_id . '"><button class="btn btn-primary">Update</button></a>
+                    <a onclick="confirmation(event)" href="/admin/customer/delete/' . $customer->customer_id . '"><button class="btn btn-danger">Delete</button></a>
+                </td>
+    
+                    </tr>';
         }
         return response($output);
     }
+
     public function customer_add()
     {
         return view('admin.customer_add');
@@ -441,12 +450,12 @@ class AdminController extends Controller
     public function customer_addprocess(Request $request)
     {
         $request->validate([
-            'AccountId' => 'required',
+            'AccountId' => 'required|numeric|min:1',
             'firstname' => 'required',
             'lastname' => 'required',
-            'gender' => 'required',
+            'gender' => 'required|numeric|min:0|max:1',
             'email' => 'required|email|unique:customer,email',
-            'phone' => 'required|unique:customer,phone',
+            'phone' => 'required|numeric|min:10,max:11',
 
         ]);
         DB::table('customer')->insert([
@@ -504,29 +513,35 @@ class AdminController extends Controller
         $orders = DB::table('order')->paginate(7);
         return view('admin.order', ['orders' => $orders]);
     }
-
+    //searchOrder
     public function searchOrder(Request $request)
     {
+
         $output = '';
         $search = $request->input('search');
         $orders = DB::table('order')->where('order_id', 'like', '%' . $search . '%')
             ->orWhere('customer_id', 'like', '%' . $search . '%')
-            ->orWhere('flight_id', 'like', '%' . $search . '%')
-            ->orWhere('seat_class', 'like', '%' . $search . '%')
-            ->orWhere('order_date', 'like', '%' . $search . '%')
-            ->orWhere('order_total', 'like', '%' . $search . '%')->get();
+            ->orWhere('quantity', 'like', '%' . $search . '%')
+            ->orWhere('total_price', 'like', '%' . $search . '%')
+            ->orWhere('status', 'like', '%' . $search . '%')
+            ->orWhere('paymentmethod', 'like', '%' . $search . '%')->orderBy('order_id', 'desc')->get();
 
         foreach ($orders as $order) {
             $output .=
                 '<tr>
-                <td>' . $order->order_id . '</td>
-                <td>' . $order->customer_id . '</td>
-                <td>' . $order->flight_id . '</td>
-                <td>' . $order->seat_class . '</td>
-                <td>' . $order->order_date . '</td>
-                <td>' . $order->order_total . '</td>
-                <td><a href="/admin/order/update/' . $order->order_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/order/delete/' . $order->order_id . '"><button class="btn btn-danger">Delete</button></a></td>
-                </tr>';
+                    <td>' . $order->order_id . '</td>
+                    <td>' . $order->customer_id . '</td>
+                    <td>' . $order->quantity . '</td>
+                    <td>' . $order->total_price . '</td>
+                    <td>' . $order->status . '</td>
+                    <td>' . $order->paymentmethod . '</td>
+                    <td>' . $order->create_at . '</td>
+                    <td>
+            <a href="/admin/order/update/' . $order->order_id . '"><button class="btn btn-primary">Update</button></a>
+            <a onclick="confirmation(event)" href="/admin/order/delete/' . $order->order_id . '"><button class="btn btn-danger">Delete</button></a>
+        </td>
+
+                    </tr>';
         }
         return response($output);
     }
@@ -606,34 +621,44 @@ class AdminController extends Controller
         $tickets = DB::table('ticket')->orderByDesc('ticket_id')->paginate(7);
         return view('admin.ticket', ['tickets' => $tickets]);
     }
-
+    // searchTicket
     public function searchTicket(Request $request)
     {
         $output = '';
         $search = $request->input('search');
         $tickets = DB::table('ticket')->where('ticket_id', 'like', '%' . $search . '%')
-            ->orWhere('order_id', 'like', '%' . $search . '%')
-            ->orWhere('customer_id', 'like', '%' . $search . '%')
             ->orWhere('flight_id', 'like', '%' . $search . '%')
-            ->orWhere('seat_class', 'like', '%' . $search . '%')
-            ->orWhere('ticket_price', 'like', '%' . $search . '%')
-            ->orWhere('ticket_status', 'like', '%' . $search . '%')->get();
+            ->orWhere('Customer_id', 'like', '%' . $search . '%')
+            ->orWhere('pass_firstname', 'like', '%' . $search . '%')
+            ->orWhere('pass_lastname', 'like', '%' . $search . '%')
+            ->orWhere('pass_gender', 'like', '%' . $search . '%')
+            ->orWhere('pass_dob', 'like', '%' . $search . '%')
+            ->orWhere('pass_cmnd', 'like', '%' . $search . '%')
+            ->orWhere('type', 'like', '%' . $search . '%')
+            ->orderBy('ticket_id', 'desc')->get();
 
         foreach ($tickets as $ticket) {
             $output .=
                 '<tr>
-                <td>' . $ticket->ticket_id . '</td>
-                <td>' . $ticket->order_id . '</td>
-                <td>' . $ticket->customer_id . '</td>
-                <td>' . $ticket->flight_id . '</td>
-                <td>' . $ticket->seat_class . '</td>
-                <td>' . $ticket->ticket_price . '</td>
-                <td>' . $ticket->ticket_status . '</td>
-                <td><a href="/admin/ticket/update/' . $ticket->ticket_id . '"><button class="btn btn-primary">Update</button></a>|<a onclick="confirmation(event)" href="/admin/ticket/delete/' . $ticket->ticket_id . '"><button class="btn btn-danger">Delete</button></a></td>
+                    <td>' . $ticket->ticket_id . '</td>
+                    <td>' . $ticket->flight_id . '</td>
+                    <td>' . $ticket->Customer_id . '</td>
+                    <td>' . $ticket->pass_firstname . '</td>
+                    <td>' . $ticket->pass_lastname . '</td>
+                    <td>' . $ticket->pass_gender . '</td>
+                    <td>' . $ticket->pass_dob . '</td>
+                    <td>' . $ticket->pass_cmnd . '</td>
+                    <td>' . $ticket->type . '</td>
+                    <td>
+            <a href="/admin/ticket/update/' . $ticket->ticket_id . '"><button class="btn btn-primary">Update</button></a>
+            <a onclick="confirmation(event)" href="/admin/ticket/delete/' . $ticket->ticket_id . '"><button class="btn btn-danger">Delete</button></a>
+        </td>
                 </tr>';
         }
-        return response($output);
+
+        return response()->json(['output' => $output]);
     }
+
 
     // add
 
@@ -646,8 +671,8 @@ class AdminController extends Controller
     {
         $request->validate([
             'ticket_id' => 'required|unique:ticket',
-            'flight_id' => 'required',
-            'customer_id' => 'required',
+            'flight_id' => 'required|numeric',
+            'customer_id' => 'required|numeric',
             'pass_firstname' => 'required',
             'pass_lastname' => 'required',
             'pass_gender' => 'required',
