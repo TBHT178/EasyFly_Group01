@@ -70,7 +70,9 @@
 
     function confirmation(e) {
         e.preventDefault();
-        var url = e.target.getAttribute('href');
+        var url = e.currentTarget.getAttribute('href');
+
+        console.log("url:: ",url )
         swal({
                 title: 'Are you sure?',
                 text: 'Once deleted, you will not be able to recover this record!',

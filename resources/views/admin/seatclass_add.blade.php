@@ -14,8 +14,9 @@
             <select id="flight_id" name="flight_id" class="form-control">
                 <option value="">Choose Flight</option>
                 @foreach ($flights as $flight)
-                <option value="{{ $flight->flight_id }}" @if(old('flight_id')==$flight->flight_id) selected @endif>
-                    {{ $flight->FromPlace }} to {{ $flight->ToPlace }} - {{ $flight->departure }} to {{ $flight->arrival }}
+                <!-- @if(old('flight_id')==$flight->flight_id) selected @endif -->
+                <option value="{{ $flight-> flight_id }}" >
+                 {{ $flight-> flight_id }}  {{ $flight->FromPlace }} to {{ $flight->ToPlace }} - {{ $flight->departure }} to {{ $flight->arrival }}
                 </option>
                 @endforeach
             </select>

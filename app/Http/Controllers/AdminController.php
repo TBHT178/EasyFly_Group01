@@ -347,7 +347,7 @@ class AdminController extends Controller
         }
 
         DB::table('seat_class')->insert([
-            'Flight_id' => $request->input('Flight_id'),
+            'Flight_id' => $request->input('flight_id'),
             'price_class_TG' => $request->input('price_class_TG'),
             'num_class_PT' => $request->input('num_class_PT'),
             'num_class_TG' => $request->input('num_class_TG'),
