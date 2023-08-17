@@ -10,8 +10,8 @@
     <form action="{{ route('seatclass_addprocess') }}" method="POST" style="padding-bottom: 50px;">
         @csrf
         <div class="form-group">
-            <label>Flight</label>
-            <select name="flight_id" class="form-control">
+            <label for="flight_id">Flight</label>
+            <select id="flight_id" name="flight_id" class="form-control">
                 <option value="">Choose Flight</option>
                 @foreach ($flights as $flight)
                 <option value="{{ $flight->flight_id }}" @if(old('flight_id')==$flight->flight_id) selected @endif>
@@ -25,9 +25,10 @@
             </div>
             @enderror
         </div>
+
         <div class="form-group">
-            <label>Number of Class PT</label>
-            <input type="number" class="form-control" name="num_class_PT" value="{{ old('num_class_PT') }}">
+            <label for="num_class_PT">Number of Class PT</label>
+            <input type="number" id="num_class_PT" class="form-control" name="num_class_PT" value="{{ old('num_class_PT') }}">
             @error('num_class_PT')
             <div style="color:red">
                 {{ $message }}
@@ -35,8 +36,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Number of Class TG</label>
-            <input type="number" class="form-control" name="num_class_TG" value="{{ old('num_class_TG') }}">
+            <label for="num_class_TG">Number of Class TG</label>
+            <input type="number" id="num_class_TG" class="form-control" name="num_class_TG" value="{{ old('num_class_TG') }}">
             @error('num_class_TG')
             <div style="color:red">
                 {{ $message }}
@@ -44,8 +45,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Price of Class PT</label>
-            <input type="number" step="0.01" class="form-control" name="price_class_PT" value="{{ old('price_class_PT') }}">
+            <label for="price_class_PT">Price of Class PT</label>
+            <input type="number" step="0.01" id="price_class_PT" class="form-control" name="price_class_PT" value="{{ old('price_class_PT') }}">
             @error('price_class_PT')
             <div style="color:red">
                 {{ $message }}
@@ -53,8 +54,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label>Price of Class TG</label>
-            <input type="number" step="0.01" class="form-control" name="price_class_TG" value="{{ old('price_class_TG') }}">
+            <label for="price_class_TG">Price of Class TG</label>
+            <input type="number" step="0.01" id="price_class_TG" class="form-control" name="price_class_TG" value="{{ old('price_class_TG') }}">
             @error('price_class_TG')
             <div style="color:red">
                 {{ $message }}

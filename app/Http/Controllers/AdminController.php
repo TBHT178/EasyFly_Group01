@@ -333,28 +333,19 @@ class AdminController extends Controller
 
     public function seatclass_addprocess(Request $request)
     {
-        $max = DB::table('flight')->latest('flight_id')->first();
-        $valid = $max->flight_id;
         $request->validate([
-            'Flight_id' => ['required', 'numeric', 'min:1', 'max:' . $valid],
+            'flight_id' => 'required|exists:flight,flight_id',
             'price_class_TG' => 'required',
             'num_class_PT' => 'required',
             'num_class_TG' => 'required',
             'price_class_PT' => 'required'
         ]);
-
-        // Get the flight information
-        $flight = DB::table('flight')->where('flight_id', $request->input('Flight_id'))->first();
-
-        // Calculate the total number of seats in seat_class
+        $flight = DB::table('flight')->where('flight_id', $request->input('flight_id'))->first();
         $totalSeats = $request->input('num_class_PT') + $request->input('num_class_TG');
-
-        // Check if the total number of seats in seat_class exceeds avail_seat of flight
         if ($totalSeats > $flight->avail_seat) {
             return redirect()->back()->withErrors(['num_class_PT' => 'Total seats in seat_class cannot exceed avail_seat of flight']);
         }
 
-        // Insert or update seat_class
         DB::table('seat_class')->insert([
             'Flight_id' => $request->input('Flight_id'),
             'price_class_TG' => $request->input('price_class_TG'),
@@ -365,8 +356,6 @@ class AdminController extends Controller
 
         return redirect()->route('seatclass')->with('message', 'Add New Seat Class Successful!');
     }
-
-
 
 
 
@@ -620,7 +609,7 @@ class AdminController extends Controller
     ////////////////////////////////Ticket/////////////////////////////////////////////
     public function ticket()
     {
-        $tickets = DB::table('ticket')->orderByDesc('ticket_id')->paginate(7);
+        $tickets = DB::table('ticket')->paginate(7);
         return view('admin.ticket', ['tickets' => $tickets]);
     }
     // searchTicket
@@ -658,7 +647,7 @@ class AdminController extends Controller
                 </tr>';
         }
 
-        return response()->json(['output' => $output]);
+        return response($output);
     }
 
 

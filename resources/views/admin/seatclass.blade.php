@@ -33,7 +33,7 @@
                 <td>{{ $seatclass->num_class_TG }}</td>
                 <td>{{ $seatclass->price_class_PT }}</td>
                 <td>
-                    <a href="{{ route('seatclass_update', ['code' => $seatclass->Flight_id]) }}"><button class="btn btn-primary">Update</button></a> | <a href="{{ route('seatclass_delete', ['code' => $seatclass->Flight_id]) }}" onclick="confirmation(event)"><button class="btn btn-danger">Delete</button></a>
+                    <a href="{{ route('seatclass_update', ['code' => $seatclass->Flight_id]) }}"><button class="btn btn-primary">Update</button></a> | <a onclick="confirmation(event)" href="{{ route('seatclass_delete', ['code' => $seatclass->Flight_id]) }}"><button class="btn btn-danger">Delete</button></a>
                 </td>
             </tr>
             @empty
