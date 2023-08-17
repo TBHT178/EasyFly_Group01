@@ -89,7 +89,7 @@
                                             <i class="flaticon-user-1"></i>
                                         </div>
                                         <div class="form">
-                                            <input type="text" placeholder="First Name *" id="firstname" name="firstname" required>
+                                            <input type="text" placeholder="First Name *" id="firstname" name="firstname">
 
 
                                         </div>
@@ -97,7 +97,7 @@
                                 </li>
                                 <li>
                                     <div class="form-grp">
-                                        <input type="text" placeholder="Last Name *" name="lastname" required>
+                                        <input type="text" placeholder="Last Name *" name="lastname">
 
 
                                     </div>
@@ -132,7 +132,7 @@
                                             <i class="flaticon-telephone-call"></i>
                                         </div>
                                         <div class="form">
-                                            <input type="number" placeholder="Mobile Number *" name="phone" required>
+                                            <input type="number" placeholder="Mobile Number *" name="phone" id="phone">
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                         </div>
                                         <div class="form">
                                             <label for="email">Your Email*</label>
-                                            <input type="email" id="email" placeholder="youinfo@gmail.com" name="email" required>
+                                            <input type="text" id="email" placeholder="youinfo@gmail.com" name="email">
                                         </div>
                                     </div>
                                 </div>
@@ -167,13 +167,13 @@
                                 <i class="flaticon-user-1"></i>
                             </div>
                             <div class="form">
-                                <input type="text" placeholder="First Name *" name="pass_firstname[<?php echo $i; ?>]" required>
+                                <input type="text" placeholder="First Name *" id="firstname1" name="pass_firstname[<?php echo $i; ?>]">
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="form-grp">
-                            <input type="text" placeholder="Last Name *" name="pass_lastname[<?php echo $i; ?>]" required>
+                            <input type="text" placeholder="Last Name *" name="pass_lastname[<?php echo $i; ?>]">
                         </div>
                     </li>
                 </ul>
@@ -206,7 +206,7 @@
                             </div>
                             <div class="form">
                                 <label for="shortBy">Date of Birth*</label>
-                                <input type="date" placeholder="Select Date" name="birthday[<?php echo $i; ?>]" required>
+                                <input type="date" placeholder="Select Date" name="birthday[<?php echo $i; ?>]">
                             </div>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
                                 <i class="flaticon-five-stars"></i>
                             </div>
                             <div class="form">
-                                <input type="text" placeholder="Passport number *" name="passport[<?php echo $i; ?>]" required>
+                                <input type="text" placeholder="Passport number *" name="passport[<?php echo $i; ?>]">
                             </div>
                         </div>
                     </div>
@@ -332,35 +332,100 @@
     document.forms['register-form'].onsubmit = function(event) {
 
         if (this.firstname.value.trim() === "") {
-            //   document.querySelector(".firstname-error").innerHTML = "Please enter a username";
-            //   document.querySelector(".firstname-error").style.display = "block";
             alert('Please enter a firstname');
             event.preventDefault();
+            this.firstname.focus();
             return false;
         }
 
         if (this.lastname.value.trim() === "") {
-            //   document.querySelector(".lastname-error").innerHTML = "Please enter a username";
-            //   document.querySelector(".lastname-error").style.display = "block";
             alert('Please enter a lastname');
             event.preventDefault();
+            this.lastname.focus();
             return false;
         }
 
-        //    if(this.password.value.trim() === ""){
-        //       document.querySelector(".password-error").innerHTML = "Please enter a password";
-        //       document.querySelector(".password-error").style.display = "block";
-        //       event.preventDefault();
-        //       return false;
-        //    }
 
-        //    if(this.email.value.trim() === ""){
-        //       document.querySelector(".email-error").innerHTML = "Please enter a email";
-        //       document.querySelector(".email-error").style.display = "block";
-        //       event.preventDefault();
-        //       return false;
-        //    }
+        var phoneValue = this.phone.value.trim();
+        if (!isValidPhoneNumber(phoneValue)) {
+            alert('Invalid phone number. Phone has to 10 digits');
+            event.preventDefault();
+            this.phone.focus();
+            return false;
+        }
 
+
+        var emailValue = this.email.value.trim();
+        if (!isValidEmail(emailValue)) {
+            alert('Invalid email address');
+            event.preventDefault();
+            this.email.focus();
+            return false;
+        }
+
+        for (var i = 0; i < this.elements.length; i++) {
+            if (this.elements[i].name.startsWith('pass_firstname[')) {
+                var firstnameInput = this.elements[i];
+                var firstnameValue = firstnameInput.value.trim();
+
+                if (firstnameValue === "") {
+                    alert('Please enter a firstname');
+                    event.preventDefault();
+                    firstnameInput.focus();
+                    return false;
+                }
+            }
+        }
+
+        for (var i = 0; i < this.elements.length; i++) {
+            if (this.elements[i].name.startsWith('pass_lastname[')) {
+                var firstnameInput = this.elements[i];
+                var firstnameValue = firstnameInput.value.trim();
+
+                if (firstnameValue === "") {
+                    alert('Please enter a lastname');
+                    event.preventDefault();
+                    firstnameInput.focus();
+                    return false;
+                }
+            }
+        }
+
+        for (var i = 0; i < this.elements.length; i++) {
+            if (this.elements[i].name.startsWith('passport[')) {
+                var passportInput = this.elements[i];
+                var passportValue = passportInput.value.trim();
+
+                if (passportValue === "") {
+                    alert('Please enter a passport number');
+                    event.preventDefault();
+                    passportInput.focus();
+                    return false;
+                }
+
+                if (!isValidPassport(passportValue)) {
+                    alert('Invalid passport number');
+                    event.preventDefault();
+                    passportInput.focus();
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+    function isValidPhoneNumber(phone) {
+        return /^\d{10}$/.test(phone);
+    }
+
+    function isValidEmail(email) {
+        return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
+    }
+
+    function isValidPassport(passport) {
+        return passport.length >= 6;
     }
 </script>
 
